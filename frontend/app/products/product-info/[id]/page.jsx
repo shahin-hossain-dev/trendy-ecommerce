@@ -2,10 +2,23 @@
 import React, { useCallback, useEffect, useState } from "react";
 import ImageGallery from "@/components/ProductImageGallery/ImageGallery";
 import { FetchProductById } from "@/lib/FetchProduct";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Rating,
+  Select,
+} from "@mui/material";
+import { BsCartDash } from "react-icons/bs";
+import { BiGitCompare } from "react-icons/bi";
+import { IoHeartOutline } from "react-icons/io5";
 
 const ProductInfo = ({ params }) => {
   const { id } = params;
   const [product, setProduct] = useState({});
+  const [checkOutData, setCheckOutData] = useState({
+    color: "",
+  });
 
   const fetchData = useCallback(async () => {
     try {
@@ -20,6 +33,13 @@ const ProductInfo = ({ params }) => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  const handleChange = (e) => {
+    setCheckOutData({
+      ...checkOutData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   if (!product) {
     return <div>Loading...</div>;
@@ -40,62 +60,81 @@ const ProductInfo = ({ params }) => {
           {/* Details pan */}
           <div className="md:py-8">
             <div className="mb-2 md:mb-3">
+              <h2 className="text-xl font-bold text-[rgba(0,0,0,0.5)] lg:text-3xl">
+                {product.name}
+              </h2>
               <span className="mb-0.5 inline-block text-gray-500">
                 {product.category}
               </span>
-              <h2 className="text-2xl font-bold text-[rgba(0,0,0,0.5)] lg:text-3xl">
-                {product.name}
-              </h2>
             </div>
 
-            <div className="mb-4">
-              <div className="flex items-end gap-2 ">
+            <div className="mb-4 space-y-3">
+              <div className="flex items-center justify-between ">
+                <div className="flex flex-col">
+                  <Rating name="read-only" value={5} readOnly />
+                  <div className="mt-2">
+                    <span className="text-gray-500 me-4">3 Reviews</span>
+                    <button className="bg-[#192a5633] rounded-full px-3">
+                      Add Your Review{" "}
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <span>Availability </span>
+                  <button className="bg-[#192a56] px-3 ms-3  text-white rounded-full font-medium hover:bg-[#273c75]">
+                    In Stock
+                  </button>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <span className="mb-0.5 text-[#192a5666] line-through">
+                  ৳{product.price}
+                </span>
                 <span className="text-xl font-bold text-gray-800 md:text-2xl">
                   ৳{new Intl.NumberFormat().format(discountedPrice)}
-                </span>
-                <span className="mb-0.5 text-red-700 line-through">
-                  ৳{product.price}
                 </span>
               </div>
 
               <span className="text-sm text-gray-500">
-                Incl. Vat plus shipping
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                enim repellat sed optio sunt porro quibusdam quaerat nemo
+                adipisci. Voluptas.
               </span>
+              <span className=" block text-gray-500">Code: DFSDF923</span>
+            </div>
+            <div>
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <InputLabel id="demo-select-small-label">Color</InputLabel>
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  value={checkOutData.color}
+                  label="Age"
+                  name="color"
+                  onChange={handleChange}
+                  defaultValue="Select One"
+                >
+                  <MenuItem value={"red"}>Red</MenuItem>
+                  <MenuItem value={"green"}>Green</MenuItem>
+                  <MenuItem value={"blue"}>Blue</MenuItem>
+                </Select>
+              </FormControl>
             </div>
 
-            <div className="flex flex-col gap-2 mb-4 text-[rgba(0,0,0,0.5)]">
-              <div className="flex items-center  lg:w-[60%] w-full">
-                <p className="w-[50%] font-semibold tracking-wide">
-                  Availability
-                </p>
-                <p className="w-[50%] text-green-500 font-bold tracking-wider">
-                  <span className="text-black pr-2">:</span>
-                  In Stock
-                </p>
-              </div>
-
-              <div className="flex items-center  lg:w-[60%] w-full">
-                <p className="w-[50%] font-semibold tracking-wide">Brand</p>
-                <p className="w-[50%] text-green-500 font-bold tracking-wider">
-                  <span className="text-black pr-2">:</span> None
-                </p>
-              </div>
-
-              <div className="flex items-center  lg:w-[60%] w-full">
-                <p className="w-[50%] font-semibold tracking-wide">QTY</p>
-                <p className="w-[50%] text-green-500 font-bold tracking-wide">
-                  <span className="text-black pr-2">:</span> 30
-                </p>
-              </div>
-            </div>
             <div className="flex gap-2.5">
-              <button className="bg-[#192a56] px-4 py-2 text-white rounded-md font-semibold hover:bg-[#273c75]">
-                Add To Cart
+              <button className="flex items-center gap-2 bg-[#192a56] px-4 py-2 text-white rounded-full active:scale-95 duration-200 font-medium hover:bg-[#273c75]">
+                <BsCartDash className="text-xl" /> <span>Add To Cart</span>
               </button>
-
-              <button className="bg-white text-black border-2 px-4 py-2 rounded-md font-semibold hover:bg-slate-200">
-                Checkout Now
+              <button className="flex items-center gap-2 bg-[#192a5633] px-4 py-2  rounded-full active:scale-95 duration-200 font-medium hover:bg-[#192a56] hover:text-white">
+                <BiGitCompare className="text-xl rotate-90" />{" "}
+                <span>Compare</span>
               </button>
+              <button className="flex items-center gap-2 bg-[#192a5633] px-4 py-2  rounded-full active:scale-95 duration-200 font-medium hover:bg-[#192a56] hover:text-white">
+                <IoHeartOutline className="text-xl" /> <span>Wishlist</span>
+              </button>
+            </div>
+            <div>
+              <h4 className="uppercase font-semibold">Share: </h4>
             </div>
 
             <div

@@ -19,7 +19,7 @@ const ImageGallery = ({ image, productName, images }) => {
       imageZoom.style.setProperty("--zoomY", `${pointer.y}%`);
     });
 
-    imageZoom.addEventListener("mouseout", (event) => {
+    imageZoom.addEventListener("mouseleave", (event) => {
       imageZoom.style.setProperty("--display", "none");
     });
   }, []);
@@ -33,14 +33,15 @@ const ImageGallery = ({ image, productName, images }) => {
 
   return (
     <div className="flex md:flex-row-reverse flex-col lg:flex-col gap-5 mt-5">
-      <div id="imageZoom" style={styles}>
-        <Image
-          src={showImage ? showImage.image : image}
-          alt={productName}
-          height={400}
-          width={400}
-          s
-        />
+      <div className="relative">
+        <div id="imageZoom" style={styles}>
+          <Image
+            src={showImage ? showImage.image : image}
+            alt={productName}
+            height={400}
+            width={400}
+          />
+        </div>
       </div>
       <div className="flex flex-row md:flex-col lg:flex-row gap-5 mt-4 md:mt-0 lg:mt-4">
         {images?.map((img) => (
