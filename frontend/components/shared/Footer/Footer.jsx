@@ -74,8 +74,14 @@ const Footer = () => {
         </div>
         {/* part-2 */}
         <div className="space-y-4 col-span-1">
-          <h2 className="text-white text-2xl font-bold">NEWSLETTER</h2>
-          <p>
+          <div className="relative">
+            <h2 className="text-white  text-2xl font-bold after:content-[''] after:w-[55px]  after:bg-[#2FB261] after:absolute after:h-[2px] after:-bottom-3  after:left-0">
+              NEWSLETTER
+            </h2>
+            <span className="after:content-[''] after:w-[4px]  after:bg-[#181818] after:absolute after:h-[3px] after:-bottom-3 after:left-[45px]"></span>
+            <span className="after:content-[''] after:w-[2px]  after:bg-[#181818] after:absolute after:h-[3px] after:-bottom-3 after:left-[38px]"></span>
+          </div>
+          <p className="pt-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua
           </p>
@@ -105,8 +111,14 @@ const Footer = () => {
         {/* Part-3 */}
         <div className="col-span-1 md:col-span-2  lg:col-span-1 grid gird-cols-1 md:grid-cols-2 gap-10">
           <div className="space-y-4">
-            <h2 className="text-white text-2xl font-bold">LINKS</h2>
-            <div className="flex flex-col gap-2">
+            <div className="relative">
+              <h2 className="text-white uppercase text-2xl font-bold after:content-[''] after:w-[55px]  after:bg-[#2FB261] after:absolute after:h-[2px] after:-bottom-3  after:left-0">
+                Links
+              </h2>
+              <span className="after:content-[''] after:w-[4px]  after:bg-[#181818] after:absolute after:h-[3px] after:-bottom-3 after:left-[45px]"></span>
+              <span className="after:content-[''] after:w-[2px]  after:bg-[#181818] after:absolute after:h-[3px] after:-bottom-3 after:left-[38px]"></span>
+            </div>
+            <div className="flex flex-col gap-2 pt-2">
               <Link href={"/"} className="text-base hover:underline">
                 Home
               </Link>
@@ -125,8 +137,14 @@ const Footer = () => {
             </div>
           </div>
           <div className="space-y-4">
-            <h2 className="text-white text-2xl font-bold ">Help/Support</h2>
-            <div className="flex flex-col gap-2">
+            <div className="relative">
+              <h2 className="text-white  text-2xl font-bold after:content-[''] after:w-[55px]  after:bg-[#2FB261] after:absolute after:h-[2px] after:-bottom-3  after:left-0">
+                Help/Support
+              </h2>
+              <span className="after:content-[''] after:w-[4px]  after:bg-[#181818] after:absolute after:h-[3px] after:-bottom-3 after:left-[45px]"></span>
+              <span className="after:content-[''] after:w-[2px]  after:bg-[#181818] after:absolute after:h-[3px] after:-bottom-3 after:left-[38px]"></span>
+            </div>
+            <div className="flex flex-col gap-2 pt-2">
               <Link href={"/"} className="text-base hover:underline ">
                 FAQ
               </Link>
