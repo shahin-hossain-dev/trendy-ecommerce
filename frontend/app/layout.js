@@ -28,7 +28,7 @@ const oswald = Oswald({
 });
 
 export const metadata = {
-  title: "App",
+  title: "Trendy",
   description: "app",
 };
 

@@ -43,18 +43,18 @@ const ImageGallery = ({ image, productName, images }) => {
           />
         </div>
       </div>
-      <div className="flex flex-row md:flex-col lg:flex-row gap-5 mt-4 md:mt-0 lg:mt-4">
+      <div className="flex flex-row md:flex-col lg:flex-row gap-2 lg:gap-5 mt-4 md:mt-0 lg:mt-2">
         {images?.map((img) => (
-          <div key={img.id} className="flex-1">
+          <div key={img.id} className=" flex-1 md:flex-none lg:flex-1">
             <Image
               onClick={() => setShowImage(img)}
               src={img.image}
               alt="Product Image"
               height={100}
               width={100}
-              className={`h-[100px] w-full flex-grow object-cover ${
+              className={`h-[100px] w-full flex-grow object-cover rounded-2xl ${
                 img?.id === showImage?.id &&
-                "border p-1 border-[#192a56] duration-200"
+                "border-4  border-[#192a56] duration-200 "
               }`}
             />
           </div>

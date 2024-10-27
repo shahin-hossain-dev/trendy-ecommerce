@@ -12,11 +12,18 @@ import {
 import { BsCartDash } from "react-icons/bs";
 import { BiGitCompare } from "react-icons/bi";
 import { IoHeartOutline } from "react-icons/io5";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
+import Link from "next/link";
 
 const ProductInfo = ({ params }) => {
   const { id } = params;
   const [product, setProduct] = useState({});
-  const [checkOutData, setCheckOutData] = useState({
+  const [productData, setProductData] = useState({
     color: "",
   });
 
@@ -35,8 +42,8 @@ const ProductInfo = ({ params }) => {
   }, [fetchData]);
 
   const handleChange = (e) => {
-    setCheckOutData({
-      ...checkOutData,
+    setProductData({
+      ...productData,
       [e.target.name]: e.target.value,
     });
   };
@@ -50,7 +57,7 @@ const ProductInfo = ({ params }) => {
 
   return (
     <div className="bg-white mb-28 lg:mb-6 h-fit">
-      <div className="mx-auto max-w-screen-xl px-4 md:px-8 flex flex-col gap-3">
+      <div className="mx-auto max-w-screen-xl px-4 md:px-4 flex flex-col gap-3">
         <div className="grid gap-8 md:grid-cols-2">
           <ImageGallery
             image={product.image}
@@ -58,7 +65,7 @@ const ProductInfo = ({ params }) => {
             images={product?.images}
           />
           {/* Details pan */}
-          <div className="md:py-8">
+          <div className="md:py-8 space-y-4">
             <div className="mb-2 md:mb-3">
               <h2 className="text-xl font-bold text-[rgba(0,0,0,0.5)] lg:text-3xl">
                 {product.name}
@@ -69,7 +76,7 @@ const ProductInfo = ({ params }) => {
             </div>
 
             <div className="mb-4 space-y-3">
-              <div className="flex items-center justify-between ">
+              <div className="flex flex-col lg:flex-row items-start gap-3 lg:items-center justify-between ">
                 <div className="flex flex-col">
                   <Rating name="read-only" value={5} readOnly />
                   <div className="mt-2">
@@ -108,7 +115,7 @@ const ProductInfo = ({ params }) => {
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
-                  value={checkOutData.color}
+                  value={productData.color}
                   label="Age"
                   name="color"
                   onChange={handleChange}
@@ -121,7 +128,7 @@ const ProductInfo = ({ params }) => {
               </FormControl>
             </div>
 
-            <div className="flex gap-2.5">
+            <div className="flex flex-wrap gap-2.5">
               <button className="flex items-center gap-2 bg-[#192a56] px-4 py-2 text-white rounded-full active:scale-95 duration-200 font-medium hover:bg-[#273c75]">
                 <BsCartDash className="text-xl" /> <span>Add To Cart</span>
               </button>
@@ -133,8 +140,30 @@ const ProductInfo = ({ params }) => {
                 <IoHeartOutline className="text-xl" /> <span>Wishlist</span>
               </button>
             </div>
-            <div>
+            <div className="flex gap-4 items-center">
               <h4 className="uppercase font-semibold">Share: </h4>
+              <div className="flex gap-2">
+                <Link href="https://www.facebook.com/">
+                  <span className="flex justify-center items-center w-[40px] h-[40px]  hover:bg-sky-500 hover:text-white rounded-full text-[#192a5633] duration-300">
+                    <FaFacebookF />
+                  </span>
+                </Link>
+                <Link href="https://www.twitter.com/">
+                  <span className="flex justify-center items-center w-[40px] h-[40px]  hover:bg-sky-500 hover:text-white rounded-full text-[#192a5633]  duration-300">
+                    <FaTwitter />
+                  </span>
+                </Link>
+                <Link href="https://www.youtube.com/">
+                  <span className="flex justify-center items-center w-[40px] h-[40px]  hover:bg-red-500 hover:text-white rounded-full text-[#192a5633] duration-300">
+                    <FaYoutube />
+                  </span>
+                </Link>
+                <Link href="https://www.linkedin.com/">
+                  <span className="flex justify-center items-center w-[40px] h-[40px]  hover:bg-sky-500 hover:text-white rounded-full text-[#192a5633]  duration-300">
+                    <FaLinkedinIn />
+                  </span>
+                </Link>
+              </div>
             </div>
 
             <div
