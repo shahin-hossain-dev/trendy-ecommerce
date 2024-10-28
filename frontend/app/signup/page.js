@@ -22,6 +22,7 @@ const Signup = () => {
     email: "",
     password: "",
     confirm_password: "",
+    image: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -33,7 +34,7 @@ const Signup = () => {
     confirm_password: "",
     role: "",
     registration_date: "",
-    Image: "",
+    image: "",
   });
 
   const handleChange = (e) => {
@@ -173,6 +174,14 @@ const Signup = () => {
     }
   };
 
+  const handleImageChange = (e) => {
+    const imgFile = e.target.files[0];
+    setFormData({
+      ...formData,
+      image: imgFile,
+    });
+  };
+
   return (
     <section className="grid lg:grid-cols-2 max-h-screen">
       <div className="relative hidden md:block order-2">
@@ -181,7 +190,7 @@ const Signup = () => {
           width={600}
           height={800}
           alt="signin image"
-          className="w-full  max-h-screen object-cover object-top"
+          className="w-full blur-lg max-h-screen object-cover object-top"
         />
         <div className="absolute w-[445px] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
           <div className="text-center">
@@ -295,6 +304,16 @@ const Signup = () => {
                   {formErrors.confirm_password}
                 </p>
               )}
+            </div>
+            <div>
+              <input
+                type="file"
+                name="image"
+                id=""
+                placeholder="Upload Your Image"
+                className="p-2 border w-full"
+                onChange={handleImageChange}
+              />
             </div>
 
             <button
