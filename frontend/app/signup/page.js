@@ -49,12 +49,24 @@ const Signup = () => {
       [name]: "",
     });
   };
+  const handleImageChange = (e) => {
+    const imgFile = e.target.files[0];
+    setFormData({
+      ...formData,
+      image: imgFile,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let isValid = true;
     const newFormErrors = { ...formErrors };
+
+    // const imgResponse = await fetch("/img/user.png");
+    // const imgBlob = await imgResponse.blob();
+
+    // console.log(imgBlob);
 
     if (formData.name.trim() === "") {
       newFormErrors.name = "Name is required";
@@ -174,16 +186,8 @@ const Signup = () => {
     }
   };
 
-  const handleImageChange = (e) => {
-    const imgFile = e.target.files[0];
-    setFormData({
-      ...formData,
-      image: imgFile,
-    });
-  };
-
   return (
-    <section className="grid lg:grid-cols-2 max-h-screen">
+    <section className="grid lg:grid-cols-2 min-h-screen">
       <div className="relative hidden md:block order-2">
         <Image
           src="/img/signin.png"
@@ -206,7 +210,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
+      <div className="lg:mt-5 flex flex-col justify-center items-center ">
         <div className="bg-white shadow-md rounded-lg p-8  ">
           <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
             Create Your Account
@@ -311,7 +315,7 @@ const Signup = () => {
                 name="image"
                 id=""
                 placeholder="Upload Your Image"
-                className="p-2 border w-full"
+                className="p-1 border file:text-white file:bg-[#2FB261] file:border-0 file:p-2 file:rounded-s-md border-gray-300 w-full rounded-md"
                 onChange={handleImageChange}
               />
             </div>
