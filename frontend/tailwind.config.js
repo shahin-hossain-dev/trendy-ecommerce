@@ -30,6 +30,7 @@ module.exports = {
         secondary: "#273c75",
       },
       textColor: {
+        primary: "#192a56",
         secondary: "#273c75",
       },
     },

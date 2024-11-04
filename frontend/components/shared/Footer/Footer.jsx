@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
 import { SlLocationPin } from "react-icons/sl";
 import { LuPhoneCall } from "react-icons/lu";
 import { MdOutlineEmail } from "react-icons/md";

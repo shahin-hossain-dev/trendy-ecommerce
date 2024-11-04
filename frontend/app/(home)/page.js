@@ -7,11 +7,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main className={`w-[95%] mx-auto ${inter.className}`}>
+    <div className={`w-[95%] mx-auto ${inter.className}`}>
       <Hero />
       <ProductContainer />
       <ProductContainer />
       <ProductContainer />
-    </main>
+    </div>
   );
 }

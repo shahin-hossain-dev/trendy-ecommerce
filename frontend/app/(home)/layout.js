@@ -3,12 +3,12 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { Lato, Oswald } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Header from "@/components/Header/Header";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import StoreProvider from "./StoreProvider";
+import StoreProvider from "../StoreProvider";
 import Footer from "@/components/shared/Footer/Footer";
 
 const lato = Lato({
@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
             <CssBaseline />
             <StoreProvider>
               <Header />
-              {children}
+              <main>{children}</main>
               <Footer />
             </StoreProvider>
           </ThemeProvider>

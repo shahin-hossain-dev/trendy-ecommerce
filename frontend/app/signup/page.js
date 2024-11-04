@@ -163,8 +163,7 @@ const Signup = () => {
             address: "Mirpur, Dhaka",
             phone: "01676776077",
             role: "user",
-            defaultPicture:
-              "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+            image: formData.image,
           },
           {
             headers: {
