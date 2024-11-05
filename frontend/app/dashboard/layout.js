@@ -21,9 +21,15 @@ const oswald = Oswald({
 export default function DashboardLayout({ children }) {
   return (
     <html lang="en" className={`${lato.variable} ${oswald.variable}`}>
-      <body className={lato.className}>
-        <Sidebar />
-        {children}
+      <body style={{ margin: "0" }}>
+        <main>
+          <div style={{ display: "flex !important" }}>
+            <section className="min-h-full w-[240px]">
+              <Sidebar />
+            </section>
+            <section>{children}</section>
+          </div>
+        </main>
       </body>
     </html>
   );
