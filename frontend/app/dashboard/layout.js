@@ -3,6 +3,7 @@ import Sidebar from "@/components/Dashboard/Sidebar/page";
 import SideNavBar from "@/components/Dashboard/Sidebar/SideNavBar";
 import { Lato, Oswald } from "next/font/google";
 import "../globals.css";
+import DashboardHeader from "@/components/Dashboard/Sidebar/Header/DashboardHeader";
 const lato = Lato({
   weight: ["400", "700"],
   style: ["normal", "italic"],
@@ -27,7 +28,10 @@ export default function DashboardLayout({ children }) {
           <section className=" lg:col-span-2">
             <SideNavBar />
           </section>
-          <section className="lg:col-span-10">{children}</section>
+          <section className="lg:col-span-10">
+            <DashboardHeader />
+            {children}
+          </section>
         </div>
       </body>
     </html>

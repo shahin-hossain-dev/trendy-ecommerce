@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // Ensure this path is correct
 import DashboardLayout from "./layout";
+import DashboardHeader from "@/components/Dashboard/Sidebar/Header/DashboardHeader";
 
 const page = () => {
   const router = useRouter();
@@ -22,6 +23,10 @@ const page = () => {
   //   verifyAccessToken();
   // }, [router]);
 
-  return <div className="">Dashboard</div>;
+  return (
+    <div>
+      <h2>Dashboard Home</h2>
+    </div>
+  );
 };
 export default page;
