@@ -1,45 +1,27 @@
-"use client";
 import * as React from "react";
-import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
 import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Toolbar from "@mui/material/Toolbar";
+import { Toolbar } from "@mui/material";
 import { MdDashboard } from "react-icons/md";
-import { BsFillBoxSeamFill } from "react-icons/bs";
 import { FaArrowsSpin, FaUserLarge } from "react-icons/fa6";
-import { FaStar } from "react-icons/fa";
+import { BsFillBoxSeamFill } from "react-icons/bs";
 import { BiSolidCategory } from "react-icons/bi";
+import { FaAngleDown, FaStar } from "react-icons/fa";
 import { usePathname, useRouter } from "next/navigation";
-import { FaAngleDown } from "react-icons/fa6";
 
-const drawerWidth = 240;
-
-function Sidebar(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(true);
-  const [isClosing, setIsClosing] = React.useState(false);
+export default function SideNavBar() {
+  const [open, setOpen] = React.useState(true);
   const pathname = usePathname();
   const router = useRouter();
-
-  const handleDrawerClose = () => {
-    setIsClosing(true);
-    setMobileOpen(false);
-  };
-
-  const handleDrawerTransitionEnd = () => {
-    setIsClosing(false);
-  };
-
-  const handleDrawerToggle = () => {
-    if (!isClosing) {
-      setMobileOpen(!mobileOpen);
-    }
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
   };
   // nav links
   const navItems = [
@@ -114,6 +96,7 @@ function Sidebar(props) {
                 sx={{
                   fontSize: "18px",
                   justifyContent: "center",
+                  rowGap: "20px",
                   color: "#273c75",
                 }}
               >
@@ -133,55 +116,35 @@ function Sidebar(props) {
 
   return (
     <div>
+      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
       <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onTransitionEnd={handleDrawerTransitionEnd}
-        onClose={handleDrawerClose}
-        ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
-        }}
+        variant="permanent"
         sx={{
-          display: { xs: "block", sm: "none" },
+          display: { xs: "none", lg: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: drawerWidth,
+            width: "calc(100% * 2/ 12)",
           },
         }}
+        open={open}
+        onClose={toggleDrawer(false)}
       >
         {drawer}
       </Drawer>
       <Drawer
-        variant="permanent"
-        // PaperProps={{
-        //   sx: {
-        //     backgroundColor: "pink",
-        //     color: "red",
-        //   },
-        // }}
         sx={{
-          display: { xs: "none", sm: "block" },
+          display: { sm: "block", lg: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: drawerWidth,
-            position: "static",
-            minHeight: "100vh",
+            width: 240,
           },
         }}
-        open
+        variant="temporary"
+        open={open}
+        onClose={toggleDrawer(false)}
       >
         {drawer}
       </Drawer>
     </div>
   );
 }
-
-Sidebar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * Remove this when copying and pasting into your project.
-   */
-  window: PropTypes.func,
-};
-
-export default Sidebar;

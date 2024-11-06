@@ -1,7 +1,8 @@
 "use client";
 import Sidebar from "@/components/Dashboard/Sidebar/page";
+import SideNavBar from "@/components/Dashboard/Sidebar/SideNavBar";
 import { Lato, Oswald } from "next/font/google";
-
+import "../globals.css";
 const lato = Lato({
   weight: ["400", "700"],
   style: ["normal", "italic"],
@@ -22,14 +23,12 @@ export default function DashboardLayout({ children }) {
   return (
     <html lang="en" className={`${lato.variable} ${oswald.variable}`}>
       <body style={{ margin: "0" }}>
-        <main>
-          <div style={{ display: "flex !important" }}>
-            <section className="min-h-full w-[240px]">
-              <Sidebar />
-            </section>
-            <section>{children}</section>
-          </div>
-        </main>
+        <div className="bg-red-400  grid lg:grid-cols-12 ">
+          <section className=" lg:col-span-2">
+            <SideNavBar />
+          </section>
+          <section className="lg:col-span-10">{children}</section>
+        </div>
       </body>
     </html>
   );
