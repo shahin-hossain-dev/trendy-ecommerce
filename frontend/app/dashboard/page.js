@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // Ensure this path is correct
 import DashboardLayout from "./layout";
 import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHeader";
+import OrderSummery from "@/components/Dashboard/DashboardHome/OrderSummery/OrderSummery";
 
 const page = () => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const page = () => {
 
   return (
     <div>
-      <h2>Dashboard Home</h2>
+      <OrderSummery />
     </div>
   );
 };

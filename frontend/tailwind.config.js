@@ -36,6 +36,7 @@ module.exports = {
       colors: {
         primary: "#192a56",
         secondary: "#2F3336",
+        "dash-primary": "#2FB261",
       },
     },
   },
