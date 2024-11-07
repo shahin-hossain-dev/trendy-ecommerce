@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // Ensure this path is correct
 import DashboardLayout from "./layout";
-import DashboardHeader from "@/components/Dashboard/Sidebar/Header/DashboardHeader";
+import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHeader";
 
 const page = () => {
   const router = useRouter();

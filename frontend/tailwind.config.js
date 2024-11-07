@@ -25,13 +25,17 @@ module.exports = {
       animation: {
         fadeInUp: "fadeInUp 0.3s ease-in-out",
       },
-      backgroundColor: {
+      // backgroundColor: {
+      //   primary: "#192a56",
+      //   secondary: "#273c75",
+      // },
+      // textColor: {
+      //   primary: "#192a56",
+      //   secondary: "#2F3336",
+      // },
+      colors: {
         primary: "#192a56",
-        secondary: "#273c75",
-      },
-      textColor: {
-        primary: "#192a56",
-        secondary: "#273c75",
+        secondary: "#2F3336",
       },
     },
   },

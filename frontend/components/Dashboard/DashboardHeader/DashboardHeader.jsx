@@ -11,12 +11,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { RiSearchLine } from "react-icons/ri";
-// import MenuIcon from "@mui/icons-material/Menu";
-// import SearchIcon from "@mui/icons-material/Search";
-// import AccountCircle from "@mui/icons-material/AccountCircle";
-// import MailIcon from "@mui/icons-material/Mail";
-// import NotificationsIcon from "@mui/icons-material/Notifications";
-// import MoreIcon from "@mui/icons-material/MoreVert";
+import { MdAccountCircle } from "react-icons/md";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { PiWechatLogoLight } from "react-icons/pi";
+
+import { PiMoon } from "react-icons/pi";
+import { IoSunnyOutline } from "react-icons/io5";
+import { FaAngleDown } from "react-icons/fa6";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -61,7 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const DashboardHeader = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [isDarkMood, setDarkMood] = React.useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -122,34 +123,34 @@ const DashboardHeader = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-            {/* <MailIcon /> */}
+            <PiWechatLogoLight className="text-secondary" />
           </Badge>
         </IconButton>
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
         <IconButton
-          size="large"
+          size="medium"
           aria-label="show 17 new notifications"
           color="inherit"
         >
           <Badge badgeContent={17} color="error">
-            {/* <NotificationsIcon /> */}
+            <IoIosNotificationsOutline />
           </Badge>
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size="large"
+          size="medium"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
         >
-          {/* <AccountCircle /> */}
+          <MdAccountCircle />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -157,53 +158,72 @@ const DashboardHeader = () => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1 }} position="sticky">
+      <AppBar position="static" sx={{ backgroundColor: "#FFFFFF" }}>
         <Toolbar>
           <IconButton
-            size="large"
+            size="medium"
             edge="start"
-            color="inherit"
+            // color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <BiMenuAltLeft />
+            <BiMenuAltLeft className="text-secondary" />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            MUI
-          </Typography>
-          <Search>
+
+          <Search className="border border-[#E8E8F2] text-gray-600 rounded-xl md:w-[40%] lg:w-[30%]">
             <SearchIconWrapper>
-              <RiSearchLine />
+              <RiSearchLine className="text-secondary" />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Result for Search…"
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{ display: { xs: "flex" } }}
+            className="gap-[10px] lg:gap-[20px] items-center"
+          >
+            {isDarkMood ? (
+              <IconButton
+                size="medium"
+                aria-label="show 17 new notifications"
+                // color="inherit"
+                onClick={() => setDarkMood(!isDarkMood)}
+                className="bg-[#F7F8F9]"
+              >
+                <PiMoon className="text-secondary" />
+              </IconButton>
+            ) : (
+              <IconButton
+                size="medium"
+                aria-label="show 17 new notifications"
+                // color="inherit"
+                onClick={() => setDarkMood(!isDarkMood)}
+                className="bg-[#F7F8F9]"
+              >
+                <IoSunnyOutline className="text-secondary" />
+              </IconButton>
+            )}
             <IconButton
-              size="large"
+              size="medium"
               aria-label="show 4 new mails"
-              color="inherit"
+              className="bg-[#F7F8F9]"
+              // color="inherit"
             >
               <Badge badgeContent={4} color="error">
-                {/* <MailIcon /> */}
+                <PiWechatLogoLight className="text-secondary" />
               </Badge>
             </IconButton>
             <IconButton
-              size="large"
+              size="medium"
               aria-label="show 17 new notifications"
-              color="inherit"
+              className="bg-[#F7F8F9]"
+              // color="inherit"
             >
               <Badge badgeContent={17} color="error">
-                {/* <NotificationsIcon /> */}
+                <IoIosNotificationsOutline className="text-secondary" />
               </Badge>
             </IconButton>
             <IconButton
@@ -213,21 +233,13 @@ const DashboardHeader = () => {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              className="flex gap-2 items-center"
             >
-              {/* <AccountCircle /> */}
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              {/* <MoreIcon /> */}
+              <MdAccountCircle className="text-secondary" />
+              <span className="text-secondary text-lg hidden md:block font-medium">
+                Mr. Tanvir
+              </span>
+              <FaAngleDown className="text-secondary text-lg hidden md:block" />
             </IconButton>
           </Box>
         </Toolbar>

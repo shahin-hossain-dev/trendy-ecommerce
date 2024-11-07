@@ -116,7 +116,7 @@ export default function SideNavBar() {
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
+      {/* <Button onClick={toggleDrawer(true)}>Open drawer</Button> */}
       <Drawer
         variant="permanent"
         sx={{
