@@ -158,7 +158,7 @@ const DashboardHeader = () => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }} position="sticky">
+    <Box sx={{ flexGrow: 1 }} position="sticky" className="w-full">
       <AppBar position="static" sx={{ backgroundColor: "#FFFFFF" }}>
         <Toolbar>
           <IconButton

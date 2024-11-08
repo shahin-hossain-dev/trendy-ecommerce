@@ -119,8 +119,9 @@ export default function SideNavBar() {
       {/* <Button onClick={toggleDrawer(true)}>Open drawer</Button> */}
       <Drawer
         variant="permanent"
+        className="hidden lg:block"
         sx={{
-          display: { xs: "none", lg: "block" },
+          // display: { xs: "none", lg: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: "calc(100% * 2/ 12)",

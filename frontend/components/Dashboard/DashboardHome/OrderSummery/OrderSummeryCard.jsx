@@ -5,25 +5,23 @@ import Typography from "@mui/material/Typography";
 import { RiFileList2Fill } from "react-icons/ri";
 import { Box } from "@mui/material";
 
-const OrderSummeryCard = () => {
+const OrderSummeryCard = ({ summery }) => {
   return (
     <Card variant="outlined" className="py-0">
       <CardContent className="flex items-center justify-center">
-        <Box className="flex gap-6">
+        <Box className="flex items-center gap-6">
           <Box>
             <Typography sx={{ color: "text.secondary", fontSize: 14 }}>
-              Today Order
+              {summery.title}
             </Typography>
             <Typography
               sx={{ color: "text.secondary" }}
-              className="text-[36px] text-secondary font-medium"
+              className="text-[32px] text-secondary font-medium"
             >
-              $ 450
+              $ {summery.amount}
             </Typography>
           </Box>
-          <Box>
-            <RiFileList2Fill className="text-[60px] text-dash-primary" />
-          </Box>
+          <Box>{summery.icon}</Box>
         </Box>
       </CardContent>
     </Card>
