@@ -19,3 +19,7 @@
     border-color: #ffffff;
     color:white
 }
+
+.recharts-legend-item{
+    @apply px-1 md:px-3
+}

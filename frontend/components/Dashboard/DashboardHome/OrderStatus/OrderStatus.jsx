@@ -47,7 +47,7 @@ const OrderStatus = () => {
   };
 
   return (
-    <div className="border rounded-md">
+    <div className="border rounded-md bg-white shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
       {/* header */}
       <div className="flex justify-between items-center px-6 py-1 border-b">
         <h3 className="text-xl font-bold text-secondary">Order Status</h3>
