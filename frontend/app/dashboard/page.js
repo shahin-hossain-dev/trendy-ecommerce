@@ -7,6 +7,7 @@ import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHea
 import OrderSummery from "@/components/Dashboard/DashboardHome/OrderSummery/OrderSummery";
 import OrderStatus from "@/components/Dashboard/DashboardHome/OrderStatus/OrderStatus";
 import TopProduct from "@/components/Dashboard/DashboardHome/TopProduct/TopProduct";
+import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
 
 const page = () => {
   const router = useRouter();
@@ -37,6 +38,7 @@ const page = () => {
           <TopProduct />
         </div>
       </div>
+      <RecentOrder />
     </div>
   );
 };
