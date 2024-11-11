@@ -31,8 +31,8 @@ const OrderSummery = () => {
   return (
     <section>
       <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {orderSummery.map((summery) => (
-          <OrderSummeryCard summery={summery} />
+        {orderSummery.map((summery, idx) => (
+          <OrderSummeryCard key={idx} summery={summery} />
         ))}
       </Box>
     </section>

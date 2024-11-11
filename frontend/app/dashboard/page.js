@@ -5,6 +5,7 @@ import Cookies from "js-cookie"; // Ensure this path is correct
 import DashboardLayout from "./layout";
 import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHeader";
 import OrderSummery from "@/components/Dashboard/DashboardHome/OrderSummery/OrderSummery";
+import OrderStatus from "@/components/Dashboard/DashboardHome/OrderStatus/OrderStatus";
 
 const page = () => {
   const router = useRouter();
@@ -27,6 +28,9 @@ const page = () => {
   return (
     <div>
       <OrderSummery />
+      <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <OrderStatus />
+      </div>
     </div>
   );
 };
