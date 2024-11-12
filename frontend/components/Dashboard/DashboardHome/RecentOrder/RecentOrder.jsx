@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Button, FormControl, MenuItem, Select } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -24,7 +25,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
   // hide last border
   "&:last-child td, &:last-child th": {
-    border: 0,
+    // border: 0,
   },
 }));
 
@@ -41,34 +42,94 @@ const rows = [
 ];
 
 const RecentOrder = () => {
+  const [duration, setDuration] = useState("");
+
+  const handleChange = (event) => {
+    setDuration(event.target.value);
+  };
   return (
-    <section className="mt-6 ">
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="customized table">
-          <TableHead className="bg-dash-primary">
-            <TableRow>
-              <StyledTableCell align="center">Order</StyledTableCell>
-              <StyledTableCell align="center">Phone</StyledTableCell>
-              <StyledTableCell align="center">Date</StyledTableCell>
-              <StyledTableCell align="center">Status</StyledTableCell>
-              <StyledTableCell align="center">Total</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell component="th" scope="row">
-                  {row.name}
+    <section className="mt-6 bg-white border rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
+      {/* header */}
+      <div className="flex justify-between items-center px-6 py-2 border-b">
+        <h3 className="text-xl font-bold text-secondary">Top Product</h3>
+        <Button className="bg-dash-primary px-3 hover:bg-primary text-white">
+          View All
+        </Button>
+      </div>
+      <div>
+        <TableContainer component={Paper} className="!rounded-none">
+          <Table sx={{ minWidth: 600 }} aria-label="simple table">
+            <TableHead className="bg-dash-primary ">
+              <TableRow>
+                <StyledTableCell
+                  align="center"
+                  className="font-semibold text-xl border-r border-white"
+                >
+                  Order
                 </StyledTableCell>
-                <StyledTableCell align="center">{row.calories}</StyledTableCell>
-                <StyledTableCell align="center">{row.fat}</StyledTableCell>
-                <StyledTableCell align="center">{row.carbs}</StyledTableCell>
-                <StyledTableCell align="center">{row.protein}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                <StyledTableCell
+                  align="center"
+                  className="font-semibold text-xl border-r border-white"
+                >
+                  Phone
+                </StyledTableCell>
+                <StyledTableCell
+                  align="center"
+                  className="font-semibold text-xl border-r border-white"
+                >
+                  Date
+                </StyledTableCell>
+                <StyledTableCell
+                  align="center"
+                  className="font-semibold text-xl border-r border-white"
+                >
+                  Status
+                </StyledTableCell>
+                <StyledTableCell
+                  align="center"
+                  className="font-semibold text-xl "
+                >
+                  Total
+                </StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <StyledTableRow key={row.name}>
+                  <StyledTableCell
+                    component="th"
+                    scope="row"
+                    className="border-r border-r-gray-200"
+                  >
+                    {row.name}
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align="center"
+                    className="border-r border-r-gray-200"
+                  >
+                    {row.calories}
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align="center"
+                    className="border-r border-r-gray-200"
+                  >
+                    {row.fat}
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align="center"
+                    className="border-r border-r-gray-200"
+                  >
+                    {row.carbs}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.protein}
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
     </section>
   );
 };

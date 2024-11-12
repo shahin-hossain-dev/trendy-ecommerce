@@ -8,7 +8,8 @@ import OrderSummery from "@/components/Dashboard/DashboardHome/OrderSummery/Orde
 import OrderStatus from "@/components/Dashboard/DashboardHome/OrderStatus/OrderStatus";
 import TopProduct from "@/components/Dashboard/DashboardHome/TopProduct/TopProduct";
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
-
+import { TableContainer } from "@mui/material";
+import Paper from "@mui/material/Paper";
 const page = () => {
   const router = useRouter();
 
@@ -38,7 +39,9 @@ const page = () => {
           <TopProduct />
         </div>
       </div>
-      <RecentOrder />
+      <div>
+        <RecentOrder />
+      </div>
     </div>
   );
 };
