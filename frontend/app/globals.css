@@ -24,7 +24,7 @@
   @apply px-1 md:px-3;
 }
 
-.MuiTableContainer-root {
+/* .MuiTableContainer-root {
   max-width: 100% !important;
   overflow-x: auto !important;
 }
@@ -36,4 +36,4 @@
   .MuiTableContainer-root {
     overflow-x: auto !important;
   }
-}
+} */

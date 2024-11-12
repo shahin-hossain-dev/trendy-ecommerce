@@ -2,14 +2,11 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // Ensure this path is correct
-import DashboardLayout from "./layout";
-import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHeader";
 import OrderSummery from "@/components/Dashboard/DashboardHome/OrderSummery/OrderSummery";
 import OrderStatus from "@/components/Dashboard/DashboardHome/OrderStatus/OrderStatus";
 import TopProduct from "@/components/Dashboard/DashboardHome/TopProduct/TopProduct";
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
-import { TableContainer } from "@mui/material";
-import Paper from "@mui/material/Paper";
+
 const page = () => {
   const router = useRouter();
 
@@ -39,9 +36,8 @@ const page = () => {
           <TopProduct />
         </div>
       </div>
-      <div>
-        <RecentOrder />
-      </div>
+      <div>{/* <RecentOrder /> */}</div>
+      <RecentOrder />
     </div>
   );
 };

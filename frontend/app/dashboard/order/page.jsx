@@ -1,3 +1,5 @@
+"use client";
+import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
 import React from "react";
 
 const page = () => {
