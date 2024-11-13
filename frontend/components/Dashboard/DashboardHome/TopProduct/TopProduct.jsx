@@ -41,7 +41,7 @@ const TopProduct = () => {
       {/* header */}
       <div className="flex justify-between items-center px-6 py-1 border-b">
         <h3 className="text-xl font-bold text-secondary">Top Product</h3>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <FormControl sx={{ m: 1 }} size="small">
           <Select
             id="demo-select-small"
             className="text-white text-xl appearance-none font-medium outline-0 border-0 rounded-lg bg-dash-primary"
@@ -51,6 +51,7 @@ const TopProduct = () => {
               ".MuiSvgIcon-root ": {
                 fill: "white !important",
               },
+              color: "white",
             }}
             displayEmpty
           >

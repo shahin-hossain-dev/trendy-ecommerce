@@ -51,7 +51,7 @@ const OrderStatus = () => {
       {/* header */}
       <div className="flex justify-between items-center px-6 py-1 border-b">
         <h3 className="text-xl font-bold text-secondary">Order Status</h3>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <FormControl sx={{ m: 1 }} size="small">
           <Select
             id="demo-select-small"
             className="text-white text-xl appearance-none font-medium outline-0 border-0 rounded-lg bg-dash-primary"
@@ -61,15 +61,18 @@ const OrderStatus = () => {
               ".MuiSvgIcon-root ": {
                 fill: "white !important",
               },
+              color: "white",
             }}
             displayEmpty
           >
-            <MenuItem value=""> Today</MenuItem>
+            <MenuItem value="" className="font-medium">
+              Today
+            </MenuItem>
 
-            <MenuItem value={"This Week"} className="font-medium">
+            <MenuItem value={"Last Week"} className="font-medium">
               This Week
             </MenuItem>
-            <MenuItem value={"This Week"} className="font-medium">
+            <MenuItem value={"Last Month"} className="font-medium">
               Last Month
             </MenuItem>
           </Select>
