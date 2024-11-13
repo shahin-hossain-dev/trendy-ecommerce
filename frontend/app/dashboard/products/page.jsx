@@ -1,9 +1,13 @@
-import React from "react";
+import PageHeader from "@/components/Dashboard/DashboardHeader/PageHeader";
 
 const Products = () => {
   return (
     <div>
-      <h2>Products</h2>
+      <PageHeader
+        title={"All Products"}
+        btnName={"Add Product"}
+        href={"/dashboard/products/add-product"}
+      />
     </div>
   );
 };

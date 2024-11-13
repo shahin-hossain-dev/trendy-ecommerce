@@ -1,16 +1,25 @@
 "use client";
 import PageHeader from "@/components/Dashboard/DashboardHeader/PageHeader";
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
-import React from "react";
+import OrderTableBar from "@/components/Dashboard/Order/OrderTableBar";
+import React, { useState } from "react";
 
 const page = () => {
   return (
     <div>
-      <PageHeader
-        title={"All Order"}
-        btnName={"Add Product"}
-        href={"/dashboard/add-product"}
-      />
+      <div>
+        <PageHeader
+          title={"All Order"}
+          btnName={"Add Order"}
+          href={"/dashboard/products/add-product"}
+        />
+      </div>
+      <div className="bg-white mt-6 border rounded-md h-full shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
+        {/* table bar */}
+        <OrderTableBar />
+        {/* order table */}
+        <div></div>
+      </div>
     </div>
   );
 };
