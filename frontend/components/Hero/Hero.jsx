@@ -18,8 +18,8 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const Hero = () => {
   return (
-    <section>
-      <div className="container grid grid-cols-10 py-8 gap-5 lg:mx-auto">
+    <section className="container mx-auto">
+      <div className=" grid grid-cols-10 py-8 gap-5 ">
         <div className="lg:col-span-3  hidden lg:block">
           <Categories />
         </div>
