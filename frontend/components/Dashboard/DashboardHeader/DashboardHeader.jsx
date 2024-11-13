@@ -99,7 +99,11 @@ const DashboardHeader = () => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Inbox</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Setting</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Support</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Task Manager</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
     </Menu>
   );
 
