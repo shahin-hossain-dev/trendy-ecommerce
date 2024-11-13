@@ -18,6 +18,7 @@ import { PiWechatLogoLight } from "react-icons/pi";
 import { PiMoon } from "react-icons/pi";
 import { IoSunnyOutline } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
+import { HandlerContext } from "@/lib/providers/HandlerProvider";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,6 +66,7 @@ const DashboardHeader = () => {
   const [isDarkMood, setDarkMood] = React.useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const { handleDrawerOpen } = React.useContext(HandlerContext);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -77,10 +79,6 @@ const DashboardHeader = () => {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = "primary-search-account-menu";
@@ -167,6 +165,7 @@ const DashboardHeader = () => {
             // color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={() => handleDrawerOpen(true)}
           >
             <BiMenuAltLeft className="text-secondary" />
           </IconButton>

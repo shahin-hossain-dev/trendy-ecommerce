@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -15,14 +15,14 @@ import { BsFillBoxSeamFill } from "react-icons/bs";
 import { BiSolidCategory } from "react-icons/bi";
 import { FaAngleDown, FaStar } from "react-icons/fa";
 import { usePathname, useRouter } from "next/navigation";
+import { HandlerContext } from "@/lib/providers/HandlerProvider";
 
 export default function SideNavBar() {
-  const [open, setOpen] = React.useState(true);
+  const { isToggleOpen, handleDrawerOpen } = useContext(HandlerContext);
+
   const pathname = usePathname();
   const router = useRouter();
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
+
   // nav links
   const navItems = [
     {
@@ -127,8 +127,8 @@ export default function SideNavBar() {
             width: "calc(100% * 2/ 12)",
           },
         }}
-        open={open}
-        onClose={toggleDrawer(false)}
+        // open={open}
+        // onClose={toggleDrawer(false)}
       >
         {drawer}
       </Drawer>
@@ -141,8 +141,8 @@ export default function SideNavBar() {
           },
         }}
         variant="temporary"
-        open={open}
-        onClose={toggleDrawer(false)}
+        open={isToggleOpen}
+        onClose={() => handleDrawerOpen(false)}
       >
         {drawer}
       </Drawer>

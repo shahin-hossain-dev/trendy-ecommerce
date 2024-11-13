@@ -36,8 +36,7 @@ const page = () => {
           <TopProduct />
         </div>
       </div>
-      <div>{/* <RecentOrder /> */}</div>
-      <RecentOrder />
+      <section>{/* <RecentOrder /> */}</section>
     </div>
   );
 };
