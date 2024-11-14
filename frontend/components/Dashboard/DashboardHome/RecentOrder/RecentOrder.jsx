@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -57,7 +58,11 @@ const RecentOrder = () => {
         </Button>
       </div>
       <div>
-        <TableContainer component={Paper} className="!rounded-none">
+        <TableContainer
+          sx={{ overflow: "auto" }}
+          component={Paper}
+          className="!rounded-none"
+        >
           <Table sx={{ minWidth: 600 }} aria-label="simple table">
             <TableHead className="bg-dash-primary ">
               <TableRow>

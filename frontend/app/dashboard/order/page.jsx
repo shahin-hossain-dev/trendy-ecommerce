@@ -2,7 +2,6 @@
 import PageHeader from "@/components/Dashboard/DashboardHeader/PageHeader";
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
 import OrderTableBar from "@/components/Dashboard/Order/OrderTableBar";
-import React, { useState } from "react";
 
 const page = () => {
   return (
@@ -14,11 +13,13 @@ const page = () => {
           href={"/dashboard/products/add-product"}
         />
       </div>
-      <div className="bg-white mt-6 border rounded-md h-full shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
-        {/* table bar */}
-        <OrderTableBar />
-        {/* order table */}
-        <div></div>
+      <div className={`orderTable w-[600px]`} style={{ overflowX: "auto" }}>
+        <div className="bg-white mt-6 border rounded-md h-full w-[700px] shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)] ">
+          {/* table bar */}
+          <OrderTableBar />
+          {/* order table */}
+          <div></div>
+        </div>
       </div>
     </div>
   );

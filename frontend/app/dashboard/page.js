@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // Ensure this path is correct
 import OrderSummery from "@/components/Dashboard/DashboardHome/OrderSummery/OrderSummery";
@@ -9,6 +9,7 @@ import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/Recent
 
 const page = () => {
   const router = useRouter();
+  const [pageWidth, setPageWidth] = useState(0);
 
   // useEffect(() => {
   //   const verifyAccessToken = async () => {
@@ -25,6 +26,14 @@ const page = () => {
   //   verifyAccessToken();
   // }, [router]);
 
+  useEffect(() => {
+    const pagesize = document.getElementById("pagesize");
+    console.log(pagesize.offsetWidth);
+    window.addEventListener("resize", (e) => {
+      setPageWidth(pagesize.offsetWidth);
+    });
+  }, []);
+
   return (
     <div>
       <OrderSummery />
@@ -36,7 +45,9 @@ const page = () => {
           <TopProduct />
         </div>
       </div>
-      <section>{/* <RecentOrder /> */}</section>
+      <section id="pagesize" className={`w-[${pageWidth}] overflow-auto`}>
+        <RecentOrder />
+      </section>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
 import Hero from "@/components/Hero/Hero";
 import ProductContainer from "@/components/Product/ProductContainer";
 import { Inter } from "next/font/google";
@@ -12,6 +13,7 @@ export default function Home() {
       <ProductContainer />
       <ProductContainer />
       <ProductContainer />
+      <RecentOrder />
     </div>
   );
 }
