@@ -7,6 +7,8 @@ import OrderStatus from "@/components/Dashboard/DashboardHome/OrderStatus/OrderS
 import TopProduct from "@/components/Dashboard/DashboardHome/TopProduct/TopProduct";
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
 import { Container } from "@mui/material";
+import RecentProduct from "@/components/Dashboard/DashboardHome/RecentProduct/RecentProduct";
+import RecentReview from "@/components/Dashboard/DashboardHome/RecentReview/RecentReview";
 
 const page = () => {
   const router = useRouter();
@@ -39,6 +41,12 @@ const page = () => {
       </div>
       <section>
         <RecentOrder />
+      </section>
+      <section>
+        <RecentProduct />
+      </section>
+      <section>
+        <RecentReview />
       </section>
     </Container>
   );

@@ -8,7 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Rating } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,25 +30,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, status, protein) {
-  return { name, calories, fat, status, protein };
+function createData(name, calories, fat, status, rating) {
+  return { name, calories, fat, status, rating };
 }
 
 const rows = [
-  createData("Frozen yoghurt", "01676446077", "Oct-11-2024", "Completed", 200),
+  createData("Frozen yoghurt", "T-Shirt", "Oct-11-2024", "Completed", 5),
   createData(
     "Ice cream sandwich",
-    "01676446077",
+    "Men Shirt                                  ",
     "Oct-11-2024",
     "Processing",
-    203
+    4
   ),
-  createData("Eclair", "01676446077", "Oct-11-2024", "Canceled", 240),
-  createData("Cupcake", "01676446077", "Oct-11-2024", "Completed", 250),
-  createData("Gingerbread", "01676446077", "Oct-11-2024", "Processing", 230),
+  createData("Eclair", "Women Shirt", "Oct-11-2024", "Canceled", 3),
+  createData("Cupcake", "Pant", "Oct-11-2024", "Completed", 4),
+  createData("Gingerbread", "Men Jacket", "Oct-11-2024", "Processing", 5),
+  createData("Gingerbread", "Women Jacket", "Oct-11-2024", "Completed", 5),
 ];
 
-const RecentOrder = () => {
+const RecentReview = () => {
   const [duration, setDuration] = useState("");
 
   const handleChange = (event) => {
@@ -58,7 +59,7 @@ const RecentOrder = () => {
     <div className="mt-6 w-full static bg-white border rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
       {/* header */}
       <div className="flex justify-between items-center px-6 py-2 border-b">
-        <h3 className="text-xl font-bold text-secondary">Recent Order</h3>
+        <h3 className="text-xl font-bold text-secondary">Recent Review</h3>
         <Button
           color="primary"
           variant="contained"
@@ -93,13 +94,13 @@ const RecentOrder = () => {
                   align="center"
                   className="font-semibold text-xl border-r border-white"
                 >
-                  Order
+                  Name
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
                   className="font-semibold text-xl border-r border-white"
                 >
-                  Phone
+                  Product Name
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
@@ -111,13 +112,7 @@ const RecentOrder = () => {
                   align="center"
                   className="font-semibold text-xl border-r border-white"
                 >
-                  Status
-                </StyledTableCell>
-                <StyledTableCell
-                  align="center"
-                  className="font-semibold text-xl "
-                >
-                  Total
+                  Rating
                 </StyledTableCell>
               </TableRow>
             </TableHead>
@@ -125,8 +120,9 @@ const RecentOrder = () => {
               {rows.map((row, idx) => (
                 <StyledTableRow key={row.name}>
                   <StyledTableCell
-                    component="th"
-                    scope="row"
+                    // component="th"
+                    // scope="row"
+                    align="left"
                     className="border-r border-r-gray-200 "
                   >
                     <span className="font-medium text-dash-primary">
@@ -145,28 +141,9 @@ const RecentOrder = () => {
                   >
                     {row.fat}
                   </StyledTableCell>
-                  <StyledTableCell
-                    align="center"
-                    className="border-r border-r-gray-200"
-                  >
-                    {row?.status === "Completed" && (
-                      <span className="bg-green-200 px-2 py-1 rounded-md">
-                        {row.status}
-                      </span>
-                    )}
-                    {row?.status === "Processing" && (
-                      <span className="bg-sky-200 px-2 py-1 rounded-md">
-                        {row.status}
-                      </span>
-                    )}
-                    {row?.status === "Canceled" && (
-                      <span className="bg-red-200 px-2 py-1 rounded-md">
-                        {row.status}
-                      </span>
-                    )}
-                  </StyledTableCell>
+
                   <StyledTableCell align="center">
-                    <span>${row.protein.toFixed(2)}</span>
+                    <Rating name="read-only" value={row.rating} readOnly />
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -178,4 +155,4 @@ const RecentOrder = () => {
   );
 };
 
-export default RecentOrder;
+export default RecentReview;
