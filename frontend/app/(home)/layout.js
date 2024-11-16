@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import StoreProvider from "../StoreProvider";
-import Footer from "@/components/shared/Footer/Footer";
+import Footer from "@/components/Footer/Footer";
 
 const lato = Lato({
   weight: ["400", "700"],

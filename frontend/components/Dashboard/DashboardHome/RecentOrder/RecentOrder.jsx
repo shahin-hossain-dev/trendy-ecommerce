@@ -8,7 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -49,7 +49,7 @@ const RecentOrder = () => {
     setDuration(event.target.value);
   };
   return (
-    <section className="mt-6 bg-white border rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
+    <div className="mt-6  static bg-white border rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
       {/* header */}
       <div className="flex justify-between items-center px-6 py-2 border-b">
         <h3 className="text-xl font-bold text-secondary">Recent Order</h3>
@@ -57,13 +57,18 @@ const RecentOrder = () => {
           View All
         </Button>
       </div>
-      <div>
-        <TableContainer
-          sx={{ overflow: "auto" }}
-          component={Paper}
-          className="!rounded-none"
-        >
-          <Table sx={{ minWidth: 600 }} aria-label="simple table">
+      <Box
+        sx={{
+          overflowY: "auto",
+        }}
+      >
+        <TableContainer component={Paper} className="!rounded-none">
+          <Table
+            sx={{
+              minWidth: 600,
+            }}
+            aria-label="simple table"
+          >
             <TableHead className="bg-dash-primary ">
               <TableRow>
                 <StyledTableCell
@@ -134,8 +139,8 @@ const RecentOrder = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
-    </section>
+      </Box>
+    </div>
   );
 };
 

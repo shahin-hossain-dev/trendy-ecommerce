@@ -2,7 +2,6 @@
 import { Lato, Oswald } from "next/font/google";
 import "../globals.css";
 import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHeader";
-import StoreProvider from "../StoreProvider";
 
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
@@ -10,6 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "@/components/theme";
 import HandlerProvider from "@/lib/providers/HandlerProvider";
 import SideNavBar from "@/components/Dashboard/Sidebar/SideNavBar";
+import StoreProvider from "@/app/StoreProvider";
 
 const lato = Lato({
   weight: ["400", "700"],
@@ -32,22 +32,24 @@ export default function DashboardLayout({ children }) {
     <html lang="en" className={`${lato.variable} ${oswald.variable}`}>
       <body style={{ margin: "0" }} className="bg-[#F0F0F5]">
         <HandlerProvider>
-          {/* <AppRouterCacheProvider>
+          <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
-              <CssBaseline /> */}
-          <StoreProvider>
-            <div className="grid lg:grid-cols-12 ">
-              <section className=" lg:col-span-2">
-                <SideNavBar />
-              </section>
-              <section className="lg:col-span-10 ">
-                <DashboardHeader />
-                <main className="m-4 md:m-6 lg:mx-12 lg:my-8 ">{children}</main>
-              </section>
-            </div>
-          </StoreProvider>
-          {/* </ThemeProvider>
-          </AppRouterCacheProvider> */}
+              <CssBaseline />
+              <StoreProvider>
+                <div className="grid lg:grid-cols-12 ">
+                  <section className=" lg:col-span-2">
+                    <SideNavBar />
+                  </section>
+                  <section className="lg:col-span-10 ">
+                    <DashboardHeader />
+                    <div className="m-4 md:m-6 lg:mx-12 lg:my-8 ">
+                      {children}
+                    </div>
+                  </section>
+                </div>
+              </StoreProvider>
+            </ThemeProvider>
+          </AppRouterCacheProvider>
         </HandlerProvider>
       </body>
     </html>

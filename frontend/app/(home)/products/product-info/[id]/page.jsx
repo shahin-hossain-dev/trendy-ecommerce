@@ -19,6 +19,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import Link from "next/link";
+import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
 
 const ProductInfo = ({ params }) => {
   const { id } = params;

@@ -9,7 +9,6 @@ import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/Recent
 
 const page = () => {
   const router = useRouter();
-  const [pageWidth, setPageWidth] = useState(0);
 
   // useEffect(() => {
   //   const verifyAccessToken = async () => {
@@ -26,16 +25,8 @@ const page = () => {
   //   verifyAccessToken();
   // }, [router]);
 
-  useEffect(() => {
-    const pagesize = document.getElementById("pagesize");
-    console.log(pagesize.offsetWidth);
-    window.addEventListener("resize", (e) => {
-      setPageWidth(pagesize.offsetWidth);
-    });
-  }, []);
-
   return (
-    <div>
+    <div className="w-[95%] mx-auto">
       <OrderSummery />
       <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
@@ -45,7 +36,7 @@ const page = () => {
           <TopProduct />
         </div>
       </div>
-      <section id="pagesize" className={`w-[${pageWidth}] overflow-auto`}>
+      <section>
         <RecentOrder />
       </section>
     </div>

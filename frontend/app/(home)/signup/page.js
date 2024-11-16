@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/lib/features/hooks";
 import Link from "next/link";
-import OAuth from "../OAuth/OAuth";
+import OAuth from "../../OAuth/OAuth.jsx";
 import { FiEyeOff } from "react-icons/fi";
 import { Divider } from "@mui/material";
 import Image from "next/image";

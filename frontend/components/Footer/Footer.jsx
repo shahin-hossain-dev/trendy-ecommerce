@@ -14,7 +14,7 @@ const Footer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.name.value;
-    console.log(email);
+    // console.log(email);
   };
 
   return (

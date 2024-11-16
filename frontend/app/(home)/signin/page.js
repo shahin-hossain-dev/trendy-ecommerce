@@ -12,12 +12,12 @@ import {
   SignInSuccess,
 } from "@/lib/features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import OAuth from "../OAuth/OAuth";
 import Cookies from "js-cookie";
 import Checkbox from "@mui/material/Checkbox";
 import Divider from "@mui/material/Divider";
 import Image from "next/image";
 import { FiEye } from "react-icons/fi";
+import OAuth from "@/app/OAuth/OAuth";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
