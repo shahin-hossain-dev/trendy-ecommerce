@@ -49,7 +49,7 @@ const RecentOrder = () => {
     setDuration(event.target.value);
   };
   return (
-    <div className="mt-6  static bg-white border rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
+    <div className="mt-6 w-full static bg-white border rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
       {/* header */}
       <div className="flex justify-between items-center px-6 py-2 border-b">
         <h3 className="text-xl font-bold text-secondary">Recent Order</h3>
@@ -62,7 +62,11 @@ const RecentOrder = () => {
           overflowY: "auto",
         }}
       >
-        <TableContainer component={Paper} className="!rounded-none">
+        <TableContainer
+          sx={{ width: "100%", overflow: "auto" }}
+          component={Paper}
+          className="!rounded-none"
+        >
           <Table
             sx={{
               minWidth: 600,

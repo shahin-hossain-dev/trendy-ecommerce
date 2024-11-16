@@ -62,6 +62,12 @@ const OrderStatus = () => {
                 fill: "white !important",
               },
               color: "white",
+              "& .MuiSelect-select": {
+                paddingRight: 2,
+                paddingLeft: 2,
+                paddingTop: 0.5,
+                paddingBottom: 0.5,
+              },
             }}
             displayEmpty
           >

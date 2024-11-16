@@ -1,15 +1,14 @@
 "use client";
-import { Lato, Oswald } from "next/font/google";
-import "../globals.css";
-import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHeader";
-
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import theme from "@/components/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import theme from "@/components/theme";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { Lato, Oswald } from "next/font/google";
+import "../globals.css";
+import StoreProvider from "@/app/StoreProvider";
+import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHeader";
 import HandlerProvider from "@/lib/providers/HandlerProvider";
 import SideNavBar from "@/components/Dashboard/Sidebar/SideNavBar";
-import StoreProvider from "@/app/StoreProvider";
 
 const lato = Lato({
   weight: ["400", "700"],
@@ -36,15 +35,13 @@ export default function DashboardLayout({ children }) {
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <StoreProvider>
-                <div className="grid lg:grid-cols-12 ">
+                <div className="lg:grid lg:grid-cols-12 ">
                   <section className=" lg:col-span-2">
                     <SideNavBar />
                   </section>
                   <section className="lg:col-span-10 ">
                     <DashboardHeader />
-                    <div className="m-4 md:m-6 lg:mx-12 lg:my-8 ">
-                      {children}
-                    </div>
+                    <div className="my-4 md:my-8 md:px-8 ">{children}</div>
                   </section>
                 </div>
               </StoreProvider>

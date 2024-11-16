@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${lato.variable} ${oswald.variable}`}>
       <body className={lato.className}>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+        <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <StoreProvider>

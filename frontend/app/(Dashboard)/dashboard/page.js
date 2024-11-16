@@ -6,6 +6,7 @@ import OrderSummery from "@/components/Dashboard/DashboardHome/OrderSummery/Orde
 import OrderStatus from "@/components/Dashboard/DashboardHome/OrderStatus/OrderStatus";
 import TopProduct from "@/components/Dashboard/DashboardHome/TopProduct/TopProduct";
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
+import { Container } from "@mui/material";
 
 const page = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ const page = () => {
   // }, [router]);
 
   return (
-    <div className="w-[95%] mx-auto">
+    <Container maxWidth="lg">
       <OrderSummery />
       <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
@@ -39,7 +40,7 @@ const page = () => {
       <section>
         <RecentOrder />
       </section>
-    </div>
+    </Container>
   );
 };
 export default page;
