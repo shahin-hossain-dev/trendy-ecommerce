@@ -16,6 +16,8 @@ import {
   Rating,
   Select,
 } from "@mui/material";
+import { FaAngleDown } from "react-icons/fa6";
+import Image from "next/image";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,22 +44,17 @@ function createData(image, name, stock, price, category, action) {
 }
 
 const rows = [
-  createData("Frozen yoghurt", "T-Shirt", "In Stock", "Completed", 5),
-  createData(
-    "Ice cream sandwich",
-    "Men Shirt                                  ",
-    "Stock Out",
-    "Processing",
-    4
-  ),
-  createData("Eclair", "Women Shirt", "In Stock", "Canceled", 3),
-  createData("Cupcake", "Pant", "Stock Out", "Completed", 4),
-  createData("Gingerbread", "Men Jacket", "Stock Out", "Processing", 5),
-  createData("Gingerbread", "Women Jacket", "In Stock", "Completed", 5),
+  createData("/img/image.png", "T-Shirt", "In Stock", 40, "Dress"),
+  createData("/img/image.png", "Men Shirt ", "Stock Out", 50, "Dress"),
+  createData("/img/image.png", "Women Shirt", "In Stock", 30, "Dress"),
+  createData("/img/image.png", "Pant", "Stock Out", 50, "T-Shirt"),
+  createData("/img/image.png", "Men Jacket", "Stock Out", 40, "Dress"),
+  createData("/img/image.png", "Women Jacket", "In Stock", 60, "T-Shirt"),
 ];
 
 const RecentProduct = () => {
   const [duration, setDuration] = useState("");
+  const [showActionBtn, setShowActionBtn] = useState(false);
 
   const handleChange = (event) => {
     setDuration(event.target.value);
@@ -125,13 +122,13 @@ const RecentProduct = () => {
                   align="center"
                   className="font-semibold text-xl border-r border-white"
                 >
-                  Action
+                  Category
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
                   className="font-semibold text-xl border-r border-white"
                 >
-                  Category
+                  Action
                 </StyledTableCell>
               </TableRow>
             </TableHead>
@@ -141,10 +138,12 @@ const RecentProduct = () => {
                   <StyledTableCell
                     // component="th"
                     // scope="row"
-                    align="left"
+                    align="center"
                     className="border-r border-r-gray-200 "
                   >
-                    <span className="font-medium text-dash-primary">Image</span>
+                    <div className="flex justify-center items-center">
+                      <Image src={row.image} height={45} width={45} />
+                    </div>
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
@@ -156,45 +155,46 @@ const RecentProduct = () => {
                     align="center"
                     className="border-r border-r-gray-200"
                   >
-                    {row.stock}
+                    <span
+                      className={`font-semibold ${
+                        row.stock === "In Stock"
+                          ? "text-dash-primary"
+                          : "text-rose-600"
+                      }`}
+                    >
+                      {row.stock}
+                    </span>
                   </StyledTableCell>
 
-                  <StyledTableCell align="center">{row.price}</StyledTableCell>
+                  <StyledTableCell align="center">
+                    ${row.price.toFixed(2)}
+                  </StyledTableCell>
                   <StyledTableCell align="center">
                     {row.category}
                   </StyledTableCell>
 
                   <StyledTableCell align="center">
-                    <FormControl sx={{ m: 1 }} size="small">
-                      <Select
-                        id="demo-select-small"
-                        className="text-white text-xl appearance-none font-medium outline-0 border-0 rounded-lg bg-dash-primary"
-                        sx={{
-                          ".MuiSvgIcon-root ": {
-                            fill: "white !important",
-                          },
-                          color: "white",
-                          "& .MuiSelect-select": {
-                            paddingRight: 2,
-                            paddingLeft: 2,
-                            paddingTop: 0.5,
-                            paddingBottom: 0.5,
-                          },
-                        }}
-                        displayEmpty
+                    <span className="block mx-auto relative">
+                      <button
+                        onClick={() => setShowActionBtn(idx)}
+                        className="bg-dash-primary active:scale-95 duration-200 text-white px-3 py-1 rounded-md"
                       >
-                        <MenuItem value="" className="font-medium">
-                          Option
-                        </MenuItem>
-                        <MenuItem value="" className="font-medium">
-                          <button>Edit</button>
-                        </MenuItem>
-
-                        <MenuItem value={"Last Week"} className="font-medium">
-                          <button>Delete</button>
-                        </MenuItem>
-                      </Select>
-                    </FormControl>
+                        <span className="">Option</span>{" "}
+                        <FaAngleDown className="inline" />
+                      </button>
+                      <span
+                        className={`${
+                          idx === showActionBtn ? "block" : "hidden"
+                        } bg-white absolute w-full duration-150 rounded-sm -top-1/2 left-1/2 -translate-x-1/2`}
+                      >
+                        <button className="px-3 py-1 hover:bg-orange-100 w-full">
+                          Edit
+                        </button>
+                        <button className="px-3 py-1 hover:bg-red-100 w-full">
+                          Delete
+                        </button>
+                      </span>
+                    </span>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
