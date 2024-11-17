@@ -67,10 +67,10 @@ import { useEffect, useState } from "react";
 // ];
 
 const Order = () => {
+  const [count, setCount] = useState(0);
   const [products, setProducts] = useState([]);
-  const [count, setCount] = useState(50);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // const numberOfPage = Math.ceil(count / itemsPerPage);
 
@@ -78,9 +78,9 @@ const Order = () => {
     const getData = async () => {
       const res = await axios.get("/data/orderData.json");
       const allProducts = res.data;
-
+      setCount(allProducts.length);
       const data = allProducts.splice(
-        currentPage === 1 ? 0 : currentPage,
+        (currentPage - 1) * itemsPerPage,
         itemsPerPage
       );
       console.log(data);
@@ -116,7 +116,7 @@ const Order = () => {
               <Pagination
                 page={currentPage}
                 onChange={handleChange}
-                count={10}
+                count={Math.ceil(count / itemsPerPage)}
                 shape="rounded"
                 color="primary"
               />
