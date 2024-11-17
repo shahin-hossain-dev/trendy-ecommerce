@@ -64,12 +64,12 @@ const OrderTableBar = () => {
     console.log(event.target.value);
   };
   return (
-    <div className="flex justify-between items-center px-6 py-1 border-b">
-      <div>
+    <div className="flex justify-between gap-6 items-center px-6 py-1 border-b">
+      <div className="flex">
         <FormControl sx={{ m: 1 }} size="small">
           <Select
             className="text-white text-lg appearance-none font-medium outline-0 border-0 rounded-lg "
-            value={dateFilter}
+            value={showCountItems}
             onChange={showCountFilter}
             sx={{
               ".MuiSvgIcon-root ": {

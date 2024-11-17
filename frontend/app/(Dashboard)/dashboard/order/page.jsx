@@ -1,9 +1,99 @@
 "use client";
 import PageHeader from "@/components/Dashboard/DashboardHeader/PageHeader";
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
+import OrderTable from "@/components/Dashboard/Order/OrderTable";
 import OrderTableBar from "@/components/Dashboard/Order/OrderTableBar";
+import { Pagination, Stack } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const page = () => {
+// const productsData = [
+//   {
+//     id: 1,
+//     name: "shahin",
+//     phone: "016764406477",
+//     date: "Oct 11, 2024",
+//     status: "Completed",
+//     total: 240,
+//   },
+//   {
+//     id: 2,
+//     name: "shahin",
+//     phone: "016764406477",
+//     date: "Oct 11, 2024",
+//     status: "Processing",
+//     total: 240,
+//   },
+//   {
+//     id: 3,
+//     name: "shahin",
+//     phone: "016764406477",
+//     date: "Oct 11, 2024",
+//     status: "Completed",
+//     total: 240,
+//   },
+//   {
+//     id: 4,
+//     name: "shahin",
+//     phone: "016764406477",
+//     date: "Oct 11, 2024",
+//     status: "Canceled",
+//     total: 240,
+//   },
+//   {
+//     id: 5,
+//     name: "shahin",
+//     phone: "016764406477",
+//     date: "Oct 11, 2024",
+//     status: "Processing",
+//     total: 240,
+//   },
+//   {
+//     id: 6,
+//     name: "shahin",
+//     phone: "016764406477",
+//     date: "Oct 11, 2024",
+//     status: "Completed",
+//     total: 240,
+//   },
+//   {
+//     id: 7,
+//     name: "shahin",
+//     phone: "016764406477",
+//     date: "Oct 11, 2024",
+//     status: "Completed",
+//     total: 240,
+//   },
+// ];
+
+const Order = () => {
+  const [products, setProducts] = useState([]);
+  const [count, setCount] = useState(50);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // const numberOfPage = Math.ceil(count / itemsPerPage);
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get("/data/orderData.json");
+      const allProducts = res.data;
+
+      const data = allProducts.splice(
+        currentPage === 1 ? 0 : currentPage,
+        itemsPerPage
+      );
+      console.log(data);
+
+      setProducts(data);
+    };
+    getData();
+  }, [currentPage]);
+
+  const handleChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
   return (
     <div>
       <div>
@@ -13,16 +103,29 @@ const page = () => {
           href={"/dashboard/products/add-product"}
         />
       </div>
-      <div className={`orderTable w-[600px]`} style={{ overflowX: "auto" }}>
-        <div className="bg-white mt-6 border rounded-md h-full w-[700px] shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)] ">
+      <div
+        className={`overflow-auto w-[95%] mx-auto mt-6 border rounded-md h-full shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]`}
+      >
+        <div className="bg-white min-w-[600px]  ">
           {/* table bar */}
           <OrderTableBar />
           {/* order table */}
-          <div></div>
+          <OrderTable productsData={products} />
+          <div className="flex justify-end py-3 me-6">
+            <Stack spacing={2}>
+              <Pagination
+                page={currentPage}
+                onChange={handleChange}
+                count={10}
+                shape="rounded"
+                color="primary"
+              />
+            </Stack>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default page;
+export default Order;
