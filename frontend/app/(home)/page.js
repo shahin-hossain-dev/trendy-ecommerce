@@ -13,7 +13,6 @@ export default function Home() {
       <ProductContainer />
       <ProductContainer />
       <ProductContainer />
-      <RecentOrder />
     </div>
   );
 }

@@ -19,6 +19,7 @@ import { PiMoon } from "react-icons/pi";
 import { IoSunnyOutline } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
+import UserAccount from "./UserAccount";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -61,103 +62,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const DashboardHeader = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [isDarkMood, setDarkMood] = React.useState(false);
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const { handleDrawerOpen } = React.useContext(HandlerContext);
 
+  // account handler
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Inbox</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Setting</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Support</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Task Manager</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <PiWechatLogoLight className="text-secondary" />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="medium"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <IoIosNotificationsOutline />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="medium"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <MdAccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <Box sx={{ flexGrow: 1 }} position="sticky" className="w-full">
@@ -247,8 +160,12 @@ const DashboardHeader = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      <UserAccount
+        menuId={menuId}
+        handleProfileMenuOpen={handleProfileMenuOpen}
+        anchorEl={anchorEl}
+        setAnchorEl={setAnchorEl}
+      />
     </Box>
   );
 };
