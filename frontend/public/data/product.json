@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "stock": "In Stock",
         "name": "Smartphone XYZ",
         "image": "/img/product/product9.jpg",
         "category": "Electronics",
@@ -16,6 +17,7 @@
     },
     {
         "id": 2,
+        "stock": "Stock Out",
         "name": "Wireless Headphones",
         "image": "/img/product/product1.jpg",
         "images": [
@@ -31,6 +33,7 @@
     },
     {
         "id": 3,
+        "stock": "In Stock",
         "name": "Pet Bed",
         "image": "/img/product/product51.jpg",
         "category": "Pets Item",
@@ -47,6 +50,7 @@
     },
     {
         "id": 4,
+        "stock": "In Stock",
         "name": "Kitchen Blender",
         "image": "/img/product/product33.jpg",
         "category": "Kitchen Item",
@@ -62,6 +66,7 @@
     },
     {
         "id": 5,
+        "stock": "Stock Out",
         "name": "Fashionable Sunglasses",
         "image": "/img/product/product103.jpg",
         "category": "Cloths",
@@ -71,6 +76,7 @@
     },
     {
         "id": 6,
+        "stock": "In Stock",
         "name": "Gaming Laptop",
         "image": "/img/product/product63.jpg",
         "category": "Electronics",
@@ -80,6 +86,7 @@
     },
     {
         "id": 7,
+        "stock": "In Stock",
         "name": "Cat Tree",
         "image": "/img/product/product19.jpg",
         "category": "Pets Item",
@@ -89,6 +96,7 @@
     },
     {
         "id": 8,
+        "stock": "Stock Out",
         "name": "Stainless Steel Cookware Set",
         "image": "/img/product/product45.jpg",
         "category": "Kitchen Item",
@@ -98,6 +106,7 @@
     },
     {
         "id": 9,
+        "stock": "Stock Out",
         "name": "Fitness Tracker",
         "image": "/img/product/product87.jpg",
         "category": "Electronics",
@@ -107,6 +116,7 @@
     },
     {
         "id": 10,
+        "stock": "In Stock",
         "name": "Dog Grooming Kit",
         "image": "/img/product/product17.jpg",
         "category": "Pets Item",
@@ -116,6 +126,7 @@
     },
     {
         "id": 11,
+        "stock": "Stock Out",
         "name": "Coffee Maker",
         "image": "/img/product/product64.jpg",
         "category": "Kitchen Item",
@@ -125,6 +136,7 @@
     },
     {
         "id": 12,
+        "stock": "In Stock",
         "name": "Men's Casual Shirt",
         "image": "/img/product/product26.jpg",
         "category": "Cloths",
