@@ -7,6 +7,13 @@ import axios from "axios";
 
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
+  const [productInfo, setProductInfo] = useState({
+    name: "",
+    description: "",
+    price: "",
+    quantity: "",
+    category: "",
+  });
 
   useEffect(() => {
     const getCategories = async () => {
@@ -18,20 +25,41 @@ const AddProduct = () => {
     getCategories();
   }, []);
 
+  const onChange = (e) => {
+    setProductInfo({
+      ...productInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(productInfo);
+  };
+
   return (
-    <div className="w-[95%] md:w-full mx-auto">
+    <div className="w-[95%] md:w-full mx-auto ">
       <h2 className="text-xl font-bold text-secondary">Add Product</h2>
-      <div className="text-secondary mt-6 border rounded-md h-full px-4 py-6 lg:w-full shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
+      <div className="text-secondary mt-6 border rounded-md h-full px-4 bg-white py-6 lg:w-full shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
         <Box
           component="form"
           // sx={{ "& .MuiTextField-root": { m: 2 } }}
           noValidate
           autoComplete="off"
           className="space-y-4"
+          onSubmit={handleSubmit}
         >
           <div>
             <label className="mb-1 ">Product Title</label>
-            <TextField id="fullWidth" fullWidth size="small" />
+            <TextField
+              id="fullWidth"
+              fullWidth
+              size="small"
+              value={productInfo.name}
+              name="name"
+              onChange={onChange}
+            />
           </div>
           <div>
             <label className="mb-1">Product Description</label>
@@ -40,17 +68,34 @@ const AddProduct = () => {
               fullWidth
               multiline
               rows={6}
+              name="description"
+              value={productInfo.description}
               placeholder="Start Writing"
+              onChange={onChange}
             />
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-between">
             <div className="flex-1">
               <label className="mb-1 ">Price</label>
-              <TextField id="fullWidth" fullWidth size="small" />
+              <TextField
+                id="fullWidth"
+                fullWidth
+                size="small"
+                onChange={onChange}
+                name="price"
+                value={productInfo.price}
+              />
             </div>
             <div className="flex-1">
               <label className="mb-1 ">Quantity</label>
-              <TextField id="fullWidth" fullWidth size="small" />
+              <TextField
+                id="fullWidth"
+                fullWidth
+                size="small"
+                onChange={onChange}
+                name="quantity"
+                value={productInfo.quantity}
+              />
             </div>
             <div className="flex-1">
               <label className="mb-1 ">Category</label>
@@ -60,6 +105,8 @@ const AddProduct = () => {
                 defaultValue={"Choose Category"}
                 size="small"
                 fullWidth
+                onChange={onChange}
+                name="category"
               >
                 <MenuItem value="Choose Category" disabled>
                   Choose Category
