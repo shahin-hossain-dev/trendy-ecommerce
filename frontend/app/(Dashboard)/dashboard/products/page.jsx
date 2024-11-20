@@ -33,6 +33,7 @@ const Products = () => {
   const handleChange = (event, value) => {
     setCurrentPage(value);
   };
+
   return (
     <div>
       <PageHeader
