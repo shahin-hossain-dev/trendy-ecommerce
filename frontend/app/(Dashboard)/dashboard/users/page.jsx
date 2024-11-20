@@ -4,11 +4,10 @@ import React from "react";
 const User = () => {
   return (
     <div>
-      <h2>User Page</h2>
       <PageHeader
         title={"All Users"}
         btnName={"Add User"}
-        href={"/dashboard/products/add-product"}
+        href={"/dashboard/users/add-user"}
       />
     </div>
   );

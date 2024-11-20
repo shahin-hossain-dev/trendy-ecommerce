@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaAngleUp } from "react-icons/fa6";
 import { RiSearchLine } from "react-icons/ri";
+import TableSearch from "../common/TableSearch";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -165,16 +166,7 @@ const ProductTableBar = () => {
         </FormControl>
       </div>
       <div>
-        <Search className="border border-[#E8E8F2] text-gray-600 rounded-xl md:w-[40%] lg:w-[30%]">
-          <SearchIconWrapper>
-            <RiSearchLine className="text-secondary" />
-          </SearchIconWrapper>
-          <StyledInputBase
-            onChange={handleOrderSearch}
-            placeholder="Result for Search…"
-            inputProps={{ "aria-label": "search" }}
-          />
-        </Search>
+        <TableSearch searchHandler={handleOrderSearch} />
       </div>
     </div>
   );
