@@ -4,9 +4,62 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button, MenuItem } from "@mui/material";
 import axios from "axios";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
+const modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }, "code-block"],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      {
+        color: [],
+      },
+      { background: [] },
+    ],
+    [{ size: [] }],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+      { script: "super" },
+      { script: "sub" },
+      { align: [] },
+    ],
+    ["link", "image", "video"],
+    ["clean"],
+  ],
+};
+
+const formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+  "video",
+  "code-block",
+  "align",
+  "direction",
+  "color",
+  "background",
+  "script",
+  "super",
+  "sub",
+];
 
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
+  const [value, setValue] = useState("");
   const [productInfo, setProductInfo] = useState({
     name: "",
     description: "",
@@ -20,7 +73,7 @@ const AddProduct = () => {
       const res = await axios.get("/data/categories.json");
 
       setCategories(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     };
     getCategories();
   }, []);
@@ -35,7 +88,7 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(productInfo);
+    const product = { ...productInfo, description: value };
   };
 
   return (
@@ -61,9 +114,9 @@ const AddProduct = () => {
               onChange={onChange}
             />
           </div>
-          <div>
+          <div className="">
             <label className="mb-1">Product Description</label>
-            <TextField
+            {/* <TextField
               id="fullWidth"
               fullWidth
               multiline
@@ -72,9 +125,18 @@ const AddProduct = () => {
               value={productInfo.description}
               placeholder="Start Writing"
               onChange={onChange}
+            /> */}
+
+            <ReactQuill
+              className="h-[300px] mb-32 lg:mb-16"
+              theme="snow"
+              value={value}
+              onChange={setValue}
+              modules={modules}
+              formats={formats}
             />
           </div>
-          <div className="flex flex-col md:flex-row gap-6 justify-between">
+          <div className="flex flex-col md:flex-row gap-6 justify-between ">
             <div className="flex-1">
               <label className="mb-1 ">Price</label>
               <TextField
