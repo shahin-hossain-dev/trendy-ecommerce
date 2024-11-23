@@ -9,7 +9,7 @@ import "react-quill/dist/quill.snow.css";
 
 const modules = {
   toolbar: [
-    [{ header: "1" }, { header: "2" }, "code-block"],
+    [{ header: "1" }, { header: "2" }],
     ["bold", "italic", "underline", "strike", "blockquote"],
     [
       {
@@ -18,6 +18,7 @@ const modules = {
       { background: [] },
     ],
     [{ size: [] }],
+
     [
       { list: "ordered" },
       { list: "bullet" },
