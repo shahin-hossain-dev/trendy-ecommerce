@@ -5,6 +5,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -37,6 +38,7 @@ module.exports = {
         primary: "#192a56",
         secondary: "#2F3336",
         "dash-primary": "#2FB261",
+        "dark-color": "#e5e7eb",
       },
     },
   },

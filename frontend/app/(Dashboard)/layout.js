@@ -28,8 +28,8 @@ const oswald = Oswald({
 
 export default function DashboardLayout({ children }) {
   return (
-    <html lang="en" className={`${lato.variable} ${oswald.variable}`}>
-      <body style={{ margin: "0" }} className="bg-[#F0F0F5]">
+    <html lang="en" className={`${lato.variable} ${oswald.variable} `}>
+      <body style={{ margin: "0" }} className="bg-[#F0F0F5] dark:bg-[#0f1214]">
         <HandlerProvider>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>

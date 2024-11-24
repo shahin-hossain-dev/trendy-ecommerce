@@ -20,6 +20,7 @@ import { IoSunnyOutline } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 import UserAccount from "./UserAccount";
+import DarkMode from "./DarkMode";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,7 +63,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const DashboardHeader = () => {
-  const [isDarkMood, setDarkMood] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { handleDrawerOpen } = React.useContext(HandlerContext);
 
@@ -74,7 +74,7 @@ const DashboardHeader = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }} position="sticky" className="w-full">
-      <AppBar position="static" sx={{ backgroundColor: "#FFFFFF" }}>
+      <AppBar position="static" className="!bg-white dark:!bg-[#0f1214]">
         <Toolbar>
           <IconButton
             size="medium"
@@ -83,8 +83,9 @@ const DashboardHeader = () => {
             aria-label="open drawer"
             sx={{ mr: 2 }}
             onClick={() => handleDrawerOpen(true)}
+            className="dark:hover:bg-secondary "
           >
-            <BiMenuAltLeft className="text-secondary" />
+            <BiMenuAltLeft className="text-secondary dark:text-dark-color " />
           </IconButton>
 
           <Search className="border border-[#E8E8F2] text-gray-600 rounded-xl md:w-[40%] lg:w-[30%]">
@@ -101,45 +102,25 @@ const DashboardHeader = () => {
             sx={{ display: { xs: "flex" } }}
             className="gap-[10px] lg:gap-[20px] items-center"
           >
-            {isDarkMood ? (
-              <IconButton
-                size="medium"
-                aria-label="show 17 new notifications"
-                // color="inherit"
-                onClick={() => setDarkMood(!isDarkMood)}
-                className="bg-[#F7F8F9]"
-              >
-                <PiMoon className="text-secondary" />
-              </IconButton>
-            ) : (
-              <IconButton
-                size="medium"
-                aria-label="show 17 new notifications"
-                // color="inherit"
-                onClick={() => setDarkMood(!isDarkMood)}
-                className="bg-[#F7F8F9]"
-              >
-                <IoSunnyOutline className="text-secondary" />
-              </IconButton>
-            )}
+            <DarkMode />
             <IconButton
               size="medium"
               aria-label="show 4 new mails"
-              className="bg-[#F7F8F9]"
+              className="bg-[#F7F8F9] dark:hover:bg-secondary "
               // color="inherit"
             >
               <Badge badgeContent={4} color="error">
-                <PiWechatLogoLight className="text-secondary" />
+                <PiWechatLogoLight className="text-secondary dark:text-dark-color" />
               </Badge>
             </IconButton>
             <IconButton
               size="medium"
               aria-label="show 17 new notifications"
-              className="bg-[#F7F8F9]"
+              className="bg-[#F7F8F9] dark:hover:bg-secondary"
               // color="inherit"
             >
               <Badge badgeContent={17} color="error">
-                <IoIosNotificationsOutline className="text-secondary" />
+                <IoIosNotificationsOutline className="text-secondary dark:text-dark-color" />
               </Badge>
             </IconButton>
             <IconButton
@@ -149,13 +130,13 @@ const DashboardHeader = () => {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              className="flex gap-2 items-center"
+              className="flex gap-2 items-center "
             >
-              <MdAccountCircle className="text-secondary" />
-              <span className="text-secondary text-lg hidden md:block font-medium">
+              <MdAccountCircle className="text-secondary dark:text-dark-color" />
+              <span className="text-secondary text-lg hidden md:block font-medium dark:text-dark-color">
                 Mr. Tanvir
               </span>
-              <FaAngleDown className="text-secondary text-lg hidden md:block" />
+              <FaAngleDown className="text-secondary text-lg hidden md:block dark:text-dark-color" />
             </IconButton>
           </Box>
         </Toolbar>

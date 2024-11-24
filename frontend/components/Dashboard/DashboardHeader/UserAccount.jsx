@@ -49,6 +49,8 @@ const UserAccount = ({
         }}
         open={isMenuOpen}
         onClose={handleMenuClose}
+        // sx={{ "& .MuiMenu-paper": { backgroundColor: "#000000" } }}
+        // sx={{ "& .MuiPaper-root": { backgroundColor: "#000000" } }}
       >
         <MenuItem onClick={handleMenuClose}>
           <span className="flex gap-2 items-center">
