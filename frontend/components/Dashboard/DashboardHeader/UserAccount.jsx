@@ -49,36 +49,37 @@ const UserAccount = ({
         }}
         open={isMenuOpen}
         onClose={handleMenuClose}
+        className="[&_.MuiMenu-paper]:dark:bg-dark-bg "
         // sx={{ "& .MuiMenu-paper": { backgroundColor: "#000000" } }}
         // sx={{ "& .MuiPaper-root": { backgroundColor: "#000000" } }}
       >
         <MenuItem onClick={handleMenuClose}>
-          <span className="flex gap-2 items-center">
-            <LuUser2 className="text-xl" /> <span>Profile</span>
+          <span className="flex gap-2 items-center dark:text-dark-color">
+            <LuUser2 className="text-xl " /> <span>Profile</span>
           </span>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <span className="flex gap-2 items-center">
+          <span className="flex gap-2 items-center dark:text-dark-color">
             <MdOutlineMail className="text-xl" /> <span>Inbox</span>
           </span>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <span className="flex gap-2 items-center">
+          <span className="flex gap-2 items-center dark:text-dark-color">
             <IoSettingsOutline className="text-xl" /> <span>Setting</span>
           </span>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <span className="flex gap-2 items-center">
+          <span className="flex gap-2 items-center dark:text-dark-color">
             <BiSupport className="text-xl" /> <span>Support</span>
           </span>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <span className="flex gap-2 items-center">
+          <span className="flex gap-2 items-center dark:text-dark-color">
             <BsCardChecklist className="text-xl" /> <span>Task Manager</span>
           </span>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <span className="flex gap-2 items-center">
+          <span className="flex gap-2 items-center dark:text-dark-color">
             <MdOutlineLogout className="text-xl" /> <span>Logout</span>
           </span>
         </MenuItem>

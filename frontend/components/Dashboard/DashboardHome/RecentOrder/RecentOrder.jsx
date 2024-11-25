@@ -55,10 +55,12 @@ const RecentOrder = () => {
     setDuration(event.target.value);
   };
   return (
-    <div className="mt-6 w-full static bg-white border rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
+    <div className="mt-6 w-full static bg-white dark:bg-dark-bg border dark:border-[#3d47514d] rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
       {/* header */}
-      <div className="flex justify-between items-center px-6 py-2 border-b">
-        <h3 className="text-xl font-bold text-secondary">Recent Order</h3>
+      <div className="flex justify-between items-center px-6 py-2 border-b dark:border-b-[#3d47514d] ">
+        <h3 className="text-xl font-bold text-secondary dark:text-dark-color">
+          Recent Order
+        </h3>
         <Button
           color="primary"
           variant="contained"
@@ -127,7 +129,7 @@ const RecentOrder = () => {
                   <StyledTableCell
                     component="th"
                     scope="row"
-                    className="border-r border-r-gray-200 "
+                    className="border-r dark:border-b-[#3d47514d] dark:bg-dark-bg dark:text-dark-color border-r-gray-200 dark:border-r-[#3d47514d]  "
                   >
                     <span className="font-medium text-dash-primary">
                       <span className="">#00{idx + 1}</span> {row.name}
@@ -135,19 +137,19 @@ const RecentOrder = () => {
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
-                    className="border-r border-r-gray-200"
+                    className="border-r dark:border-b-[#3d47514d] dark:bg-dark-bg dark:text-dark-color border-r-gray-200 dark:border-r-[#3d47514d]"
                   >
                     {row.calories}
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
-                    className="border-r border-r-gray-200"
+                    className="border-r dark:border-b-[#3d47514d] dark:bg-dark-bg dark:text-dark-color border-r-gray-200 dark:border-r-[#3d47514d]"
                   >
                     {row.fat}
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
-                    className="border-r border-r-gray-200"
+                    className="border-r dark:border-b-[#3d47514d] dark:bg-dark-bg  border-r-gray-200 dark:border-r-[#3d47514d]"
                   >
                     {row?.status === "Completed" && (
                       <span className="bg-green-200 px-2 py-1 rounded-md">
@@ -165,7 +167,10 @@ const RecentOrder = () => {
                       </span>
                     )}
                   </StyledTableCell>
-                  <StyledTableCell align="center">
+                  <StyledTableCell
+                    align="center"
+                    className="dark:bg-dark-bg dark:border-b-[#3d47514d] dark:text-dark-color"
+                  >
                     <span>${row.protein.toFixed(2)}</span>
                   </StyledTableCell>
                 </StyledTableRow>

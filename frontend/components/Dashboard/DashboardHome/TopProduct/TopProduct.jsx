@@ -37,10 +37,12 @@ const TopProduct = () => {
   ];
 
   return (
-    <div className="bg-white border rounded-md h-full shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
+    <div className="bg-white  dark:bg-dark-bg border dark:border-[#3d47514d] rounded-md h-full shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
       {/* header */}
-      <div className="flex justify-between items-center px-6 py-1 border-b">
-        <h3 className="text-xl font-bold text-secondary">Top Product</h3>
+      <div className="flex justify-between items-center px-6 py-1 border-b dark:border-b-[#3d47514d]">
+        <h3 className="text-xl font-bold text-secondary dark:text-dark-color">
+          Top Product
+        </h3>
         <FormControl sx={{ m: 1 }} size="small">
           <Select
             id="demo-select-small"

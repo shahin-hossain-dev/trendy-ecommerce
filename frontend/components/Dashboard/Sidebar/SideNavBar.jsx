@@ -87,26 +87,45 @@ export default function SideNavBar() {
           <ListItem
             key={item.id}
             disablePadding
-            sx={{ borderBottom: "1px solid #EAEAEA" }}
+            // sx={{ borderBottom: "1px solid #EAEAEA" }}
+            className="!border-b dark:border-b-[#3d47514d]"
             onClick={() => router.push(item.href)}
           >
             <ListItemButton style={activeNav(item.href)}>
               <ListItemIcon
-                style={activeNav(item.href)}
+                // style={activeNav(item.href)}
                 sx={{
                   fontSize: "18px",
                   justifyContent: "center",
                   rowGap: "20px",
-                  color: "#273c75",
+                  // color: "#273c75",
                 }}
+                className={`${
+                  pathname === item.href
+                    ? "!text-[#2FB261]"
+                    : "dark:!text-dark-color !text-secondary"
+                }  `}
               >
                 {item.icon}
               </ListItemIcon>
               <ListItemText
                 primary={item.title}
                 primaryTypographyProps={{ fontSize: "18px", fontWeight: "600" }}
+                className={`${
+                  pathname === item.href
+                    ? ""
+                    : "dark:text-dark-color text-secondary"
+                }  `}
               />
-              {item.subCat && <FaAngleDown />}
+              {item.subCat && (
+                <FaAngleDown
+                  className={`${
+                    pathname === item.href
+                      ? "!text-[#2FB261]"
+                      : "dark:!text-dark-color !text-secondary"
+                  }  `}
+                />
+              )}
             </ListItemButton>
           </ListItem>
         ))}
@@ -119,7 +138,7 @@ export default function SideNavBar() {
       {/* <Button onClick={toggleDrawer(true)}>Open drawer</Button> */}
       <Drawer
         variant="permanent"
-        className="hidden lg:block"
+        className="hidden lg:block [&_.MuiPaper-root]:dark:bg-dark-bg "
         sx={{
           // display: { xs: "none", lg: "block" },
           "& .MuiDrawer-paper": {
@@ -133,6 +152,7 @@ export default function SideNavBar() {
         {drawer}
       </Drawer>
       <Drawer
+        className="[&_.MuiPaper-root]:dark:bg-dark-bg"
         sx={{
           display: { sm: "block", lg: "none" },
           "& .MuiDrawer-paper": {

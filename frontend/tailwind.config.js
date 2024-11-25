@@ -39,6 +39,7 @@ module.exports = {
         secondary: "#2F3336",
         "dash-primary": "#2FB261",
         "dark-color": "#e5e7eb",
+        "dark-bg": "#0f1214",
       },
     },
   },

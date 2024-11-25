@@ -88,9 +88,9 @@ const DashboardHeader = () => {
             <BiMenuAltLeft className="text-secondary dark:text-dark-color " />
           </IconButton>
 
-          <Search className="border border-[#E8E8F2] text-gray-600 rounded-xl md:w-[40%] lg:w-[30%]">
+          <Search className="border border-[#E8E8F2] dark:border-[#3d47514d] text-gray-600 dark:bg-dark-bg dark:text-gray-300 rounded-xl md:w-[40%] lg:w-[30%]">
             <SearchIconWrapper>
-              <RiSearchLine className="text-secondary" />
+              <RiSearchLine className="text-secondary dark:text-gray-300" />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Result for Search…"
@@ -106,7 +106,7 @@ const DashboardHeader = () => {
             <IconButton
               size="medium"
               aria-label="show 4 new mails"
-              className="bg-[#F7F8F9] dark:hover:bg-secondary "
+              className="bg-[#F7F8F9] dark:hover:bg-secondary  "
               // color="inherit"
             >
               <Badge badgeContent={4} color="error">

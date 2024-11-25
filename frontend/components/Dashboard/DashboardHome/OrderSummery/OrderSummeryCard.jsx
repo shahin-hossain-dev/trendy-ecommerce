@@ -7,16 +7,22 @@ import { Box } from "@mui/material";
 
 const OrderSummeryCard = ({ summery }) => {
   return (
-    <Card variant="outlined" className="py-0">
+    <Card
+      variant="outlined"
+      className="py-0 dark:bg-dark-bg dark:border dark:border-[#3d47514d]"
+    >
       <CardContent className="flex items-center justify-center">
         <Box className="flex items-center gap-6">
           <Box>
-            <Typography sx={{ color: "text.secondary", fontSize: 14 }}>
+            <Typography
+              sx={{ fontSize: 14 }}
+              className="text-secondary dark:text-dark-color"
+            >
               {summery.title}
             </Typography>
             <Typography
-              sx={{ color: "text.secondary" }}
-              className="text-[32px] text-secondary font-medium"
+              // sx={{ color: "text.secondary" }}
+              className="text-[32px] text-secondary dark:text-dark-color font-medium"
             >
               $ {summery.amount}
             </Typography>
