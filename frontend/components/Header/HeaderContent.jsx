@@ -17,6 +17,7 @@ import Logo from "../../public/img/logo.png";
 import AddToCartPart from "./addToCartPart";
 import Cookies from "js-cookie";
 import Categories from "../Hero/Categories";
+import { FaRegHeart } from "react-icons/fa6";
 
 const HeaderContent = () => {
   const [accessToken, setAccessToken] = useState(null);
@@ -117,21 +118,15 @@ const HeaderContent = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/wishlist"
                   className="flex flex-col items-center gap-2 lg:flex-row"
                 >
                   <div>
-                    <FontAwesomeIcon
-                      icon={faArrowTrendUp}
-                      className="w-5 h-5"
-                    />
+                    <FaRegHeart className="w-5 h-5" />
                   </div>
                   <div className="text-white">
                     <p className="font-semibold text-2xs md:text-sm">
-                      New Arrivals
-                    </p>
-                    <p className="text-xs mt-[-1px] hidden lg:block">
-                      Fashion Trends
+                      Wish List
                     </p>
                   </div>
                 </Link>
