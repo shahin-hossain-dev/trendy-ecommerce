@@ -56,10 +56,12 @@ const RecentReview = () => {
     setDuration(event.target.value);
   };
   return (
-    <div className="mt-6 w-full static bg-white border rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
+    <div className="mt-6 w-full static bg-white  dark:bg-dark-bg border dark:border-[#3d47514d]  rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
       {/* header */}
-      <div className="flex justify-between items-center px-6 py-2 border-b">
-        <h3 className="text-xl font-bold text-secondary">Recent Review</h3>
+      <div className="flex justify-between items-center px-6 py-2">
+        <h3 className="text-xl font-bold text-secondary dark:text-dark-color">
+          Recent Review
+        </h3>
         <Button
           color="primary"
           variant="contained"
@@ -80,7 +82,7 @@ const RecentReview = () => {
         <TableContainer
           sx={{ width: "100%", overflow: "auto" }}
           component={Paper}
-          className="!rounded-none"
+          className="!rounded-none dark:bg-dark-bg"
         >
           <Table
             sx={{
@@ -92,25 +94,25 @@ const RecentReview = () => {
               <TableRow>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Name
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Product Name
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Date
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-b-[#3d47514d] dark:border-[#3d47514d]"
                 >
                   Rating
                 </StyledTableCell>
@@ -123,7 +125,7 @@ const RecentReview = () => {
                     // component="th"
                     // scope="row"
                     align="left"
-                    className="border-r border-r-gray-200 "
+                    className="border-r border-r-gray-200 dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
                   >
                     <span className="font-medium text-dash-primary">
                       <span className="">#00{idx + 1}</span> {row.name}
@@ -131,18 +133,21 @@ const RecentReview = () => {
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
-                    className="border-r border-r-gray-200"
+                    className="border-r  dark:text-dark-color border-r-gray-200 dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
                   >
                     {row.calories}
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
-                    className="border-r border-r-gray-200"
+                    className="border-r  dark:text-dark-color border-r-gray-200 dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
                   >
                     {row.fat}
                   </StyledTableCell>
 
-                  <StyledTableCell align="center">
+                  <StyledTableCell
+                    align="center"
+                    className="dark:border-b-[#3d47514d]"
+                  >
                     <Rating name="read-only" value={row.rating} readOnly />
                   </StyledTableCell>
                 </StyledTableRow>

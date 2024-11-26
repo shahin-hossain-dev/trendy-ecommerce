@@ -57,7 +57,7 @@ const RecentOrder = () => {
   return (
     <div className="mt-6 w-full static bg-white dark:bg-dark-bg border dark:border-[#3d47514d] rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
       {/* header */}
-      <div className="flex justify-between items-center px-6 py-2 border-b dark:border-b-[#3d47514d] ">
+      <div className="flex justify-between items-center px-6 py-2  ">
         <h3 className="text-xl font-bold text-secondary dark:text-dark-color">
           Recent Order
         </h3>
@@ -81,7 +81,7 @@ const RecentOrder = () => {
         <TableContainer
           sx={{ width: "100%", overflow: "auto" }}
           component={Paper}
-          className="!rounded-none"
+          className="!rounded-none "
         >
           <Table
             sx={{
@@ -93,31 +93,31 @@ const RecentOrder = () => {
               <TableRow>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Order
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Phone
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Date
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Status
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl "
+                  className="font-semibold text-xl dark:border-[#3d47514d]"
                 >
                   Total
                 </StyledTableCell>
@@ -169,7 +169,7 @@ const RecentOrder = () => {
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
-                    className="dark:bg-dark-bg dark:border-b-[#3d47514d] dark:text-dark-color"
+                    className="dark:bg-dark-bg  dark:border-b-[#3d47514d] dark:text-dark-color"
                   >
                     <span>${row.protein.toFixed(2)}</span>
                   </StyledTableCell>

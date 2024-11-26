@@ -20,7 +20,7 @@ const AddToCartPart = () => {
               {/* {items.length} */}
             </span>
           </p>
-          <p className="text-xs mt-[-1px] hidden lg:block">Add items</p>
+          {/* <p className="text-xs mt-[-1px] hidden lg:block">Add items</p> */}
         </div>
       </Link>
     </div>

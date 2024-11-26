@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 const Header = () => {
   return (
     <>
-      <div className="flex justify-center bg-secondary">
+      <div className="flex justify-center bg-dash-primary">
         <HeaderContact />
       </div>
       <header className="sticky top-0 z-50 ">

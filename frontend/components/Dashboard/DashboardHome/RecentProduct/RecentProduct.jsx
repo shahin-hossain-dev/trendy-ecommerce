@@ -60,10 +60,12 @@ const RecentProduct = () => {
     setDuration(event.target.value);
   };
   return (
-    <div className="mt-6 w-full static bg-white border rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
+    <div className="mt-6 w-full static bg-white dark:bg-dark-bg border dark:border-[#3d47514d] rounded-md  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
       {/* header */}
-      <div className="flex justify-between items-center px-6 py-2 border-b">
-        <h3 className="text-xl font-bold text-secondary">Recent Product</h3>
+      <div className="flex justify-between items-center px-6 py-2">
+        <h3 className="text-xl font-bold text-secondary dark:text-dark-color">
+          Recent Product
+        </h3>
         <Button
           color="primary"
           variant="contained"
@@ -96,37 +98,37 @@ const RecentProduct = () => {
               <TableRow>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Image
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Name
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Stock
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Price
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Category
                 </StyledTableCell>
                 <StyledTableCell
                   align="center"
-                  className="font-semibold text-xl border-r border-white"
+                  className="font-semibold text-xl border-r border-white dark:border-[#3d47514d]"
                 >
                   Action
                 </StyledTableCell>
@@ -139,7 +141,7 @@ const RecentProduct = () => {
                     // component="th"
                     // scope="row"
                     align="center"
-                    className="border-r border-r-gray-200 "
+                    className="border-r dark:bg-dark-bg border-r-gray-200 dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
                   >
                     <div className="flex justify-center items-center">
                       <Image src={row.image} height={45} width={45} />
@@ -147,13 +149,13 @@ const RecentProduct = () => {
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
-                    className="border-r border-r-gray-200"
+                    className="border-r dark:text-dark-color dark:bg-dark-bg border-r-gray-200 dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
                   >
                     {row.name}
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"
-                    className="border-r border-r-gray-200"
+                    className="border-r dark:bg-dark-bg border-r-gray-200 dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
                   >
                     <span
                       className={`font-semibold ${
@@ -166,14 +168,23 @@ const RecentProduct = () => {
                     </span>
                   </StyledTableCell>
 
-                  <StyledTableCell align="center">
-                    ${row.price.toFixed(2)}
+                  <StyledTableCell
+                    align="center"
+                    className="border-r dark:text-dark-color dark:bg-dark-bg border-r-gray-200 dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
+                  >
+                    ${row?.price.toFixed(2)}
                   </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {row.category}
+                  <StyledTableCell
+                    align="center"
+                    className="border-r dark:text-dark-color dark:bg-dark-bg border-r-gray-200 dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
+                  >
+                    ${row?.category}
                   </StyledTableCell>
 
-                  <StyledTableCell align="center">
+                  <StyledTableCell
+                    align="center"
+                    className="dark:bg-dark-bg dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
+                  >
                     <span className="block mx-auto relative">
                       <button
                         onClick={() => setShowActionBtn(idx)}
