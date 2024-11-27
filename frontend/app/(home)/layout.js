@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import StoreProvider from "../StoreProvider";
 import Footer from "@/components/Footer/Footer";
+import HandlerProvider from "@/lib/providers/HandlerProvider";
 
 const lato = Lato({
   weight: ["400", "700"],
@@ -40,9 +41,11 @@ export default function RootLayout({ children }) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <StoreProvider>
-              <Header />
-              <main>{children}</main>
-              <Footer />
+              <HandlerProvider>
+                <Header />
+                <main>{children}</main>
+                <Footer />
+              </HandlerProvider>
             </StoreProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>

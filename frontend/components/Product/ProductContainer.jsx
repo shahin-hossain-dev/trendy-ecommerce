@@ -43,16 +43,11 @@ const ProductContainer = () => {
           className="h-full !pb-10"
         >
           {products.map((product) => (
-            <>
+            <div key={product.id}>
               <SwiperSlide>
-                <Link
-                  href={`/products/product-info/${product?.id}`}
-                  key={product.id}
-                >
-                  <ProductCard product={product} />
-                </Link>
+                <ProductCard product={product} />
               </SwiperSlide>
-            </>
+            </div>
           ))}
         </Swiper>
       </div>

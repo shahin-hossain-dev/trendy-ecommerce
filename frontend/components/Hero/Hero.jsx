@@ -117,7 +117,7 @@ const Hero = () => {
               className=" "
             >
               {products?.map((product) => (
-                <SwiperSlide>
+                <SwiperSlide key={product.id}>
                   <div className="rounded-md">
                     <Image
                       src={product.image}
@@ -142,8 +142,8 @@ const Hero = () => {
           Features
         </h1>
         <div className="flex flex-col  md:flex-row gap-5 justify-between mt-4 lg:mt-6">
-          {features.map((feature) => (
-            <div>
+          {features.map((feature, idx) => (
+            <div key={idx}>
               <Image
                 src={feature.image}
                 alt="feature image"

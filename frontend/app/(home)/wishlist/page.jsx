@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa6";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -10,27 +10,21 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { IoHeartDislike } from "react-icons/io5";
-import { setLocalStorageValue } from "@/lib/wishlistLocalStorage";
+import {
+  getLocalStorageValue,
+  removeLocalStorageValue,
+} from "@/lib/wishlistLocalStorage";
+import Link from "next/link";
+import { HandlerContext } from "@/lib/providers/HandlerProvider";
 
 const Wishlist = () => {
-  const [products, setProducts] = useState([]);
+  const { wishProducts, handleRemoveWishListProduct, setWishProducts } =
+    useContext(HandlerContext);
 
   useEffect(() => {
-    const getDate = async () => {
-      const res = await axios.get("/data/product.json");
-
-      setProducts(res.data);
-    };
-    getDate();
+    const storedProduct = getLocalStorageValue();
+    setWishProducts(storedProduct);
   }, []);
-
-  const handleWishlist = (id) => {
-    setLocalStorageValue(id);
-  };
-
-  const removeWishListProduct = (id) => {
-    removeWishListProduct(id);
-  };
 
   return (
     <section className="min-h-screen">
@@ -38,55 +32,74 @@ const Wishlist = () => {
         <div className="flex justify-center flex-col items-center text-secondary">
           <FaRegHeart className="text-2xl lg:text-5xl" />
           <h2 className="text-2xl lg:text-4xl  font-bold">My Wishlist</h2>
+          {wishProducts.length || (
+            <div className="mt-4">
+              <Image
+                src={"/img/empty-wish.webp"}
+                width={300}
+                height={300}
+                alt="empty wishlist"
+              />
+              <h2 className="text-2xl lg:text-3xl font-medium text-gray-400 text-center">
+                Empty Wishlist
+              </h2>
+            </div>
+          )}
         </div>
         {/* List */}
 
         <Box className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-          {products.map((product) => (
+          {wishProducts?.map((product) => (
             <Card
               key={product.id}
-              sx={{ minWidth: 275 }}
-              className="flex flex-col justify-between "
+              className="flex md:flex-col justify-between  "
             >
-              <CardContent>
-                <div className="group w-full h-[250px] overflow-hidden relative">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    height={200}
-                    width={300}
-                    className="w-full h-[250px] object-cover hover:scale-105 duration-300"
-                  />
+              <CardContent className="flex md:flex-col gap-4">
+                <div className="group w-full h-[200px] overflow-hidden relative">
+                  <Link href={`/products/product-info/${product.id}`}>
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      height={200}
+                      width={300}
+                      className="w-full rounded-lg h-[200px] object-cover hover:scale-105 duration-300"
+                    />
+                  </Link>
                   <div className=" right-4 top-4 absolute flex flex-col ">
                     <button
-                      onClick={() => removeWishListProduct(product.id)}
-                      className="bg-gray-100 mb-3 p-2 text-red-500 hover:bg-dash-primary scale-0 group-hover:scale-[10px] duration-300  hover:text-white rounded-full"
+                      onClick={() => handleRemoveWishListProduct(product.id)}
+                      className="bg-gray-100 p-2 text-red-500 hover:bg-dash-primary scale-0 group-hover:scale-[10px] duration-300  hover:text-white rounded-full"
                     >
                       <IoHeartDislike className="text-2xl " />
                     </button>
                   </div>
                 </div>
-                <Typography gutterBottom className="!text-2xl text-secondary">
-                  {product.name}
-                </Typography>
-
-                <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-                  <p className="flex  gap-1 text-xs  font-lato md:text-base">
-                    <span className="mr-0.5">৳</span>
-                    {new Intl.NumberFormat().format(product.price)}
-                  </p>
-                </Typography>
-                <Typography variant="body2">
-                  <span
-                    className={`font-semibold ${
-                      product.stock === "In Stock"
-                        ? "text-dash-primary"
-                        : "text-rose-600"
-                    }`}
+                <div>
+                  <Typography
+                    gutterBottom
+                    className="!text-xl !font-bold text-secondary"
                   >
-                    {product.stock}
-                  </span>
-                </Typography>
+                    {product.name}
+                  </Typography>
+
+                  <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                    <p className="flex  gap-1 text-xs  font-lato md:text-base">
+                      <span className="mr-0.5">৳</span>
+                      {new Intl.NumberFormat().format(product.price)}
+                    </p>
+                  </Typography>
+                  <Typography variant="body2">
+                    <span
+                      className={`font-semibold ${
+                        product.stock === "In Stock"
+                          ? "text-dash-primary"
+                          : "text-rose-600"
+                      }`}
+                    >
+                      {product.stock}
+                    </span>
+                  </Typography>
+                </div>
               </CardContent>
 
               <CardActions>

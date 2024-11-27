@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { useAppDispatch } from "@/lib/features/hooks";
 import { add } from "@/lib/features/cart/cartSlice";
+import { FaRegHeart } from "react-icons/fa";
+import { setLocalStorageValue } from "@/lib/wishlistLocalStorage";
+import Link from "next/link";
+import { HandlerContext } from "@/lib/providers/HandlerProvider";
 
 const ProductCard = ({ product }) => {
+  const { handleAddWishlist } = useContext(HandlerContext);
   const dispatch = useAppDispatch();
   const handleAddToCart = (productId) => {
     dispatch(add(productId));
   };
+
   return (
     <div className="relative flex flex-col justify-between h-full overflow-hidden bg-white rounded-lg shadow-md hover:shadow-lg group">
       <div className="absolute top-0 left-0 z-40 w-16 h-16">
@@ -17,14 +23,24 @@ const ProductCard = ({ product }) => {
       </div>
 
       <div className="z-30">
-        <div className="overflow-hidden">
-          <Image
-            src={product.image}
-            alt={product.name}
-            width={300}
-            height={200}
-            className="object-cover w-full aspect-[4/5] group-hover:scale-105 transition-all duration-300 "
-          />
+        <div className="group  overflow-hidden">
+          <Link href={`products/product-info/${product.id}`}>
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={300}
+              height={200}
+              className="object-cover w-full aspect-[4/5] group-hover:scale-105 transition-all duration-300 "
+            />
+          </Link>
+          <div className=" right-4 top-4 absolute flex flex-col ">
+            <button
+              onClick={() => handleAddWishlist(product)}
+              className="bg-gray-100 mb-3 p-1.5 text-red-500 hover:bg-primary scale-0 group-hover:scale-[10px] duration-300  hover:text-white rounded-full"
+            >
+              <FaRegHeart className="text-xl " />
+            </button>
+          </div>
         </div>
         <div className="p-2 space-y-1.5 overflow-hidden">
           <h2 className="leading-tight text-center capitalize truncate text-lg font-oswald">
@@ -33,6 +49,10 @@ const ProductCard = ({ product }) => {
           <div className="flex justify-center gap-1 flex-nowrap md:gap-3">
             <p className="flex justify-center gap-1 text-xs text-red-500 line-through flex-nowrap font-lato md:text-base">
               <span className="mr-0.5">৳</span>
+              {/* "bn-BD", {
+                style: "currency",
+                currency: "BDT",
+              } */}
               {new Intl.NumberFormat().format(product.price)}
             </p>
             <p className="flex justify-center gap-1 text-xs flex-nowrap font-lato md:text-base">

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   faBars,
   faMagnifyingGlass,
@@ -18,11 +18,13 @@ import AddToCartPart from "./addToCartPart";
 import Cookies from "js-cookie";
 import Categories from "../Hero/Categories";
 import { FaRegHeart } from "react-icons/fa6";
+import { getLocalStorageValue } from "@/lib/wishlistLocalStorage";
+import { HandlerContext } from "@/lib/providers/HandlerProvider";
 
 const HeaderContent = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [navBarOpen, setNavBarOpen] = useState(false);
-
+  const { wishListItems } = useContext(HandlerContext);
   useEffect(() => {
     const token = Cookies.get("accessToken");
     setAccessToken(token);
@@ -59,7 +61,7 @@ const HeaderContent = () => {
                 <FontAwesomeIcon icon={faBars} />
               )}
             </button>
-            <Link href="#" className="w-[100px] md:w-[125px] relative h-full">
+            <Link href="/" className="w-[100px] md:w-[125px] relative h-full">
               <Image src={Logo} alt="Logo" width={250} height={250} priority />
             </Link>
 
@@ -124,10 +126,13 @@ const HeaderContent = () => {
                   <div>
                     <FaRegHeart className="w-5 h-5" />
                   </div>
-                  <div className="text-white">
+                  <div className="text-white relative">
                     <p className="font-semibold text-2xs md:text-sm">
                       Wish List
                     </p>
+                    <span className="absolute grid w-5 h-5 text-xs font-bold text-red-100 bg-red-600 rounded-full -top-2 -right-5 place-items-center">
+                      {wishListItems}
+                    </span>
                   </div>
                 </Link>
               </li>

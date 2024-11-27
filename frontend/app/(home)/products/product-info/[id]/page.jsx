@@ -20,6 +20,7 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
+import { setLocalStorageValue } from "@/lib/wishlistLocalStorage";
 
 const ProductInfo = ({ params }) => {
   const { id } = params;
@@ -47,6 +48,17 @@ const ProductInfo = ({ params }) => {
       ...productData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleWishlist = (product) => {
+    const wishProduct = {
+      id: product.id,
+      name: product.name,
+      image: product.image,
+      stock: product.stock,
+      price: product.price,
+    };
+    setLocalStorageValue(wishProduct);
   };
 
   if (!product) {
@@ -137,7 +149,10 @@ const ProductInfo = ({ params }) => {
                 <BiGitCompare className="text-xl rotate-90" />{" "}
                 <span>Compare</span>
               </button>
-              <button className="flex items-center gap-2 bg-[#192a5633] px-4 py-2  rounded-full active:scale-95 duration-200 font-medium hover:bg-[#192a56] hover:text-white">
+              <button
+                onClick={() => handleWishlist(product)}
+                className="flex items-center gap-2 bg-[#192a5633] px-4 py-2  rounded-full active:scale-95 duration-200 font-medium hover:bg-[#192a56] hover:text-white"
+              >
                 <IoHeartOutline className="text-xl" /> <span>Wishlist</span>
               </button>
             </div>

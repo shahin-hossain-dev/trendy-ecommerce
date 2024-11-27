@@ -21,7 +21,7 @@ const setLocalStorageValue = (product) => {
 const removeLocalStorageValue = (id) => {
   const storedProduct = getLocalStorageValue();
 
-  const isExist = storedValue.find((pd) => pd.id === id);
+  const isExist = storedProduct.find((pd) => pd.id === id);
 
   if (isExist) {
     const remainingProduct = storedProduct.filter((pd) => pd.id !== id);
