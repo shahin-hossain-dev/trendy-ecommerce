@@ -7,6 +7,7 @@ import { useAppSelector } from "@/lib/features/hooks";
 
 const AddToCartPart = () => {
   const items = useAppSelector((state) => state.cart.items);
+  console.log(items);
   return (
     <div>
       <Link href="#" className="flex flex-col items-center gap-2 lg:flex-row">

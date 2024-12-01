@@ -1,18 +1,22 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 import { useAppDispatch } from "@/lib/features/hooks";
-import { add } from "@/lib/features/cart/cartSlice";
 import { FaRegHeart } from "react-icons/fa";
 import { setLocalStorageValue } from "@/lib/wishlistLocalStorage";
 import Link from "next/link";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
+import { IoHeartDislike } from "react-icons/io5";
+import { addToCart } from "@/lib/features/cart/cartSlice";
 
 const ProductCard = ({ product }) => {
-  const { handleAddWishlist } = useContext(HandlerContext);
+  const { handleAddWishlist, wishProducts, handleRemoveWishListProduct } =
+    useContext(HandlerContext);
   const dispatch = useAppDispatch();
   const handleAddToCart = (productId) => {
-    dispatch(add(productId));
+    dispatch(addToCart(productId));
   };
+
+  const addedWishProduct = wishProducts.find((pd) => pd.id === product.id);
 
   return (
     <div className="relative flex flex-col justify-between h-full overflow-hidden bg-white rounded-lg shadow-md hover:shadow-lg group">
@@ -34,12 +38,21 @@ const ProductCard = ({ product }) => {
             />
           </Link>
           <div className=" right-4 top-4 absolute flex flex-col ">
-            <button
-              onClick={() => handleAddWishlist(product)}
-              className="bg-gray-100 mb-3 p-1.5 text-red-500 hover:bg-primary scale-0 group-hover:scale-[10px] duration-300  hover:text-white rounded-full"
-            >
-              <FaRegHeart className="text-xl " />
-            </button>
+            {addedWishProduct?.id === product?.id ? (
+              <button
+                onClick={() => handleRemoveWishListProduct(product.id)}
+                className="bg-gray-100 mb-3 p-1.5 text-red-500 hover:bg-primary scale-0 group-hover:scale-[10px] duration-300  hover:text-white rounded-full"
+              >
+                <IoHeartDislike className="text-xl " />
+              </button>
+            ) : (
+              <button
+                onClick={() => handleAddWishlist(product)}
+                className="bg-gray-100 mb-3 p-1.5 text-red-500 hover:bg-primary scale-0 group-hover:scale-[10px] duration-300  hover:text-white rounded-full"
+              >
+                <FaRegHeart className="text-xl " />
+              </button>
+            )}
           </div>
         </div>
         <div className="p-2 space-y-1.5 overflow-hidden">

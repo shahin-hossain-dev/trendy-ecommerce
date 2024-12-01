@@ -10,12 +10,13 @@ export const HandlerContext = createContext();
 
 const HandlerProvider = ({ children }) => {
   const [isToggleOpen, setToggleOpen] = useState(false);
-  const [wishProducts, setWishProducts] = useState([]);
+  const [wishProducts, setWishProducts] = useState(() => {
+    return getLocalStorageValue();
+  });
 
   const handleDrawerOpen = (value) => {
     setToggleOpen(value);
   };
-  console.log(wishProducts);
 
   //wishlist functionality
   const handleAddWishlist = (product) => {

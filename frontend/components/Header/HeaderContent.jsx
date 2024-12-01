@@ -18,13 +18,13 @@ import AddToCartPart from "./addToCartPart";
 import Cookies from "js-cookie";
 import Categories from "../Hero/Categories";
 import { FaRegHeart } from "react-icons/fa6";
-import { getLocalStorageValue } from "@/lib/wishlistLocalStorage";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 
 const HeaderContent = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [navBarOpen, setNavBarOpen] = useState(false);
   const { wishListItems } = useContext(HandlerContext);
+
   useEffect(() => {
     const token = Cookies.get("accessToken");
     setAccessToken(token);

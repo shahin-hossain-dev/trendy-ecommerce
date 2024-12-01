@@ -8,7 +8,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    add: (state, action) => {
+    addToCart: (state, action) => {
       console.log("Add action called with payload:", action.payload);
       return {
         ...state,
@@ -18,6 +18,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { add } = cartSlice.actions;
+export const { addToCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
