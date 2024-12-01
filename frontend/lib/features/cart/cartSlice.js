@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
+  isCartVisible: false,
 };
 
 export const cartSlice = createSlice({
@@ -15,9 +16,13 @@ export const cartSlice = createSlice({
         items: [...state.items, action.payload],
       };
     },
+
+    cartVisible: (state, action) => {
+      state.isCartVisible = action.payload;
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, cartVisible } = cartSlice.actions;
 
 export default cartSlice.reducer;
