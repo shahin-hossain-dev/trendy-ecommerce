@@ -29,7 +29,7 @@ const AddToCartPart = () => {
           <p className="relative font-semibold text-2xs md:text-sm w-fit">
             Cart
             <span className="absolute grid w-5 h-5 text-xs font-bold text-red-100 bg-red-600 rounded-full -top-2 -right-5 place-items-center">
-              {/* {items.length} */}
+              {items.length}
             </span>
           </p>
           {/* <p className="text-xs mt-[-1px] hidden lg:block">Add items</p> */}

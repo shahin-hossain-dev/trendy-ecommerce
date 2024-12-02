@@ -12,8 +12,8 @@ const ProductCard = ({ product }) => {
   const { handleAddWishlist, wishProducts, handleRemoveWishListProduct } =
     useContext(HandlerContext);
   const dispatch = useAppDispatch();
-  const handleAddToCart = (productId) => {
-    dispatch(addToCart(productId));
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
   };
 
   const addedWishProduct = wishProducts.find((pd) => pd.id === product.id);
@@ -79,7 +79,7 @@ const ProductCard = ({ product }) => {
             </button>
             <button
               className="rounded-md border border-[#192a56] basis-1/2 px-1 py-1 text-[10px] capitalize text-[#192a56] md:px-2 md:text-xs"
-              onClick={() => handleAddToCart(product.id)}
+              onClick={() => handleAddToCart(product)}
             >
               Add to Cart
             </button>
