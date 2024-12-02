@@ -57,7 +57,7 @@ const CartSideBar = () => {
           <div className="mt-auto ">
             <div>
               {items?.length > 0 && (
-                <div className="bg-slate-100 text-secondary border-y-gray-300 border-dashed border px-5 py-2 mb-6 flex gap-3 justify-between font-medium">
+                <div className=" text-secondary border-y-gray-300 border-dashed border-y px-5 py-2 mb-6 flex gap-3 justify-between font-medium">
                   <h3>Sub Total:</h3>
                   <span className="mr-0.5 font-bold">
                     ৳{" "}
