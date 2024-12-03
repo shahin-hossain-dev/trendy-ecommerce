@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import ImageGallery from "@/components/ProductImageGallery/ImageGallery";
 import { FetchProductById } from "@/lib/FetchProduct";
 import {
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { BsCartDash } from "react-icons/bs";
 import { BiGitCompare } from "react-icons/bi";
-import { IoHeartOutline } from "react-icons/io5";
+import { IoHeartDislike, IoHeartOutline } from "react-icons/io5";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -21,14 +21,19 @@ import {
 import Link from "next/link";
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
 import { setLocalStorageValue } from "@/lib/wishlistLocalStorage";
+import { addToCart } from "@/lib/features/cart/cartSlice";
+import { useAppDispatch } from "@/lib/features/hooks";
+import { HandlerContext } from "@/lib/providers/HandlerProvider";
 
 const ProductInfo = ({ params }) => {
   const { id } = params;
+  const { handleAddWishlist, wishProducts, handleRemoveWishListProduct } =
+    useContext(HandlerContext);
   const [product, setProduct] = useState({});
   const [productData, setProductData] = useState({
     color: "",
   });
-
+  const dispatch = useAppDispatch();
   const fetchData = useCallback(async () => {
     try {
       const data = await FetchProductById(id);
@@ -50,16 +55,12 @@ const ProductInfo = ({ params }) => {
     });
   };
 
-  const handleWishlist = (product) => {
-    const wishProduct = {
-      id: product.id,
-      name: product.name,
-      image: product.image,
-      stock: product.stock,
-      price: product.price,
-    };
-    setLocalStorageValue(wishProduct);
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
   };
+
+  //get added wish list product
+  const addedWishProduct = wishProducts.find((pd) => pd.id === product.id);
 
   if (!product) {
     return <div>Loading...</div>;
@@ -142,19 +143,33 @@ const ProductInfo = ({ params }) => {
             </div>
 
             <div className="flex flex-wrap gap-2.5">
-              <button className="flex items-center gap-2 bg-[#192a56] px-4 py-2 text-white rounded-full active:scale-95 duration-200 font-medium hover:bg-[#273c75]">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="flex items-center gap-2 bg-[#192a56] px-4 py-2 text-white rounded-full active:scale-95 duration-200 font-medium hover:bg-[#273c75]"
+              >
                 <BsCartDash className="text-xl" /> <span>Add To Cart</span>
               </button>
               <button className="flex items-center gap-2 bg-[#192a5633] px-4 py-2  rounded-full active:scale-95 duration-200 font-medium hover:bg-[#192a56] hover:text-white">
                 <BiGitCompare className="text-xl rotate-90" />{" "}
                 <span>Compare</span>
               </button>
-              <button
-                onClick={() => handleWishlist(product)}
-                className="flex items-center gap-2 bg-[#192a5633] px-4 py-2  rounded-full active:scale-95 duration-200 font-medium hover:bg-[#192a56] hover:text-white"
-              >
-                <IoHeartOutline className="text-xl" /> <span>Wishlist</span>
-              </button>
+              {addedWishProduct?.id === product?.id ? (
+                <button
+                  onClick={() => handleRemoveWishListProduct(product.id)}
+                  className="flex items-center gap-2 bg-[#192a5633] px-4 py-2  rounded-full active:scale-95 duration-200 font-medium hover:bg-[#192a56] hover:text-white"
+                >
+                  <IoHeartDislike className="text-xl" />{" "}
+                  <span>Remove Wishlist</span>
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleAddWishlist(product)}
+                  className="flex items-center gap-2 bg-[#192a5633] px-4 py-2  rounded-full active:scale-95 duration-200 font-medium hover:bg-[#192a56] hover:text-white"
+                >
+                  <IoHeartOutline className="text-xl" />{" "}
+                  <span>Add Wishlist</span>
+                </button>
+              )}
             </div>
             <div className="flex gap-4 items-center">
               <h4 className="uppercase font-semibold">Share: </h4>

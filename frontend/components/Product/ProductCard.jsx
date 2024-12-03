@@ -12,10 +12,16 @@ const ProductCard = ({ product }) => {
   const { handleAddWishlist, wishProducts, handleRemoveWishListProduct } =
     useContext(HandlerContext);
   const dispatch = useAppDispatch();
+
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
 
+  const handleBuy = () => {
+    dispatch(addToCart(product));
+  };
+
+  //get added wish list product
   const addedWishProduct = wishProducts.find((pd) => pd.id === product.id);
 
   return (
@@ -74,8 +80,13 @@ const ProductCard = ({ product }) => {
             </p>
           </div>
           <div className="flex justify-center gap-1.5">
-            <button className="rounded-md bg-[#192a56] px-1 py-1 basis-1/2 text-[10px] capitalize text-white md:px-2 md:text-xs">
-              Buy Now
+            <button
+              onClick={handleBuy}
+              className="rounded-md bg-[#192a56]  basis-1/2 text-[10px] capitalize text-white md:px-2 md:text-xs"
+            >
+              <Link href={"/checkout"} className="px-1 py-1">
+                Buy Now
+              </Link>
             </button>
             <button
               className="rounded-md border border-[#192a56] basis-1/2 px-1 py-1 text-[10px] capitalize text-[#192a56] md:px-2 md:text-xs"

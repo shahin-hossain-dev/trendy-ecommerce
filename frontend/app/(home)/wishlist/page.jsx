@@ -16,15 +16,21 @@ import {
 } from "@/lib/wishlistLocalStorage";
 import Link from "next/link";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
+import { useAppDispatch } from "@/lib/features/hooks";
+import { addToCart } from "@/lib/features/cart/cartSlice";
 
 const Wishlist = () => {
   const { wishProducts, handleRemoveWishListProduct, setWishProducts } =
     useContext(HandlerContext);
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const storedProduct = getLocalStorageValue();
     setWishProducts(storedProduct);
   }, []);
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
 
   return (
     <section className="min-h-screen">
@@ -104,7 +110,7 @@ const Wishlist = () => {
 
               <CardActions>
                 <Button
-                  onClick={() => handleWishlist(product)}
+                  onClick={() => handleAddToCart(product)}
                   size="small"
                   variant="contained"
                   className="w-full"

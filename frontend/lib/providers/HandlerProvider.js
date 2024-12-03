@@ -27,6 +27,7 @@ const HandlerProvider = ({ children }) => {
       stock: product.stock,
       price: product.price,
     };
+
     setLocalStorageValue(wishProduct);
     const remainingProduct = getLocalStorageValue();
     setWishProducts(remainingProduct);

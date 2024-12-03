@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const CartSideBar = () => {
   const { isCartVisible, items } = useSelector((state) => state.cart);
-  console.log(items);
+
   const dispatch = useDispatch();
   const handleCloseCart = () => {
     dispatch(cartVisible(false));
