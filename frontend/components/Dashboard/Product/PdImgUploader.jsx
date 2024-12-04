@@ -30,6 +30,13 @@ const PdImgUploader = () => {
     setPreview(src);
   };
 
+  const handleRemoveImage = (id) => {
+    const remainImage = images.filter((image) => image.id !== id);
+
+    setImages(remainImage);
+    setPreview(null);
+  };
+
   const handleUploadClick = () => {
     imageRef.current.click();
   };
@@ -45,7 +52,11 @@ const PdImgUploader = () => {
       </div>
       <div className="flex items-center gap-2">
         {images.map((image) => (
-          <div onClick={() => handleSelectedImage(image.src)}>
+          <div
+            key={image.id}
+            onClick={() => handleSelectedImage(image.src)}
+            className="relative"
+          >
             <Image
               src={image.src}
               height={100}
@@ -55,6 +66,12 @@ const PdImgUploader = () => {
                 preview === image.src && "border-2 border-secondary"
               } rounded p-1`}
             />
+            <button
+              onClick={() => handleRemoveImage(image.id)}
+              className="p-1 absolute top-1 right-1 text-red-400 bg-white rounded-full"
+            >
+              X
+            </button>
           </div>
         ))}
         {images.length < 4 && (

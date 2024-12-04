@@ -7,6 +7,7 @@ import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import PdImgUploader from "@/components/Dashboard/Product/PdImgUploader";
+import AddProductAttribute from "@/components/Dashboard/Product/AddProductAttribute";
 
 const modules = {
   toolbar: [
@@ -183,6 +184,8 @@ const AddProduct = () => {
               </TextField>
             </div>
           </div>
+          {/* dynamic attribute  */}
+          <AddProductAttribute />
           {/* image uploader */}
           <PdImgUploader />
           <Button
