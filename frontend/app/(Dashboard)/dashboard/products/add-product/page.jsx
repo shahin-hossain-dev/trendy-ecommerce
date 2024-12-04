@@ -6,6 +6,7 @@ import { Button, MenuItem } from "@mui/material";
 import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import PdImgUploader from "@/components/Dashboard/Product/PdImgUploader";
 
 const modules = {
   toolbar: [
@@ -182,6 +183,8 @@ const AddProduct = () => {
               </TextField>
             </div>
           </div>
+          {/* image uploader */}
+          <PdImgUploader />
           <Button
             variant="contained"
             style={{ backgroundColor: "#2FB261" }}

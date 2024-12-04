@@ -20,7 +20,7 @@ const DarkMode = () => {
   localDark();
 
   useEffect(() => {
-    console.log(isDarkMood);
+    // console.log(isDarkMood);
     if (isDarkMood) {
       element.classList.add("dark");
       localStorage.setItem("theme", "dark");

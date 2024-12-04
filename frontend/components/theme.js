@@ -7,9 +7,9 @@ const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
 });
-const { palette } = createTheme();
-const { augmentColor } = palette;
-const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
+// const { palette } = createTheme();
+// const { augmentColor } = palette;
+// const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
 
 const theme = createTheme({
   palette: {
