@@ -5,34 +5,29 @@ import axios from "axios";
 import { GoTrash } from "react-icons/go";
 import { ImSpinner3 } from "react-icons/im";
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "@/lib/features/cart/cartSlice";
+import {
+  addToCart,
+  cartCountIncrement,
+  removeFromCart,
+} from "@/lib/features/cart/cartSlice";
 const CartCard = ({ cart }) => {
   const { productId, image, totalPrice, name, quantity } = cart;
   const dispatch = useDispatch();
 
   // quantity increment
-  const handleIncrease = async () => {
+  const handleIncrease = (productId) => {
     if (quantity > 9) {
       return;
     }
-
-    // const resp = await axios.patch(
-    //   `${process.env.NEXT_PUBLIC_BASE_URL}/products/api/addToCart/update/${_id}`,
-    //   { type: "increment", price }
-    // );
+    dispatch(cartCountIncrement(productId));
   };
 
   // quantity decrement
 
-  const handleDecrease = async () => {
+  const handleDecrease = (productId) => {
     if (cart?.quantity < 2) {
       return;
     }
-
-    // const resp = await axios.patch(
-    //   `${process.env.NEXT_PUBLIC_BASE_URL}/products/api/addToCart/update/${_id}`,
-    //   { type: "decrement", price }
-    // );
   };
   //remove item from cart
   const handleRemove = (id) => {
@@ -63,7 +58,7 @@ const CartCard = ({ cart }) => {
               </button>
               <span>{cart?.count || 1}</span>
               <button
-                onClick={handleIncrease}
+                onClick={() => handleIncrease(productId)}
                 className="border border-gray-300 shadow text-center px-2 rounded-md text-xl"
               >
                 {" "}

@@ -21,7 +21,7 @@ const CartSideBar = () => {
       }`}
     >
       {/* Container to ensure proper layout */}
-      <div className="flex flex-col h-full   shadow-2xl">
+      <div className="flex flex-col h-full shadow-2xl">
         {/* Cart Header */}
         <div className="p-4 flex items-center justify-between bg-primary text-white">
           <h2 className="text-base font-medium">Your Shopping Cart</h2>

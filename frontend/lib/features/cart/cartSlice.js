@@ -10,8 +10,6 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      // let count = product.count || 1;
-      // let totalPrice = product.price;
       const isExist = state.items.some(
         (item) => item.productId === action.payload.productId
       );
@@ -55,6 +53,41 @@ export const cartSlice = createSlice({
         items: [...remainingProduct],
       };
     },
+    cartCountIncrement: (state, action) => {
+      const isExist = state.items.some(
+        (item) => item.productId === action.payload
+      );
+
+      if (isExist) {
+        const products = [...state.items];
+
+        const product = products.find(
+          (item) => item.productId === action.payload
+        );
+
+        const count = product.count + 1;
+        const totalPrice = product.price * count;
+
+        const updateProduct = {
+          ...product,
+          count: count,
+          totalPrice: totalPrice,
+        };
+
+        const index = products.findIndex(
+          (item) => item.productId === action.payload
+        );
+
+        products.splice(index, 1, {
+          ...updateProduct,
+        });
+
+        return {
+          ...state,
+          items: [...products],
+        };
+      }
+    },
 
     cartVisible: (state, action) => {
       state.isCartVisible = action.payload;
@@ -62,6 +95,7 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, cartVisible, removeFromCart } = cartSlice.actions;
+export const { addToCart, cartVisible, removeFromCart, cartCountIncrement } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
