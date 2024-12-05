@@ -49,7 +49,7 @@ const CartSideBar = () => {
             )}
             <div className="overflow-auto h-[64vh]">
               {items?.map((cart) => (
-                <CartCard key={cart._id} cart={cart}></CartCard>
+                <CartCard key={cart.productId} cart={cart}></CartCard>
               ))}
             </div>
           </div>
@@ -62,7 +62,10 @@ const CartSideBar = () => {
                   <span className="mr-0.5 font-bold">
                     ৳{" "}
                     {items
-                      ?.reduce((acc, cur) => acc + parseFloat(cur.price), 0)
+                      ?.reduce(
+                        (acc, cur) => acc + parseFloat(cur.totalPrice),
+                        0
+                      )
                       .toFixed(2)}
                   </span>
                 </div>

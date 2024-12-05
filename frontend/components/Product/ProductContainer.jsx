@@ -42,8 +42,8 @@ const ProductContainer = () => {
           modules={[Autoplay, Pagination, Navigation]}
           className="h-full !pb-10"
         >
-          {products.map((product) => (
-            <div key={product.id}>
+          {products.map((product, idx) => (
+            <div key={idx}>
               <SwiperSlide>
                 <ProductCard product={product} />
               </SwiperSlide>

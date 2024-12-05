@@ -5,10 +5,10 @@ import axios from "axios";
 import { GoTrash } from "react-icons/go";
 import { ImSpinner3 } from "react-icons/im";
 import { useDispatch } from "react-redux";
-import { addToCart } from "@/lib/features/cart/cartSlice";
-const CartCard = ({ cart, handleDelete }) => {
-  const { id, image, price, productId, name, quantity, userEmail, totalPrice } =
-    cart;
+import { addToCart, removeFromCart } from "@/lib/features/cart/cartSlice";
+const CartCard = ({ cart }) => {
+  const { productId, image, totalPrice, name, quantity } = cart;
+  const dispatch = useDispatch();
 
   // quantity increment
   const handleIncrease = async () => {
@@ -33,6 +33,11 @@ const CartCard = ({ cart, handleDelete }) => {
     //   `${process.env.NEXT_PUBLIC_BASE_URL}/products/api/addToCart/update/${_id}`,
     //   { type: "decrement", price }
     // );
+  };
+  //remove item from cart
+  const handleRemove = (id) => {
+    console.log(id);
+    dispatch(removeFromCart(id));
   };
 
   return (
@@ -69,7 +74,7 @@ const CartCard = ({ cart, handleDelete }) => {
         </div>
         <div className="flex flex-col items-end gap-3 text-secondary">
           <button
-            // onClick={() => handleDelete(_id)}
+            onClick={() => handleRemove(productId)}
             className="text-secondary hover:text-red-600 duration-300 px-2 rounded-md"
           >
             <GoTrash className="text-lg " />
@@ -82,7 +87,7 @@ const CartCard = ({ cart, handleDelete }) => {
           </button>
           <p>
             <span className="mr-0.5">৳</span>{" "}
-            {new Intl.NumberFormat().format(parseFloat(price).toFixed(2))}
+            {new Intl.NumberFormat().format(parseFloat(totalPrice).toFixed(2))}
           </p>
         </div>
       </div>

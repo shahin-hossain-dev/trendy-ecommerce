@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext } from "react";
 import Image from "next/image";
 import { useAppDispatch } from "@/lib/features/hooks";
@@ -7,18 +8,38 @@ import Link from "next/link";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 import { IoHeartDislike } from "react-icons/io5";
 import { addToCart } from "@/lib/features/cart/cartSlice";
+import { useSelector } from "react-redux";
 
 const ProductCard = ({ product }) => {
   const { handleAddWishlist, wishProducts, handleRemoveWishListProduct } =
     useContext(HandlerContext);
+  const { items } = useSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
+  const isExist = items.some((item) => item.productId === product.id);
+
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+    let count = 1;
+    let totalPrice = product.price;
+
+    if (product.count) {
+      count++;
+      totalPrice = totalPrice + product.price;
+    }
+
+    const cartInfo = {
+      name: product.name,
+      image: product.image,
+      productId: product.id,
+      price: product.price,
+      count,
+      totalPrice,
+    };
+    dispatch(addToCart(cartInfo));
   };
 
   const handleBuy = () => {
-    dispatch(addToCart(product));
+    dispatch(addToCart(cartInfo));
   };
 
   //get added wish list product

@@ -5,9 +5,9 @@
         "name": "Smartphone XYZ",
         "image": "/img/product/product9.jpg",
         "category": "Electronics",
-        "price": "12000",
+        "price": 12000,
         "offer": 15,
-        "discountedPrice": "10200",
+        "discountedPrice": 10200,
         "images": [
             {"id": 1, "image": "/img/product/product9.jpg"}, 
             {"id": 2, "image": "/img/product/product9.jpg"}, 
@@ -27,9 +27,9 @@
             {"id": 4, "image": "/img/product/product1.jpg"}        
         ],
         "category": "Electronics",
-        "price": "5500",
+        "price": 5500,
         "offer": 10,
-        "discountedPrice": "4950"
+        "discountedPrice": 4950
     },
     {
         "id": 3,
@@ -37,9 +37,9 @@
         "name": "Pet Bed",
         "image": "/img/product/product51.jpg",
         "category": "Pets Item",
-        "price": "8000",
+        "price": 8000,
         "offer": 12,
-        "discountedPrice": "7040",
+        "discountedPrice": 7040,
         "images": [
             {"id": 1, "image": "/img/product/product51.jpg"}, 
             {"id": 2, "image": "/img/product/product51.jpg"}, 
@@ -54,9 +54,9 @@
         "name": "Kitchen Blender",
         "image": "/img/product/product33.jpg",
         "category": "Kitchen Item",
-        "price": "6000",
+        "price": 6000,
         "offer": 8,
-        "discountedPrice": "5520",
+        "discountedPrice": 5520,
         "images": [
             {"id": 1, "image": "/img/product/product33.jpg"}, 
             {"id": 2, "image": "/img/product/product33.jpg"}, 
@@ -70,9 +70,9 @@
         "name": "Fashionable Sunglasses",
         "image": "/img/product/product103.jpg",
         "category": "Cloths",
-        "price": "4500",
+        "price": 4500,
         "offer": 10,
-        "discountedPrice": "4050"
+        "discountedPrice": 4050
     },
     {
         "id": 6,
@@ -80,9 +80,9 @@
         "name": "Gaming Laptop",
         "image": "/img/product/product63.jpg",
         "category": "Electronics",
-        "price": "180000",
+        "price": 180000,
         "offer": 20,
-        "discountedPrice": "144000"
+        "discountedPrice": 144000
     },
     {
         "id": 7,
@@ -90,9 +90,9 @@
         "name": "Cat Tree",
         "image": "/img/product/product19.jpg",
         "category": "Pets Item",
-        "price": "9000",
+        "price": 9000,
         "offer": 15,
-        "discountedPrice": "7650"
+        "discountedPrice": 7650
     },
     {
         "id": 8,
@@ -100,9 +100,9 @@
         "name": "Stainless Steel Cookware Set",
         "image": "/img/product/product45.jpg",
         "category": "Kitchen Item",
-        "price": "1200",
+        "price": 1200,
         "offer": 18,
-        "discountedPrice": "9840"
+        "discountedPrice": 9840
     },
     {
         "id": 9,
@@ -110,9 +110,9 @@
         "name": "Fitness Tracker",
         "image": "/img/product/product87.jpg",
         "category": "Electronics",
-        "price": "7000",
+        "price": 7000,
         "offer": 13,
-        "discountedPrice": "6090"
+        "discountedPrice": 6090
     },
     {
         "id": 10,
@@ -120,9 +120,9 @@
         "name": "Dog Grooming Kit",
         "image": "/img/product/product17.jpg",
         "category": "Pets Item",
-        "price": "5000",
+        "price": 5000,
         "offer": 10,
-        "discountedPrice": "4500"
+        "discountedPrice": 4500
     },
     {
         "id": 11,
@@ -130,9 +130,9 @@
         "name": "Coffee Maker",
         "image": "/img/product/product64.jpg",
         "category": "Kitchen Item",
-        "price": "900",
+        "price": 900,
         "offer": 15,
-        "discountedPrice": "765"
+        "discountedPrice": 765
     },
     {
         "id": 12,
@@ -140,8 +140,8 @@
         "name": "Men's Casual Shirt",
         "image": "/img/product/product26.jpg",
         "category": "Cloths",
-        "price": "600",
+        "price": 600,
         "offer": 12,
-        "discountedPrice": "520"
+        "discountedPrice": 520
     }
 ]
