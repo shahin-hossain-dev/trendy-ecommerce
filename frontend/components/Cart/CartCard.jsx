@@ -7,16 +7,17 @@ import { ImSpinner3 } from "react-icons/im";
 import { useDispatch } from "react-redux";
 import {
   addToCart,
+  cartCountDecrement,
   cartCountIncrement,
   removeFromCart,
 } from "@/lib/features/cart/cartSlice";
 const CartCard = ({ cart }) => {
-  const { productId, image, totalPrice, name, quantity } = cart;
+  const { productId, image, totalPrice, name, quantity, count } = cart;
   const dispatch = useDispatch();
 
   // quantity increment
   const handleIncrease = (productId) => {
-    if (quantity > 9) {
+    if (count > 9) {
       return;
     }
     dispatch(cartCountIncrement(productId));
@@ -25,9 +26,10 @@ const CartCard = ({ cart }) => {
   // quantity decrement
 
   const handleDecrease = (productId) => {
-    if (cart?.quantity < 2) {
+    if (count < 2) {
       return;
     }
+    dispatch(cartCountDecrement(productId));
   };
   //remove item from cart
   const handleRemove = (id) => {
@@ -50,7 +52,7 @@ const CartCard = ({ cart }) => {
             <h3 className="text-base">{name}</h3>
             <div className=" flex items-center gap-3">
               <button
-                onClick={handleDecrease}
+                onClick={() => handleDecrease(productId)}
                 className="border border-gray-300 shadow text-center px-2 rounded-md text-xl"
               >
                 {" "}
