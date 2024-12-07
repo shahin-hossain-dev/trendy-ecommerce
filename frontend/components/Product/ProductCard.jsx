@@ -16,8 +16,6 @@ const ProductCard = ({ product }) => {
   const { items } = useSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
-  const isExist = items.some((item) => item.productId === product.id);
-
   const handleAddToCart = (product) => {
     let count = 1;
     let totalPrice = product.price;

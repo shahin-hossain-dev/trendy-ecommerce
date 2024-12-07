@@ -4,61 +4,10 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button, MenuItem } from "@mui/material";
 import axios from "axios";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import PdImgUploader from "@/components/Dashboard/Product/PdImgUploader";
 import AddProductAttribute from "@/components/Dashboard/Product/AddProductAttribute";
-
-const modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      {
-        color: [],
-      },
-      { background: [] },
-    ],
-    [{ size: [] }],
-
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-      { script: "super" },
-      { script: "sub" },
-      { align: [] },
-    ],
-    ["link", "image", "video"],
-    ["clean"],
-  ],
-};
-
-const formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "video",
-  "code-block",
-  "align",
-  "direction",
-  "color",
-  "background",
-  "script",
-  "super",
-  "sub",
-];
+import AddProductDesc from "@/components/Dashboard/Product/AddProductDesc";
 
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
@@ -130,14 +79,7 @@ const AddProduct = () => {
               onChange={onChange}
             /> */}
 
-            <ReactQuill
-              className="h-[300px] mb-32 lg:mb-16"
-              theme="snow"
-              value={value}
-              onChange={setValue}
-              modules={modules}
-              formats={formats}
-            />
+            <AddProductDesc value={value} onChange={setValue} />
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-between ">
             <div className="flex-1">

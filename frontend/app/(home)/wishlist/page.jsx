@@ -29,7 +29,23 @@ const Wishlist = () => {
   }, []);
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+    let count = 1;
+    let totalPrice = product.price;
+
+    if (product.count) {
+      count++;
+      totalPrice = totalPrice + product.price;
+    }
+
+    const cartInfo = {
+      name: product.name,
+      image: product.image,
+      productId: product.id,
+      price: product.price,
+      count,
+      totalPrice,
+    };
+    dispatch(addToCart(cartInfo));
   };
 
   return (
