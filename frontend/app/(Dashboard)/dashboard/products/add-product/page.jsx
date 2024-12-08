@@ -11,13 +11,15 @@ import AddProductDesc from "@/components/Dashboard/Product/AddProductDesc";
 
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
-  const [value, setValue] = useState("");
+  const [description, setDescription] = useState("");
+  const [attributes, setAttributes] = useState({});
   const [productInfo, setProductInfo] = useState({
     name: "",
     description: "",
     price: "",
     quantity: "",
     category: "",
+    attributes: {},
   });
 
   useEffect(() => {
@@ -40,7 +42,13 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const product = { ...productInfo, description: value };
+    const product = {
+      ...productInfo,
+      description: description,
+      json_attributes: attributes,
+    };
+
+    console.log(product);
   };
 
   return (
@@ -68,18 +76,7 @@ const AddProduct = () => {
           </div>
           <div className="">
             <label className="mb-1">Product Description</label>
-            {/* <TextField
-              id="fullWidth"
-              fullWidth
-              multiline
-              rows={6}
-              name="description"
-              value={productInfo.description}
-              placeholder="Start Writing"
-              onChange={onChange}
-            /> */}
-
-            <AddProductDesc value={value} onChange={setValue} />
+            <AddProductDesc value={description} onChange={setDescription} />
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-between ">
             <div className="flex-1">
@@ -127,7 +124,7 @@ const AddProduct = () => {
             </div>
           </div>
           {/* dynamic attribute  */}
-          <AddProductAttribute />
+          <AddProductAttribute setAttributes={setAttributes} />
           {/* image uploader */}
           <PdImgUploader />
           <Button
