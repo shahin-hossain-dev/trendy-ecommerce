@@ -52,12 +52,14 @@ const formats = [
   "sub",
 ];
 
-const AddProductDesc = () => {
+const AddProductDesc = ({ description, setDescription }) => {
   return (
     <div>
       <ReactQuill
         className="h-[300px] mb-32 lg:mb-16"
         theme="snow"
+        value={description}
+        onChange={setDescription}
         modules={modules}
         formats={formats}
       />

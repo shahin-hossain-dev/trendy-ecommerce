@@ -13,14 +13,17 @@ const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [description, setDescription] = useState("");
   const [attributes, setAttributes] = useState({});
+  const [images, setImages] = useState([]);
   const [productInfo, setProductInfo] = useState({
     name: "",
     description: "",
     price: "",
     quantity: "",
     category: "",
-    attributes: {},
+    json_attributes: {},
   });
+
+  console.log(description);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -45,7 +48,8 @@ const AddProduct = () => {
     const product = {
       ...productInfo,
       description: description,
-      json_attributes: attributes,
+      json_attributes: { attributes },
+      images,
     };
 
     console.log(product);
@@ -76,7 +80,10 @@ const AddProduct = () => {
           </div>
           <div className="">
             <label className="mb-1">Product Description</label>
-            <AddProductDesc value={description} onChange={setDescription} />
+            <AddProductDesc
+              description={description}
+              setDescription={setDescription}
+            />
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-between ">
             <div className="flex-1">
@@ -126,7 +133,7 @@ const AddProduct = () => {
           {/* dynamic attribute  */}
           <AddProductAttribute setAttributes={setAttributes} />
           {/* image uploader */}
-          <PdImgUploader />
+          <PdImgUploader images={images} setImages={setImages} />
           <Button
             variant="contained"
             style={{ backgroundColor: "#2FB261" }}

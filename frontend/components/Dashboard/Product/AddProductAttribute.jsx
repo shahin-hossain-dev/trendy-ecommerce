@@ -55,6 +55,7 @@ const AddProductAttribute = ({ setAttributes }) => {
         }
       });
       acc[curAttribute] = attribute;
+      setOpen(false);
       return acc;
     }, {});
 
@@ -153,7 +154,6 @@ const AddProductAttribute = ({ setAttributes }) => {
                 marginTop: "8px",
                 padding: "2px 8px",
               }}
-              type="submit"
               className=" text-white"
             >
               New Attribute
@@ -185,7 +185,6 @@ const AddProductAttribute = ({ setAttributes }) => {
         onClick={handleOpen}
         variant="contained"
         style={{ backgroundColor: "#2FB261" }}
-        type="submit"
         className=" text-white"
       >
         Add Product Attribute

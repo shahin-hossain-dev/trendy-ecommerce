@@ -2,8 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { RiImageAddFill } from "react-icons/ri";
-const PdImgUploader = () => {
-  const [images, setImages] = useState([]);
+const PdImgUploader = ({ images, setImages }) => {
   const [preview, setPreview] = useState(null);
 
   const imageRef = useRef(null);
