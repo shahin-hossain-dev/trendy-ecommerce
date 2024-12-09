@@ -15,6 +15,7 @@ const Signup = () => {
   const [emailError, setEmailError] = useState("");
   const router = useRouter();
   const [showPass, setShowPass] = useState(false);
+  const [otpModalOpen, setOtpModalOpen] = useState(false);
   // const { loading, error } = useAppSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
@@ -23,6 +24,7 @@ const Signup = () => {
     password: "",
     confirm_password: "",
     image: "",
+    phone: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -66,8 +68,6 @@ const Signup = () => {
     // const imgResponse = await fetch("/img/user.png");
     // const imgBlob = await imgResponse.blob();
 
-    // console.log(imgBlob);
-
     if (formData.name.trim() === "") {
       newFormErrors.name = "Name is required";
       isValid = false;
@@ -97,6 +97,14 @@ const Signup = () => {
         newFormErrors.email = `Email must be ${maxEmailLength} characters or less`;
         isValid = false;
       }
+    }
+
+    if (formData.phone.trim() === "") {
+      newFormErrors.phone = "Phone number if required";
+      isValid = false;
+    } else if (formData.phone.length < 11) {
+      newFormErrors.phone = "Invalid Phone Number";
+      isValid = false;
     }
 
     // if (formData.address.trim() === "") {
@@ -138,6 +146,17 @@ const Signup = () => {
       newFormErrors.confirm_password = "Confirm Password is required";
     }
 
+    const newFormData = new FormData();
+
+    newFormData.append("name", formData.name);
+    newFormData.append("email", formData.email);
+    newFormData.append("address", "address");
+    newFormData.append("phone", formData.phone);
+    newFormData.append("password", formData.password);
+    newFormData.append("registration_date", new Date().toISOString());
+    newFormData.append("role", "user");
+    newFormData.append("defaultPicture", formData.image);
+
     if (isValid) {
       try {
         // const response = await axios.post(
@@ -156,21 +175,14 @@ const Signup = () => {
         // );
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth/signup`,
-          {
-            name: formData.name,
-            email: formData.email,
-            password: formData.password,
-            address: "Mirpur, Dhaka",
-            phone: "01676776077",
-            role: "user",
-            image: formData.image,
-          },
+          newFormData,
           {
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "multipart/form-data",
             },
           }
         );
+        console.log(response);
 
         if (response.status === 201) {
           router.push("/signin");
@@ -220,10 +232,8 @@ const Signup = () => {
           <div className="mb-2">
             <OAuth />
           </div>
-          <div className="border-b mt-6 mb-8 relative border-black">
-            <Divider className=" -mt-3 bg-white absolute left-1/2 -translate-x-1/2 ">
-              OR
-            </Divider>
+          <div className=" mt-6 mb-8">
+            <Divider>OR</Divider>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -251,6 +261,19 @@ const Signup = () => {
               />
               {formErrors.email && (
                 <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
+              )}
+            </div>
+            <div>
+              <input
+                type="text"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter phone number"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              />
+              {formErrors.email && (
+                <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>
               )}
             </div>
 

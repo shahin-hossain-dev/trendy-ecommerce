@@ -31,6 +31,8 @@ const AddProduct = () => {
     getCategories();
   }, []);
 
+  console.log(description);
+
   const fetchCategory = async () => {
     try {
       const res = await axios.get(
@@ -60,7 +62,7 @@ const AddProduct = () => {
     formData.append("name", productInfo.name);
     formData.append("decs", description);
     formData.append("price", productInfo.price);
-    formData.append("json_atribute", JSON.stringify(attributes));
+    formData.append("json_atribute", JSON.stringify({ attributes }));
     formData.append("categoryId", productInfo.categoryId);
     formData.append("quantity", productInfo.quantity);
     formData.append("date", new Date().toISOString());
@@ -68,8 +70,6 @@ const AddProduct = () => {
     images.forEach((image) => {
       formData.append("ProductPicture", image.file);
     });
-
-    console.log([...formData.entries()]);
 
     try {
       const res = axios.post(

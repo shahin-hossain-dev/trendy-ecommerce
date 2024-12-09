@@ -25,6 +25,8 @@ const AddProductAttribute = ({ setAttributes }) => {
     { attribute: "", name: [""], value: [""] },
   ]);
 
+  console.log(rows);
+
   const handleAddRow = () => {
     setRows([...rows, { attribute: "", name: [""], value: [""] }]);
   };
@@ -38,7 +40,7 @@ const AddProductAttribute = ({ setAttributes }) => {
     } else if (name === "name") {
       newRow[rowIdx].name[subRowIdx] = value;
     } else {
-      newRow[rowIdx].value[subRowIdx] = value;
+      newRow[rowIdx].value[subRowIdx] = parseInt(value);
     }
     setRows([...newRow]);
   };
