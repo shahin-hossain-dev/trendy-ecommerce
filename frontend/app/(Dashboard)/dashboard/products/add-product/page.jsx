@@ -16,15 +16,11 @@ const AddProduct = () => {
   const [images, setImages] = useState([]);
   const [productInfo, setProductInfo] = useState({
     name: "",
-    description: "",
     price: "",
     quantity: "",
-    category: "",
-    json_attributes: {},
+    categoryId: "",
   });
-
-  console.log(description);
-
+  // temporary fetch category
   useEffect(() => {
     const getCategories = async () => {
       const res = await axios.get("/data/categories.json");
@@ -35,6 +31,21 @@ const AddProduct = () => {
     getCategories();
   }, []);
 
+  const fetchCategory = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Category/search`
+      );
+      // console.log(res.data);
+    } catch (error) {
+      console.log("category fetch failed");
+    }
+  };
+
+  useEffect(() => {
+    fetchCategory();
+  }, []);
+
   const onChange = (e) => {
     setProductInfo({
       ...productInfo,
@@ -42,17 +53,41 @@ const AddProduct = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const product = {
-      ...productInfo,
-      description: description,
-      json_attributes: { attributes },
-      images,
-    };
+    const formData = new FormData();
+    formData.append("name", productInfo.name);
+    formData.append("decs", description);
+    formData.append("price", productInfo.price);
+    formData.append("json_atribute", JSON.stringify(attributes));
+    formData.append("categoryId", productInfo.categoryId);
+    formData.append("quantity", productInfo.quantity);
+    formData.append("date", new Date().toISOString());
 
-    console.log(product);
+    images.forEach((image) => {
+      formData.append("ProductPicture", image.file);
+    });
+
+    console.log([...formData.entries()]);
+
+    try {
+      const res = axios.post(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/add`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (res.status === 200) {
+        alert("product added successfully");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -117,13 +152,13 @@ const AddProduct = () => {
                 size="small"
                 fullWidth
                 onChange={onChange}
-                name="category"
+                name="categoryId"
               >
                 <MenuItem value="Choose Category" disabled>
                   Choose Category
                 </MenuItem>
                 {categories.map((option) => (
-                  <MenuItem key={option.id} value={option.name}>
+                  <MenuItem key={option.id} value={option.id}>
                     {option.name}
                   </MenuItem>
                 ))}

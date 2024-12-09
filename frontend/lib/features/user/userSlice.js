@@ -49,6 +49,9 @@ export const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    LogOutUser: (state, action) => {
+      state.currentUser = null;
+    },
   },
 });
 
@@ -63,6 +66,7 @@ export const {
   UpdateProfileStart,
   UpdateProfileSuccess,
   UpdateProfileFailure,
+  LogOutUser,
 } = userSlice.actions;
 
 export default userSlice.reducer;

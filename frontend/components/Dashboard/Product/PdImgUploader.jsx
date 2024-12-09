@@ -75,6 +75,7 @@ const PdImgUploader = ({ images, setImages }) => {
         ))}
         {images.length < 4 && (
           <button
+            type="button"
             onClick={handleUploadClick}
             className=" border border-dashed w-[100px] h-[100px] flex justify-center items-center border-secondary p-4 rounded "
           >
@@ -83,8 +84,8 @@ const PdImgUploader = ({ images, setImages }) => {
               ref={imageRef}
               onChange={handleImageChange}
               name="image"
-              alt=""
               className="hidden"
+              required
             />
             <RiImageAddFill className="text-dash-primary text-5xl" />
           </button>
