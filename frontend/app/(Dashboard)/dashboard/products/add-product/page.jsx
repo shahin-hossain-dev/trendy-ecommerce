@@ -166,7 +166,10 @@ const AddProduct = () => {
             </div>
           </div>
           {/* dynamic attribute  */}
-          <AddProductAttribute setAttributes={setAttributes} />
+          <AddProductAttribute
+            setAttributes={setAttributes}
+            quantity={productInfo.quantity}
+          />
           {/* image uploader */}
           <PdImgUploader images={images} setImages={setImages} />
           <Button

@@ -17,17 +17,19 @@ const style = {
   p: 4,
 };
 
-const AddProductAttribute = ({ setAttributes }) => {
+const AddProductAttribute = ({ setAttributes, quantity }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [rows, setRows] = useState([
     { attribute: "", name: [""], value: [""] },
   ]);
+  const [quantityError, setQuantityError] = useState({});
 
-  console.log(rows);
+  // console.log(rows, quantity);
 
   const handleAddRow = () => {
+    setQuantityError({});
     setRows([...rows, { attribute: "", name: [""], value: [""] }]);
   };
 
@@ -46,6 +48,14 @@ const AddProductAttribute = ({ setAttributes }) => {
   };
 
   const handleSave = () => {
+    if (quantityError.error) {
+      setQuantityError({
+        message: "Over quantity value not allow",
+        error: true,
+      });
+      return;
+    }
+    console.log(rows);
     const result = rows.reduce((acc, cur) => {
       const curAttribute = cur.attribute; //current attributes
       const names = cur.name; //current names
@@ -65,6 +75,21 @@ const AddProductAttribute = ({ setAttributes }) => {
   };
 
   const handleAddMoreField = (rowIdx) => {
+    const rowQuantities = rows[rowIdx].value;
+    const rowQuantity = rowQuantities.reduce((acc, cur) => {
+      return (acc = acc + cur);
+    }, 0);
+
+    if (quantity <= rowQuantity) {
+      setQuantityError({
+        message: "Not allow over quantity items",
+        error: true,
+      });
+      return;
+    }
+
+    setQuantityError({});
+
     const newRow = [...rows];
     newRow[rowIdx]?.name.push("");
     newRow[rowIdx]?.value.push("");
@@ -142,6 +167,9 @@ const AddProductAttribute = ({ setAttributes }) => {
                             )}
                           </div>
                         ))}
+                        <span className="text-red-500">
+                          {quantityError.message}
+                        </span>
                       </div>
                     </div>
                   </div>
