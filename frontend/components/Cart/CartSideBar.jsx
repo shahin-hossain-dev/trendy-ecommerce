@@ -1,6 +1,7 @@
+"use client";
 import { cartVisible } from "@/lib/features/cart/cartSlice";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import CartCard from "./CartCard";
@@ -8,14 +9,33 @@ import Image from "next/image";
 
 const CartSideBar = () => {
   const { isCartVisible, items } = useSelector((state) => state.cart);
+  const sideNavRef = useRef(null);
 
   const dispatch = useDispatch();
   const handleCloseCart = () => {
     dispatch(cartVisible(false));
   };
 
+  useEffect(() => {
+    // Add event listener to the document object
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Remove event listener when the component unmounts
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [sideNavRef]);
+
+  function handleClickOutside(event) {
+    if (sideNavRef.current && !sideNavRef.current.contains(event.target)) {
+      // Clicked outside the side navigation bar, close it
+
+      dispatch(cartVisible(false));
+    }
+  }
   return (
     <div
+      ref={sideNavRef}
       className={`fixed right-0 top-0 h-screen  z-50 bg-white shadow-lg w-[90%] md:w-[400px]  transition-transform duration-500 ease-in-out ${
         isCartVisible ? "translate-x-0" : "translate-x-full"
       }`}

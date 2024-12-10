@@ -21,6 +21,8 @@ import { FaAngleDown } from "react-icons/fa6";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 import UserAccount from "./UserAccount";
 import DarkMode from "./DarkMode";
+import { useSelector } from "react-redux";
+import Image from "next/image";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,6 +67,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const DashboardHeader = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { handleDrawerOpen } = React.useContext(HandlerContext);
+  const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser);
 
   // account handler
   const handleProfileMenuOpen = (event) => {
@@ -134,7 +138,7 @@ const DashboardHeader = () => {
             >
               <MdAccountCircle className="text-secondary dark:text-dark-color" />
               <span className="text-secondary text-lg hidden md:block font-medium dark:text-dark-color">
-                Mr. Tanvir
+                {currentUser?.name}
               </span>
               <FaAngleDown className="text-secondary text-lg hidden md:block dark:text-dark-color" />
             </IconButton>

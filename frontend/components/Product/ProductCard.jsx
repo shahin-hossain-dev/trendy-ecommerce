@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
   };
 
   const handleBuy = () => {
-    dispatch(addToCart(cartInfo));
+    handleAddToCart(product);
   };
 
   //get added wish list product

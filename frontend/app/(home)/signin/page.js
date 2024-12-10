@@ -88,7 +88,7 @@ const SignIn = () => {
       // );
 
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth/signin`,
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth/login`,
         {
           username: formData.email,
           password: formData.password,
@@ -126,7 +126,7 @@ const SignIn = () => {
           expires: 1 / 24,
         });
         dispatch(SignInSuccess(data));
-        router.push("/Dashboard");
+        router.push("/dashboard");
       }
     } catch (error) {
       dispatch(SignInFailure(error.message));
@@ -142,7 +142,7 @@ const SignIn = () => {
           width={600}
           height={800}
           alt="signin image"
-          className="w-full  max-h-screen object-cover object-top"
+          className="w-full blur-lg max-h-screen object-cover object-top"
         />
         <div className="absolute  md:w-[445px] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
           <div className="text-center">

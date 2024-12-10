@@ -101,7 +101,7 @@ const HeaderContent = () => {
             <ul className="flex items-center justify-around gap-4 list-none md:gap-6 lg:gap-8">
               <li>
                 <Link
-                  href="#"
+                  href="/"
                   className="flex flex-col items-center gap-2 lg:flex-row"
                 >
                   <div>
