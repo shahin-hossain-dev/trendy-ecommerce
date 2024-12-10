@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import { MdAddCircleOutline } from "react-icons/md";
+import { FiMinusCircle } from "react-icons/fi";
 
 const style = {
   position: "absolute",
@@ -25,6 +26,7 @@ const AddProductAttribute = ({ setAttributes, quantity }) => {
     { attribute: "", name: [""], value: [""] },
   ]);
   const [quantityError, setQuantityError] = useState({});
+  const [inputQuantity, setInputQuantity] = useState(0);
 
   // console.log(rows, quantity);
 
@@ -43,19 +45,26 @@ const AddProductAttribute = ({ setAttributes, quantity }) => {
       newRow[rowIdx].name[subRowIdx] = value;
     } else {
       newRow[rowIdx].value[subRowIdx] = parseInt(value);
+      const rowQuantities = rows[rowIdx].value;
+      const rowQuantity = rowQuantities.reduce((acc, cur) => {
+        return (acc = acc + cur);
+      }, 0);
+      setInputQuantity(rowQuantity);
     }
     setRows([...newRow]);
   };
 
   const handleSave = () => {
-    if (quantityError.error) {
+    console.log(quantity, inputQuantity);
+    if (parseInt(quantity) !== inputQuantity) {
       setQuantityError({
-        message: "Over quantity value not allow",
+        message: "quantity doesn't matched",
         error: true,
       });
       return;
     }
-    console.log(rows);
+    setQuantityError({});
+
     const result = rows.reduce((acc, cur) => {
       const curAttribute = cur.attribute; //current attributes
       const names = cur.name; //current names
@@ -79,8 +88,8 @@ const AddProductAttribute = ({ setAttributes, quantity }) => {
     const rowQuantity = rowQuantities.reduce((acc, cur) => {
       return (acc = acc + cur);
     }, 0);
-
-    if (quantity <= rowQuantity) {
+    setInputQuantity(rowQuantity);
+    if (parseInt(quantity) <= rowQuantity) {
       setQuantityError({
         message: "Not allow over quantity items",
         error: true,
@@ -94,6 +103,24 @@ const AddProductAttribute = ({ setAttributes, quantity }) => {
     newRow[rowIdx]?.name.push("");
     newRow[rowIdx]?.value.push("");
     setRows([...newRow]);
+  };
+
+  const handleRemoveField = (rowIdx) => {
+    const newRow = [...rows];
+    newRow.pop();
+    setRows([...newRow]);
+  };
+
+  const handleRemoveSubField = (rowIdx, subRowIdx) => {
+    const newRow = [...rows];
+
+    if (subRowIdx === 0) {
+      return;
+    } else {
+      newRow[rowIdx]?.name.pop();
+      newRow[rowIdx]?.value.pop();
+      setRows([...newRow]);
+    }
   };
 
   return (
@@ -112,19 +139,31 @@ const AddProductAttribute = ({ setAttributes, quantity }) => {
             <div className=" space-y-4">
               {rows.map((row, rowIdx) => (
                 <div key={rowIdx}>
-                  <div className="flex gap-3">
-                    <TextField
-                      onChange={(e) => handleChangeValue(e, rowIdx)}
-                      name="attribute"
-                      value={row.attribute}
-                      size="small"
-                      sx={{
-                        "& .MuiInputBase-input": {
-                          paddingY: "4px",
-                        },
-                      }}
-                      required
-                    />
+                  <div className="flex gap-3 ">
+                    <div className="relative">
+                      <TextField
+                        onChange={(e) => handleChangeValue(e, rowIdx)}
+                        name="attribute"
+                        value={row.attribute}
+                        size="small"
+                        sx={{
+                          "& .MuiInputBase-input": {
+                            paddingY: "4px",
+                          },
+                        }}
+                        required
+                      />
+                      {rows.length - 1 === rowIdx && (
+                        <div className="absolute flex flex-col -left-5 top-[6px]">
+                          {rowIdx > 0 && (
+                            <button onClick={() => handleRemoveField(rowIdx)}>
+                              <FiMinusCircle className=" text-red-500 " />
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
                     <div className="flex gap-1">
                       <div className="space-y-2">
                         {row.name.map((subRow, subRowIdx) => (
@@ -157,13 +196,24 @@ const AddProductAttribute = ({ setAttributes, quantity }) => {
                               }}
                               required
                             />
+
                             {row.name.length - 1 === subRowIdx && (
-                              <button
-                                onClick={() => handleAddMoreField(rowIdx)}
-                                className="absolute -right-5 top-1/2 -translate-y-1/2"
-                              >
-                                <MdAddCircleOutline className="inline text-dash-primary" />
-                              </button>
+                              <div className="absolute flex flex-col -right-5 top-1/2 -translate-y-1/2">
+                                {subRowIdx > 0 && (
+                                  <button
+                                    onClick={() =>
+                                      handleRemoveSubField(rowIdx, subRowIdx)
+                                    }
+                                  >
+                                    <FiMinusCircle className=" text-red-500 " />
+                                  </button>
+                                )}
+                                <button
+                                  onClick={() => handleAddMoreField(rowIdx)}
+                                >
+                                  <MdAddCircleOutline className=" text-dash-primary" />
+                                </button>
+                              </div>
                             )}
                           </div>
                         ))}

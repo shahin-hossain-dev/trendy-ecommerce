@@ -31,8 +31,6 @@ const AddProduct = () => {
     getCategories();
   }, []);
 
-  console.log(description);
-
   const fetchCategory = async () => {
     try {
       const res = await axios.get(
@@ -60,19 +58,20 @@ const AddProduct = () => {
 
     const formData = new FormData();
     formData.append("name", productInfo.name);
-    formData.append("decs", description);
-    formData.append("price", productInfo.price);
+    formData.append("desc", description);
+    formData.append("price", parseInt(productInfo.price));
     formData.append("json_atribute", JSON.stringify({ attributes }));
     formData.append("categoryId", productInfo.categoryId);
-    formData.append("quantity", productInfo.quantity);
+    formData.append("quantity", parseInt(productInfo.quantity));
     formData.append("date", new Date().toISOString());
 
     images.forEach((image) => {
       formData.append("ProductPicture", image.file);
     });
 
+    console.log([...formData.entries()]);
     try {
-      const res = axios.post(
+      const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/add`,
         formData,
         {
@@ -82,7 +81,9 @@ const AddProduct = () => {
         }
       );
 
-      if (res.status === 200) {
+      console.log(res.data);
+
+      if (res.status === 201) {
         alert("product added successfully");
       }
     } catch (error) {
