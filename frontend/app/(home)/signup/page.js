@@ -10,6 +10,7 @@ import { FiEyeOff } from "react-icons/fi";
 import { Divider } from "@mui/material";
 import Image from "next/image";
 import { FiEye } from "react-icons/fi";
+import EmailOTPF from "@/components/EmailOTP_MODAL/EmailOTPF.jsx";
 
 const Signup = () => {
   const [emailError, setEmailError] = useState("");
@@ -17,7 +18,7 @@ const Signup = () => {
   const [showPass, setShowPass] = useState(false);
   const [otpModalOpen, setOtpModalOpen] = useState(false);
   // const { loading, error } = useAppSelector((state) => state.user);
-
+  const [email, setEmail] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,7 +27,6 @@ const Signup = () => {
     image: "",
     phone: "",
   });
-
   const [formErrors, setFormErrors] = useState({
     name: "",
     email: "",
@@ -148,31 +148,17 @@ const Signup = () => {
 
     const newFormData = new FormData();
 
-    newFormData.append("name", formData.name);
-    newFormData.append("email", formData.email);
+    newFormData.append("name", formData?.name);
+    newFormData.append("email", formData?.email);
     newFormData.append("address", "address");
-    newFormData.append("phone", formData.phone);
-    newFormData.append("password", formData.password);
+    newFormData.append("phone", formData?.phone);
+    newFormData.append("password", formData?.password);
     newFormData.append("registration_date", new Date().toISOString());
     newFormData.append("role", "user");
-    newFormData.append("defaultPicture", formData.image);
+    newFormData.append("defaultPicture", formData?.image);
 
     if (isValid) {
       try {
-        // const response = await axios.post(
-        //   `${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth/signup`,
-        //   {
-        //     name: formData.name,
-        //     email: formData.email,
-        //     password: formData.password,
-        //     confirm_password: formData.confirm_password,
-        //   },
-        //   {
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //   }
-        // );
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth/signup`,
           newFormData,
@@ -185,7 +171,8 @@ const Signup = () => {
         console.log(response);
 
         if (response.status === 201) {
-          router.push("/signin");
+          setOtpModalOpen(true);
+          setEmail(newFormData.get("email"));
         } else {
           console.error("Unexpected response:", response);
         }
@@ -205,7 +192,7 @@ const Signup = () => {
           width={600}
           height={800}
           alt="signin image"
-          className="w-full blur-lg max-h-screen object-cover object-top"
+          className="w-full blur-lg h-full object-cover object-top"
         />
         <div className="absolute w-[445px] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
           <div className="text-center">
@@ -288,6 +275,7 @@ const Signup = () => {
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 />
                 <button
+                  type="button"
                   onClick={() => setShowPass(!showPass)}
                   className="absolute opacity-50 right-3 top-1/2 -translate-y-1/2 "
                 >
@@ -315,6 +303,7 @@ const Signup = () => {
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 />
                 <button
+                  type="button"
                   onClick={() => setShowPass(!showPass)}
                   className="absolute opacity-50 right-3 top-1/2 -translate-y-1/2 "
                 >
@@ -359,6 +348,7 @@ const Signup = () => {
           </Link>
         </div>
       </div>
+      <EmailOTPF otpModalOpen={otpModalOpen} email={email} />
     </section>
   );
 };

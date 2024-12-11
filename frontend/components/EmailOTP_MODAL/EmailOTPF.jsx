@@ -18,16 +18,16 @@ const style = {
   p: 4,
 };
 
-const EmailOTPF = ({ modalOpen, email }) => {
+const EmailOTPF = ({ otpModalOpen, email }) => {
   const [open, setOpen] = useState(false);
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const router = useRouter();
 
   useEffect(() => {
-    if (modalOpen) {
+    if (otpModalOpen) {
       setOpen(true);
     }
-  }, [modalOpen]);
+  }, [otpModalOpen]);
 
   const handleClose = () => setOpen(false);
 

@@ -69,7 +69,6 @@ const AddProduct = () => {
       formData.append("ProductPicture", image.file);
     });
 
-    console.log([...formData.entries()]);
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/add`,

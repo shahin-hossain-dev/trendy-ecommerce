@@ -136,7 +136,7 @@ const RecentProduct = () => {
             </TableHead>
             <TableBody>
               {rows.map((row, idx) => (
-                <StyledTableRow key={row.image}>
+                <StyledTableRow key={idx}>
                   <StyledTableCell
                     // component="th"
                     // scope="row"
@@ -144,7 +144,12 @@ const RecentProduct = () => {
                     className="border-r dark:bg-dark-bg border-r-gray-200 dark:border-b-[#3d47514d] dark:border-r-[#3d47514d]"
                   >
                     <div className="flex justify-center items-center">
-                      <Image src={row.image} height={45} width={45} />
+                      <Image
+                        src={row.image}
+                        height={45}
+                        width={45}
+                        alt={row.name}
+                      />
                     </div>
                   </StyledTableCell>
                   <StyledTableCell

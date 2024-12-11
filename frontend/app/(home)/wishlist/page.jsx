@@ -99,7 +99,7 @@ const Wishlist = () => {
                 <div>
                   <Typography
                     gutterBottom
-                    className="!text-xl !font-bold text-secondary"
+                    className="!text-xl !font-oswald !font-bold text-secondary"
                   >
                     {product.name}
                   </Typography>
