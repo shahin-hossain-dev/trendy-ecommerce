@@ -52,7 +52,7 @@ const formats = [
   "sub",
 ];
 
-const AddProductDesc = ({ description, setDescription }) => {
+const AddProductDesc = ({ description, setDescription, error }) => {
   return (
     <div>
       <ReactQuill
@@ -63,6 +63,7 @@ const AddProductDesc = ({ description, setDescription }) => {
         modules={modules}
         formats={formats}
       />
+      {error && <span className="text-red-500 -mt-16">{error}</span>}
     </div>
   );
 };

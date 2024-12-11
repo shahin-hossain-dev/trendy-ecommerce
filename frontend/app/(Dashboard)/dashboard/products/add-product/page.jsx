@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button, MenuItem } from "@mui/material";
+import { Button, FormControl, MenuItem } from "@mui/material";
 import axios from "axios";
 import "react-quill/dist/quill.snow.css";
 import PdImgUploader from "@/components/Dashboard/Product/PdImgUploader";
@@ -19,6 +19,14 @@ const AddProduct = () => {
     price: "",
     quantity: "",
     categoryId: "",
+  });
+  const [formError, setFormError] = useState({
+    name: "",
+    price: "",
+    description: "",
+    categoryId: "",
+    quantity: "",
+    images: "",
   });
   // temporary fetch category
   useEffect(() => {
@@ -56,6 +64,19 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let isValid = true;
+    const newFormError = { ...formError };
+
+    if (productInfo.name.trim() === "") {
+      newFormError.name = "Product field is required";
+      isValid = false;
+    }
+
+    if (description.trim() === "") {
+      newFormError.description = "Product description field is required";
+      isValid = false;
+    }
+
     const formData = new FormData();
     formData.append("name", productInfo.name);
     formData.append("desc", description);
@@ -69,24 +90,28 @@ const AddProduct = () => {
       formData.append("ProductPicture", image.file);
     });
 
-    try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/add`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+    if (isValid) {
+      try {
+        const res = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        console.log(res.data);
+
+        if (res.status === 201) {
+          alert("product added successfully");
         }
-      );
-
-      console.log(res.data);
-
-      if (res.status === 201) {
-        alert("product added successfully");
+      } catch (error) {
+        console.log(error.message);
       }
-    } catch (error) {
-      console.log(error.message);
+    } else {
+      setFormError(newFormError);
     }
   };
 
@@ -103,26 +128,35 @@ const AddProduct = () => {
           onSubmit={handleSubmit}
         >
           <div>
-            <label className="mb-1 ">Product Title</label>
+            <label className="mb-1 ">
+              Product Title<span className="text-red-500">*</span>
+            </label>
             <TextField
-              id="fullWidth"
               fullWidth
               size="small"
               value={productInfo.name}
               name="name"
               onChange={onChange}
             />
+            {formError.name && (
+              <span className="text-red-500">{formError.name}</span>
+            )}
           </div>
           <div className="">
-            <label className="mb-1">Product Description</label>
+            <label className="mb-1">
+              Product Description<span className="text-red-500">*</span>
+            </label>
             <AddProductDesc
               description={description}
               setDescription={setDescription}
+              error={formError.description}
             />
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-between ">
             <div className="flex-1">
-              <label className="mb-1 ">Price</label>
+              <label className="mb-1 ">
+                Price<span className="text-red-500">*</span>
+              </label>
               <TextField
                 id="fullWidth"
                 fullWidth
@@ -130,10 +164,13 @@ const AddProduct = () => {
                 onChange={onChange}
                 name="price"
                 value={productInfo.price}
+                required
               />
             </div>
             <div className="flex-1">
-              <label className="mb-1 ">Quantity</label>
+              <label className="mb-1 ">
+                Quantity<span className="text-red-500">*</span>
+              </label>
               <TextField
                 id="fullWidth"
                 fullWidth
@@ -141,10 +178,13 @@ const AddProduct = () => {
                 onChange={onChange}
                 name="quantity"
                 value={productInfo.quantity}
+                required
               />
             </div>
             <div className="flex-1">
-              <label className="mb-1 ">Category</label>
+              <label className="mb-1 ">
+                Category<span className="text-red-500">*</span>
+              </label>
               <TextField
                 id="outlined-select-currency"
                 select
