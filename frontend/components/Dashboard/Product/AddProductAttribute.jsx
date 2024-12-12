@@ -131,6 +131,7 @@ const AddProductAttribute = ({ setAttributes, quantity }) => {
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
+          className="rounded"
         >
           <Box sx={style} className="space-y-4 max-h-screen overflow-auto">
             <h3 className="font-oswald font-bold text-dash-primary text-xl">

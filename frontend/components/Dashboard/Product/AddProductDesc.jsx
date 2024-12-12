@@ -52,18 +52,30 @@ const formats = [
   "sub",
 ];
 
-const AddProductDesc = ({ description, setDescription, error }) => {
+const AddProductDesc = ({
+  description,
+  setDescription,
+  error,
+  setFormError,
+}) => {
+  const handleDescription = (desc) => {
+    setDescription(desc);
+    setFormError({ ...error, description: "" });
+  };
+
   return (
     <div>
       <ReactQuill
         className="h-[300px] mb-32 lg:mb-16"
         theme="snow"
         value={description}
-        onChange={setDescription}
+        onChange={handleDescription}
         modules={modules}
         formats={formats}
       />
-      {error && <span className="text-red-500 -mt-16">{error}</span>}
+      {error?.description && (
+        <span className="text-red-500 -mt-16">{error.description}</span>
+      )}
     </div>
   );
 };

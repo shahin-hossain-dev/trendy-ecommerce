@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { RiImageAddFill } from "react-icons/ri";
-const PdImgUploader = ({ images, setImages }) => {
+const PdImgUploader = ({ images, setImages, error, setFormError }) => {
   const [preview, setPreview] = useState(null);
 
   const imageRef = useRef(null);
@@ -17,6 +17,7 @@ const PdImgUploader = ({ images, setImages }) => {
     }));
 
     setImages([...images, ...pdImages]);
+    setFormError({ ...error, images: "" }); // form error
   };
 
   useEffect(() => {

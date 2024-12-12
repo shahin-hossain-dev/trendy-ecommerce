@@ -28,6 +28,7 @@ const AddProduct = () => {
     quantity: "",
     images: "",
   });
+
   // temporary fetch category
   useEffect(() => {
     const getCategories = async () => {
@@ -59,6 +60,10 @@ const AddProduct = () => {
       ...productInfo,
       [e.target.name]: e.target.value,
     });
+    setFormError({
+      ...formError,
+      [e.target.name]: "",
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -68,12 +73,30 @@ const AddProduct = () => {
     const newFormError = { ...formError };
 
     if (productInfo.name.trim() === "") {
-      newFormError.name = "Product field is required";
+      newFormError.name = "Product name field is required";
+      isValid = false;
+    }
+    if (description.trim() === "") {
+      newFormError.description = "Product description field is required";
+      isValid = false;
+    } else {
+      newFormError.description = "";
+    }
+    if (productInfo.price.trim() === "") {
+      newFormError.price = "Product price field is required";
+      isValid = false;
+    }
+    if (productInfo.quantity.trim() === "") {
+      newFormError.quantity = "Product quantity field is required";
+      isValid = false;
+    }
+    if (!productInfo.categoryId) {
+      newFormError.categoryId = "Product category select is required";
       isValid = false;
     }
 
-    if (description.trim() === "") {
-      newFormError.description = "Product description field is required";
+    if (!images.length) {
+      newFormError.images = "Product image field is required";
       isValid = false;
     }
 
@@ -85,12 +108,12 @@ const AddProduct = () => {
     formData.append("categoryId", productInfo.categoryId);
     formData.append("quantity", parseInt(productInfo.quantity));
     formData.append("date", new Date().toISOString());
-
     images.forEach((image) => {
       formData.append("ProductPicture", image.file);
     });
 
     if (isValid) {
+      setFormError({});
       try {
         const res = await axios.post(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/add`,
@@ -102,7 +125,7 @@ const AddProduct = () => {
           }
         );
 
-        console.log(res.data);
+        console.log(res.data.json_atribute);
 
         if (res.status === 201) {
           alert("product added successfully");
@@ -149,7 +172,8 @@ const AddProduct = () => {
             <AddProductDesc
               description={description}
               setDescription={setDescription}
-              error={formError.description}
+              error={formError}
+              setFormError={setFormError}
             />
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-between ">
@@ -166,7 +190,11 @@ const AddProduct = () => {
                 value={productInfo.price}
                 required
               />
+              {formError.price && (
+                <span className="text-red-500">{formError.price}</span>
+              )}
             </div>
+
             <div className="flex-1">
               <label className="mb-1 ">
                 Quantity<span className="text-red-500">*</span>
@@ -180,6 +208,9 @@ const AddProduct = () => {
                 value={productInfo.quantity}
                 required
               />
+              {formError.quantity && (
+                <span className="text-red-500">{formError.quantity}</span>
+              )}
             </div>
             <div className="flex-1">
               <label className="mb-1 ">
@@ -203,6 +234,9 @@ const AddProduct = () => {
                   </MenuItem>
                 ))}
               </TextField>
+              {formError.categoryId && (
+                <span className="text-red-500">{formError.categoryId}</span>
+              )}
             </div>
           </div>
           {/* dynamic attribute  */}
@@ -210,8 +244,18 @@ const AddProduct = () => {
             setAttributes={setAttributes}
             quantity={productInfo.quantity}
           />
-          {/* image uploader */}
-          <PdImgUploader images={images} setImages={setImages} />
+          <div>
+            {/* image uploader */}
+            <PdImgUploader
+              images={images}
+              setImages={setImages}
+              error={formError}
+              setFormError={setFormError}
+            />
+            {formError.images && (
+              <span className="text-red-500">{formError.images}</span>
+            )}
+          </div>
           <Button
             variant="contained"
             style={{ backgroundColor: "#2FB261" }}
