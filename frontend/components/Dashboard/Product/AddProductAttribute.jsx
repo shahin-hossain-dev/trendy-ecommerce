@@ -189,7 +189,11 @@ const AddProductAttribute = ({ setAttributes, quantity }) => {
                               }
                               name="value"
                               size="small"
-                              value={row.value[subRowIdx]}
+                              value={
+                                isNaN(row.value[subRowIdx])
+                                  ? ""
+                                  : row.value[subRowIdx]
+                              }
                               sx={{
                                 "& .MuiInputBase-input": {
                                   paddingY: "4px",

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button, FormControl, MenuItem } from "@mui/material";
+import { Alert, Button, FormControl, MenuItem } from "@mui/material";
 import axios from "axios";
 import "react-quill/dist/quill.snow.css";
 import PdImgUploader from "@/components/Dashboard/Product/PdImgUploader";
@@ -28,6 +28,7 @@ const AddProduct = () => {
     quantity: "",
     images: "",
   });
+  const [alert, setAlert] = useState(false);
 
   // temporary fetch category
   useEffect(() => {
@@ -103,15 +104,16 @@ const AddProduct = () => {
     const formData = new FormData();
     formData.append("name", productInfo.name);
     formData.append("desc", description);
-    formData.append("price", parseInt(productInfo.price));
+    formData.append("price", productInfo.price);
     formData.append("json_atribute", JSON.stringify({ attributes }));
     formData.append("categoryId", productInfo.categoryId);
-    formData.append("quantity", parseInt(productInfo.quantity));
+    formData.append("quantity", productInfo.quantity);
     formData.append("date", new Date().toISOString());
     images.forEach((image) => {
       formData.append("ProductPicture", image.file);
     });
 
+    console.log([...formData.entries()]);
     if (isValid) {
       setFormError({});
       try {
@@ -125,10 +127,15 @@ const AddProduct = () => {
           }
         );
 
-        console.log(res.data.json_atribute);
+        console.log(res.data);
 
         if (res.status === 201) {
-          alert("product added successfully");
+          window.scrollTo(0, 0);
+          setAlert(true);
+          setProductInfo({ name: "", price: "", quantity: "", categoryId: "" });
+          setDescription("");
+          setAttributes("");
+          setImages([]);
         }
       } catch (error) {
         console.log(error.message);
@@ -140,6 +147,11 @@ const AddProduct = () => {
 
   return (
     <div className="w-[95%] md:w-full mx-auto ">
+      {alert && (
+        <Alert className="mb-3" severity="success" onClose={() => {}}>
+          Product Added Successfully
+        </Alert>
+      )}
       <h2 className="text-xl font-bold text-secondary">Add Product</h2>
       <div className="text-secondary mt-6 border rounded-md h-full px-4 bg-white py-6 lg:w-full shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)]">
         <Box
@@ -152,7 +164,7 @@ const AddProduct = () => {
         >
           <div>
             <label className="mb-1 ">
-              Product Title<span className="text-red-500">*</span>
+              Product Title<span className="text-red-500 select-none"> *</span>
             </label>
             <TextField
               fullWidth
@@ -167,7 +179,8 @@ const AddProduct = () => {
           </div>
           <div className="">
             <label className="mb-1">
-              Product Description<span className="text-red-500">*</span>
+              Product Description
+              <span className="text-red-500 select-none"> *</span>
             </label>
             <AddProductDesc
               description={description}
@@ -179,7 +192,7 @@ const AddProduct = () => {
           <div className="flex flex-col md:flex-row gap-6 justify-between ">
             <div className="flex-1">
               <label className="mb-1 ">
-                Price<span className="text-red-500">*</span>
+                Price<span className="text-red-500 select-none"> *</span>
               </label>
               <TextField
                 id="fullWidth"
@@ -197,7 +210,7 @@ const AddProduct = () => {
 
             <div className="flex-1">
               <label className="mb-1 ">
-                Quantity<span className="text-red-500">*</span>
+                Quantity<span className="text-red-500 select-none"> *</span>
               </label>
               <TextField
                 id="fullWidth"
@@ -214,7 +227,7 @@ const AddProduct = () => {
             </div>
             <div className="flex-1">
               <label className="mb-1 ">
-                Category<span className="text-red-500">*</span>
+                Category<span className="text-red-500 select-none"> *</span>
               </label>
               <TextField
                 id="outlined-select-currency"

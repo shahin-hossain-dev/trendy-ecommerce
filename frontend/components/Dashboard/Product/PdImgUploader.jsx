@@ -23,6 +23,8 @@ const PdImgUploader = ({ images, setImages, error, setFormError }) => {
   useEffect(() => {
     if (images.length > 0) {
       setPreview(images[0].src);
+    } else {
+      setPreview(null);
     }
   }, [images]);
 
