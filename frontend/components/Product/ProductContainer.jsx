@@ -1,13 +1,31 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import products from "../../public/data/product";
 import Link from "next/link";
 import ProductCard from "./ProductCard";
-
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import axios from "axios";
 
 const ProductContainer = () => {
+  // actual product functionality
+  // const [products, setProducts] = useState([]);
+  // const fetchProducts = async () => {
+  //   try {
+  //     const res = await axios.get(
+  //       `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/search`
+  //     );
+  //     console.log(res.data);
+  //     setProducts(res.data);
+  //   } catch (error) {
+  //     console.log("error", error.message);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
+
   return (
     <>
       <div className="container mx-auto mt-6 md:mt-12">

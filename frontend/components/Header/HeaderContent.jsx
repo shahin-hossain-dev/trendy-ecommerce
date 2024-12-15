@@ -19,6 +19,7 @@ import Cookies from "js-cookie";
 import Categories from "../Hero/Categories";
 import { FaRegHeart } from "react-icons/fa6";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
+import { useRouter } from "next/router";
 
 const HeaderContent = () => {
   const [accessToken, setAccessToken] = useState(null);
@@ -36,6 +37,7 @@ const HeaderContent = () => {
   const handleLogout = () => {
     Cookies.remove("accessToken");
     setAccessToken(null);
+
     // You can also add redirect to the sign-in page or home page after logout
   };
   return (

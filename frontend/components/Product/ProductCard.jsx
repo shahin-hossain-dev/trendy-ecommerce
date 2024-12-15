@@ -1,19 +1,16 @@
-"use client";
 import React, { useContext } from "react";
 import Image from "next/image";
 import { useAppDispatch } from "@/lib/features/hooks";
 import { FaRegHeart } from "react-icons/fa";
-import { setLocalStorageValue } from "@/lib/wishlistLocalStorage";
 import Link from "next/link";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 import { IoHeartDislike } from "react-icons/io5";
 import { addToCart } from "@/lib/features/cart/cartSlice";
-import { useSelector } from "react-redux";
 
 const ProductCard = ({ product }) => {
   const { handleAddWishlist, wishProducts, handleRemoveWishListProduct } =
     useContext(HandlerContext);
-  const { items } = useSelector((state) => state.cart);
+
   const dispatch = useAppDispatch();
 
   const handleAddToCart = (product) => {

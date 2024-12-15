@@ -24,67 +24,68 @@ const Categories = () => {
       <div className="space-y-3 flex flex-col mt-3 relative text-[#192A56] font-medium">
         {/* category */}
         {categories.map((category, idx) => (
-          <Link
-            href={category.href}
-            key={idx}
-            className="group/category flex gap-4 justify-between rounded-md  hover:bg-[#d3dae8] px-4 py-1  "
-          >
-            <div className="flex items-center gap-2">
-              <Image
-                src={category.icon}
-                alt={category.label}
-                height={20}
-                width={20}
-                className="h-[20px] w-[20px]"
-              />
-              <span className="font-semibold group-hover/category:translate-x-2 duration-200">
-                {category.label}
+          <div>
+            <Link
+              href={category.href}
+              className="group/category flex gap-4 justify-between rounded-md  hover:bg-[#d3dae8] px-4 py-1  "
+            >
+              <div className="flex items-center gap-2">
+                <Image
+                  src={category.icon}
+                  alt={category.label}
+                  height={20}
+                  width={20}
+                  className="h-[20px] w-[20px]"
+                />
+                <span className="font-semibold group-hover/category:translate-x-2 duration-200">
+                  {category.label}
+                </span>
+              </div>
+              <span className="group-hover/category:rotate-90 duration-300">
+                <FontAwesomeIcon icon={faAngleRight} />
               </span>
-            </div>
-            <span className="group-hover/category:rotate-90 duration-300">
-              <FontAwesomeIcon icon={faAngleRight} />
-            </span>
-            {/* sub category */}
-            <div className="hidden drop-shadow-lg group-hover/category:flex w-full absolute group-hover/category:flex-col left-1/2 rounded-md lg:left-full z-20  animate-fadeInUp group-hover/category:bg-white shadow-lg  ">
-              {category.subNav.map((subCat, idx) => (
-                <Link
-                  key={idx}
-                  href={subCat.href}
-                  className="group/subcategory relative hover:bg-[#d3dae8] rounded-md px-4 py-1 "
-                >
-                  <div className=" flex justify-between hover:font-semibold">
-                    <span className="text-sm group-hover/subcategory:translate-x-2 duration-200">
-                      {subCat.label}
-                    </span>
-                    {subCat.subSubNav && (
-                      <span className="group-hover/subcategory:rotate-90 duration-300">
-                        <FontAwesomeIcon icon={faAngleRight} />
+              {/* sub category */}
+              <div className="hidden drop-shadow-lg group-hover/category:flex w-full absolute group-hover/category:flex-col left-1/2 rounded-md lg:left-full z-20  animate-fadeInUp group-hover/category:bg-white shadow-lg  ">
+                {category.subNav.map((subCat, idx) => (
+                  <Link
+                    key={idx}
+                    href={subCat.href}
+                    className="group/subcategory relative hover:bg-[#d3dae8] rounded-md px-4 py-1 "
+                  >
+                    <div className=" flex justify-between hover:font-semibold">
+                      <span className="text-sm group-hover/subcategory:translate-x-2 duration-200">
+                        {subCat.label}
                       </span>
-                    )}
-                  </div>
-                  {/* sub Sub Category */}
-                  <div className="hidden drop-shadow-lg duration-300 group-hover/subcategory:flex w-[80%] lg:w-full absolute group-hover/subcategory:flex-col left-1/2 rounded-md lg:left-full z-30 top-1  group-hover/subcategory:bg-white shadow-lg animate-fadeInUp ">
-                    {subCat.subSubNav?.map((subSubCat, idx) => (
-                      <Link
-                        key={idx}
-                        href={subSubCat.href}
-                        className="group/subsubcategory hover:bg-[#d3dae8] rounded-md hover:font-semibold px-4 py-1"
-                      >
-                        <div className=" flex justify-between">
-                          <span className="text-sm group-hover/subsubcategory:translate-x-2 duration-200">
-                            {subSubCat.label}
-                          </span>
-                          {/* <span className="group-hover/edit:rotate-90 duration-300">
+                      {subCat.subSubNav && (
+                        <span className="group-hover/subcategory:rotate-90 duration-300">
+                          <FontAwesomeIcon icon={faAngleRight} />
+                        </span>
+                      )}
+                    </div>
+                    {/* sub Sub Category */}
+                    <div className="hidden drop-shadow-lg duration-300 group-hover/subcategory:flex w-[80%] lg:w-full absolute group-hover/subcategory:flex-col left-1/2 rounded-md lg:left-full z-30 top-1  group-hover/subcategory:bg-white shadow-lg animate-fadeInUp ">
+                      {subCat.subSubNav?.map((subSubCat, idx) => (
+                        <Link
+                          key={idx}
+                          href={subSubCat.href}
+                          className="group/subsubcategory hover:bg-[#d3dae8] rounded-md hover:font-semibold px-4 py-1"
+                        >
+                          <div className=" flex justify-between">
+                            <span className="text-sm group-hover/subsubcategory:translate-x-2 duration-200">
+                              {subSubCat.label}
+                            </span>
+                            {/* <span className="group-hover/edit:rotate-90 duration-300">
                             <FontAwesomeIcon icon={faAngleRight} />
                           </span> */}
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </Link>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </Link>
+          </div>
         ))}
       </div>
     </div>
