@@ -56,11 +56,11 @@ const HighlightsProducts = () => {
                   alt="Banner1"
                   className=" h-[100px] object-cover object-center rounded-md"
                 />
-                <span>
+                {/* <span>
                   <small className="text-[12px] block text-center font-oswald">
                     {product.name}
                   </small>
-                </span>
+                </span> */}
               </Link>
             </div>
           </SwiperSlide>
