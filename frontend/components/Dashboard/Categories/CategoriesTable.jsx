@@ -133,10 +133,10 @@ const CategoriesTable = ({ categoriesData }) => {
                         row.id === showActionBtn ? "block" : "hidden"
                       } bg-white absolute w-full duration-150 rounded-sm -top-1/2 left-1/2 -translate-x-1/2`}
                     >
-                      <button className="px-3 py-1 hover:bg-orange-100 w-full">
+                      <button className="px-3 py-1 border rounded font-semibold hover:bg-orange-300 w-full">
                         Edit
                       </button>
-                      <button className="px-3 py-1 hover:bg-red-100 w-full">
+                      <button className="px-3 py-1 border rounded font-semibold hover:bg-red-300 w-full">
                         Delete
                       </button>
                     </span>

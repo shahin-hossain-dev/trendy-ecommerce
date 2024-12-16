@@ -1,5 +1,4 @@
 "use client";
-import ProductTable from "@/components/Dashboard/Product/ProductTable";
 import PageHeader from "@/components/Dashboard/DashboardHeader/PageHeader";
 import { Pagination, Stack } from "@mui/material";
 import axios from "axios";
@@ -18,6 +17,8 @@ const Products = () => {
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get("/data/productCategories.json");
+      //original server response
+      // const res = await axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/Category/search`);
       const allCategories = res.data;
       setCount(allCategories.length);
       const data = allCategories.splice(

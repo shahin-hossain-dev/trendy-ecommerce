@@ -30,23 +30,12 @@ const AddProduct = () => {
   });
   const [alert, setAlert] = useState(false);
 
-  // temporary fetch category
-  useEffect(() => {
-    const getCategories = async () => {
-      const res = await axios.get("/data/categories.json");
-
-      setCategories(res.data);
-      // console.log(res.data);
-    };
-    getCategories();
-  }, []);
-
   const fetchCategory = async () => {
     try {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Category/search`
       );
-      // console.log(res.data);
+      setCategories(res.data);
     } catch (error) {
       console.log("category fetch failed");
     }
@@ -148,7 +137,13 @@ const AddProduct = () => {
   return (
     <div className="w-[95%] md:w-full mx-auto ">
       {alert && (
-        <Alert className="mb-3" severity="success" onClose={() => {}}>
+        <Alert
+          className="mb-3"
+          severity="success"
+          onClose={() => {
+            setAlert(false);
+          }}
+        >
           Product Added Successfully
         </Alert>
       )}
@@ -242,7 +237,7 @@ const AddProduct = () => {
                   Choose Category
                 </MenuItem>
                 {categories.map((option) => (
-                  <MenuItem key={option.id} value={option.id}>
+                  <MenuItem key={option.Id} value={option.Id}>
                     {option.name}
                   </MenuItem>
                 ))}
