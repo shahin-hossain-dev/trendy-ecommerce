@@ -61,7 +61,7 @@ const ProductContainer = () => {
           className="h-full !pb-10"
         >
           {products.map((product, idx) => (
-            <div key={idx}>
+            <div key={product.id}>
               <SwiperSlide>
                 <ProductCard product={product} />
               </SwiperSlide>

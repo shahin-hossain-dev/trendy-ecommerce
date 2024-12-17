@@ -2,7 +2,7 @@ import theme from "@/components/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import { Lato, Oswald } from "next/font/google";
+import { Lato, Oswald, Playfair, Playfair_Display } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/Header/Header";
 import "swiper/css";
@@ -28,6 +28,14 @@ const oswald = Oswald({
   variable: "--font-oswald",
 });
 
+const playfair = Playfair_Display({
+  weight: "400",
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: ["--font-playfair"],
+});
+
 export const metadata = {
   title: "Trendy",
   description: "app",
@@ -35,7 +43,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${lato.variable} ${oswald.variable}`}>
+    <html
+      lang="en"
+      className={`${lato.variable} ${oswald.variable} ${playfair.variable}`}
+    >
       <body className={lato.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>

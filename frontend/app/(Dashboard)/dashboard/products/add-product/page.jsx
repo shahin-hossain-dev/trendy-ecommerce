@@ -102,7 +102,6 @@ const AddProduct = () => {
       formData.append("ProductPicture", image.file);
     });
 
-    console.log([...formData.entries()]);
     if (isValid) {
       setFormError({});
       try {

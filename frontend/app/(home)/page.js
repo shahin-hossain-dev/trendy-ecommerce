@@ -1,5 +1,6 @@
 import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
 import Hero from "@/components/Hero/Hero";
+import Features from "@/components/Home/HomePage/Features/Features";
 import ProductContainer from "@/components/Product/ProductContainer";
 import { Inter } from "next/font/google";
 
@@ -10,8 +11,8 @@ export default function Home() {
   return (
     <div className={`w-[95%] mx-auto ${inter.className}`}>
       <Hero />
-      <ProductContainer />
-      <ProductContainer />
+      {/* features items  */}
+      <Features />
       <ProductContainer />
     </div>
   );

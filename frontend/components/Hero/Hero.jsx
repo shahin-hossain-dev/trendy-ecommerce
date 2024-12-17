@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Categories from "./Categories";
 import axios from "axios";
 import Link from "next/link";
-import Features from "./Features";
 import HighlightsProducts from "./HighlightsProducts";
 
 // Import Swiper React components
@@ -37,7 +36,7 @@ const Hero = () => {
   // console.log(heroBanners);
   return (
     <section className="container mx-auto">
-      <div className=" grid grid-cols-10 py-8 gap-5 ">
+      <div className=" grid grid-cols-10 pt-8 gap-5 ">
         <div className="lg:col-span-3  hidden lg:block">
           <Categories />
         </div>
@@ -81,8 +80,6 @@ const Hero = () => {
           <HighlightsProducts />
         </div>
       </div>
-      {/* features items  */}
-      <Features />
     </section>
   );
 };
