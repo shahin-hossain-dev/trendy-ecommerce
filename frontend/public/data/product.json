@@ -13,7 +13,8 @@
             {"id": 2, "image": "/img/product/product9.jpg"}, 
             {"id": 3, "image": "/img/product/product9.jpg"}, 
             {"id": 4, "image": "/img/product/product9.jpg"}        
-        ]
+        ],
+        "rating": 4.4
     },
     {
         "id": 2,
@@ -29,7 +30,8 @@
         "category": "Electronics",
         "price": 5500,
         "offer": 10,
-        "discountedPrice": 4950
+        "discountedPrice": 4950,
+        "rating": 4.4
     },
     {
         "id": 3,
@@ -45,7 +47,8 @@
             {"id": 2, "image": "/img/product/product51.jpg"}, 
             {"id": 3, "image": "/img/product/product51.jpg"}, 
             {"id": 4, "image": "/img/product/product51.jpg"}        
-        ]
+        ],
+        "rating": 4.4
         
     },
     {
@@ -62,7 +65,8 @@
             {"id": 2, "image": "/img/product/product33.jpg"}, 
             {"id": 3, "image": "/img/product/product33.jpg"}, 
             {"id": 4, "image": "/img/product/product33.jpg"}        
-        ]
+        ],
+        "rating": 4.4
     },
     {
         "id": 5,
@@ -72,7 +76,8 @@
         "category": "Cloths",
         "price": 4500,
         "offer": 10,
-        "discountedPrice": 4050
+        "discountedPrice": 4050,
+        "rating": 4.4
     },
     {
         "id": 6,
@@ -82,7 +87,8 @@
         "category": "Electronics",
         "price": 180000,
         "offer": 20,
-        "discountedPrice": 144000
+        "discountedPrice": 144000,
+        "rating": 4.4
     },
     {
         "id": 7,
@@ -92,7 +98,8 @@
         "category": "Pets Item",
         "price": 9000,
         "offer": 15,
-        "discountedPrice": 7650
+        "discountedPrice": 7650,
+        "rating": 4.4
     },
     {
         "id": 8,
@@ -102,7 +109,8 @@
         "category": "Kitchen Item",
         "price": 1200,
         "offer": 18,
-        "discountedPrice": 9840
+        "discountedPrice": 9840,
+        "rating": 4.4
     },
     {
         "id": 9,
@@ -112,7 +120,8 @@
         "category": "Electronics",
         "price": 7000,
         "offer": 13,
-        "discountedPrice": 6090
+        "discountedPrice": 6090,
+        "rating": 4.4
     },
     {
         "id": 10,
@@ -122,7 +131,8 @@
         "category": "Pets Item",
         "price": 5000,
         "offer": 10,
-        "discountedPrice": 4500
+        "discountedPrice": 4500,
+        "rating": 4.4
     },
     {
         "id": 11,
@@ -132,7 +142,8 @@
         "category": "Kitchen Item",
         "price": 900,
         "offer": 15,
-        "discountedPrice": 765
+        "discountedPrice": 765,
+        "rating": 4.4
     },
     {
         "id": 12,
@@ -142,6 +153,7 @@
         "category": "Cloths",
         "price": 600,
         "offer": 12,
-        "discountedPrice": 520
+        "discountedPrice": 520,
+        "rating": 4.4
     }
 ]

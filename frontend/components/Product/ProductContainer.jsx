@@ -53,7 +53,7 @@ const ProductContainer = () => {
               spaceBetween: 40,
             },
             1024: {
-              slidesPerView: 4,
+              slidesPerView: 6,
               spaceBetween: 20,
             },
           }}

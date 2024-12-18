@@ -7,7 +7,7 @@ const SectionTitle = ({ title, description }) => {
         <span className="font-medium">#</span> {title}{" "}
         <span className="font-medium">#</span>
       </h2>
-      <p>{description}</p>
+      <p>{description || ""}</p>
     </div>
   );
 };

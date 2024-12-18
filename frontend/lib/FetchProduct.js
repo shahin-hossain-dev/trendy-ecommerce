@@ -1,5 +1,19 @@
 import axios from "axios";
 
+//fetch products
+const fetchProducts = async () => {
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/search`
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error fetching products", error.message);
+    throw new Error("Failed to product fetch");
+  }
+};
+
+//fetch product by id
 const FetchProductById = async (id) => {
   const data = await fetch("/data/product.json");
   const products = await data.json();
@@ -20,4 +34,4 @@ const fetchFeatureProducts = async () => {
   }
 };
 
-export { FetchProductById, fetchFeatureProducts };
+export { FetchProductById, fetchFeatureProducts, fetchProducts };

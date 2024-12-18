@@ -28,7 +28,7 @@ const Features = async () => {
   }
 
   return (
-    <div>
+    <div className="container mx-auto">
       <SectionTitle
         title={"Feature Products"}
         description="Mirum est notare quam littera gothica, quam nunc putamus parum claram

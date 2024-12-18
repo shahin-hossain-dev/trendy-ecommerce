@@ -12,6 +12,7 @@ module.exports = {
         oswald: ["var(--font-oswald)"],
         lato: ["var(--font-lato)"],
         playfair: ["var(--font-playfair)"],
+        roboto: ["var(--font-roboto)"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

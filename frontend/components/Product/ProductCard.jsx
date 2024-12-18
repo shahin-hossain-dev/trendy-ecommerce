@@ -7,6 +7,7 @@ import Link from "next/link";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 import { IoHeartDislike } from "react-icons/io5";
 import { addToCart } from "@/lib/features/cart/cartSlice";
+import { IoIosStar } from "react-icons/io";
 
 const ProductCard = ({ product }) => {
   const { handleAddWishlist, wishProducts, handleRemoveWishListProduct } =
@@ -42,7 +43,7 @@ const ProductCard = ({ product }) => {
   const addedWishProduct = wishProducts.find((pd) => pd.id === product.id);
 
   return (
-    <div className="relative flex flex-col justify-between h-full overflow-hidden bg-white rounded-lg shadow-md hover:shadow-lg group">
+    <div className="relative border flex flex-col justify-between h-full overflow-hidden bg-white rounded-lg shadow-md hover:shadow-lg group">
       <div className="absolute top-0 left-0 z-40 w-16 h-16">
         <div className="absolute transform -rotate-45 bg-[#192a56] text-center text-white font-semibold py-1 left-[-55px] top-[20px] w-[170px] text-xs">
           {product.offer} % OFF
@@ -79,34 +80,40 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         <div className="p-2 space-y-1.5 overflow-hidden">
-          <h2 className="leading-tight text-center capitalize truncate text-lg font-oswald">
+          <h2 className="leading-tight text-center capitalize truncate text-normal font-roboto font-medium">
             {product.name}
           </h2>
-          <div className="flex justify-center gap-1 flex-nowrap md:gap-3">
-            <p className="flex justify-center gap-1 text-xs text-red-500 line-through flex-nowrap font-lato md:text-base">
-              <span className="mr-0.5">৳</span>
-              {/* "bn-BD", {
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col flex-nowrap ">
+              <p className="flex justify-center gap-1 text-xs flex-nowrap font-lato md:text-base">
+                <span className="mr-0.5">৳</span>
+                {new Intl.NumberFormat().format(product.discountedPrice)}
+              </p>
+              <p className="flex justify-center gap-1 text-xs text-[#838790] line-through flex-nowrap font-lato md:text-sm">
+                <span className="mr-0.5">৳</span>
+                {/* "bn-BD", {
                 style: "currency",
                 currency: "BDT",
               } */}
-              {new Intl.NumberFormat().format(product.price)}
-            </p>
-            <p className="flex justify-center gap-1 text-xs flex-nowrap font-lato md:text-base">
-              <span className="mr-0.5">৳</span>
-              {new Intl.NumberFormat().format(product.discountedPrice)}
-            </p>
+                {new Intl.NumberFormat().format(product.price)}
+              </p>
+            </div>
+            <span className="flex items-center rounded text-sm gap-1 px-1 bg-[#E1EFE0] text-dash-primary">
+              <span>{product.rating ? product.rating : 0}</span>
+              <IoIosStar />
+            </span>
           </div>
           <div className="flex justify-center gap-1.5">
             <button
               onClick={handleBuy}
-              className="rounded-md bg-[#192a56]  basis-1/2 text-[10px] capitalize text-white md:px-2 md:text-xs"
+              className="rounded-md bg-dash-primary  basis-1/2 text-[10px] capitalize text-white md:px-2 md:text-xs"
             >
-              <Link href={"/checkout"} className="px-1 py-1">
+              <Link href={"/checkout"} className="px-1 py-2">
                 Buy Now
               </Link>
             </button>
             <button
-              className="rounded-md border border-[#192a56] basis-1/2 px-1 py-1 text-[10px] capitalize text-[#192a56] md:px-2 md:text-xs"
+              className="rounded-md border border-dash-primary basis-1/2 px-1 py-2 text-[10px] capitalize text-[#192a56] md:px-2 md:text-xs"
               onClick={() => handleAddToCart(product)}
             >
               Add to Cart

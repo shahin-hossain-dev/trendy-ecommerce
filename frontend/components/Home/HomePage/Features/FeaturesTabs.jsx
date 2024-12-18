@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useState } from "react";
+import FeatureContainer from "./FeatureContainer";
 
 const FeaturesTabs = () => {
   const [value, setValue] = useState(0);
@@ -19,14 +20,25 @@ const FeaturesTabs = () => {
   ];
 
   return (
-    <div className="w-full mx-auto mt-12">
-      <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-        <Tabs value={value} onChange={handleChange} centered>
+    <div className="flex justify-center items-center w-full mx-auto mt-12">
+      <Box sx={{ width: "100%", bgcolor: "background.paper", marginX: "auto" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons
+          allowScrollButtonsMobile
+          centered
+          className="w-full md:w-[70%] lg:w-[50%] mx-auto "
+        >
           {tabs.map((tab) => (
             <Tab key={tab.id} label={tab.label} />
           ))}
         </Tabs>
-        {value === 0 && <div>Tab One</div>}
+        {value === 1 && <FeatureContainer />}
+        {value === 0 && <FeatureContainer />}
+        {value === 2 && <FeatureContainer />}
+        {value === 3 && <FeatureContainer />}
       </Box>
     </div>
   );
