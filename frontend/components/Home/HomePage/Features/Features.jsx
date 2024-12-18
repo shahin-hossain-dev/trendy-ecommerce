@@ -36,20 +36,20 @@ const Features = async () => {
       />
       <FeaturesTabs />
       <div className="flex flex-col  md:flex-row gap-5 justify-between mt-4 lg:mt-6">
-        {features?.slice(0, 8).map((product) => (
+        {/* {features?.slice(0, 8).map((product) => (
           <div key={product?.id}>
             <Link href={`/products/product-info/${product.id}`}>
-              {/* <Image
+              <Image
                 src={feature?.image}
                 alt="feature image"
                 width={500}
                 height={300}
                 className="rounded-lg h-[150px] lg:h-[200px] object-cover"
-              /> */}
-              {/* <ProductCard product={product} /> */}
+              />
+              <ProductCard product={product} />
             </Link>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
