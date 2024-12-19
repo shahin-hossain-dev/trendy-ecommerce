@@ -2,6 +2,7 @@ import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/Recent
 import Hero from "@/components/Hero/Hero";
 import ExploreEvery from "@/components/Home/HomePage/ExploreEvery";
 import Features from "@/components/Home/HomePage/Features/Features";
+import LatestNews from "@/components/Home/HomePage/LatestNews";
 import NewArrivalContainer from "@/components/Home/HomePage/NewArrival/NewArrivalContainer";
 import StylishShop from "@/components/Home/HomePage/StylishShop";
 import TopBrandProducts from "@/components/Home/HomePage/TopBrandProducts/TopBrandProducts";
@@ -21,6 +22,7 @@ export default function Home() {
       <NewArrivalContainer />
       <StylishShop />
       <TopBrandProducts />
+      <LatestNews />
     </div>
   );
 }

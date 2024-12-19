@@ -20,13 +20,13 @@ const StylishShop = () => {
             src={style1}
             alt="stylish image"
             height={500}
-            className="blur ms-auto mt-auto md:w-[300px] lg:w-[450px]  border-2 border-red-400"
+            className="blur ms-auto mt-auto md:w-[300px] lg:w-[450px] "
           />
         </div>
         <div className="md:col-span-1  flex flex-col">
           <div className="flex-1 flex items-center bg-[#F6F6F6] mb-4">
             <div className="flex-grow ms-2 md:ps-3 lg:ps-6">
-              <h3 className="text-xl lg:text-3xl font-playfair italic font-medium">
+              <h3 className="text-xl lg:text-3xl font-playfair italic font-medium mb-2 lg:mb-3">
                 Be Styles
               </h3>
               <p className="font-semibold text-xs lg:text-base text-red-500">
@@ -42,7 +42,7 @@ const StylishShop = () => {
           </div>
           <div className="bg-[#F6F6F6] flex-1 flex items-center">
             <div className="flex-1 ps-2 md:ps-3 lg:ps-6 ">
-              <h3 className="text-xl lg:text-3xl font-playfair italic font-medium">
+              <h3 className="text-xl lg:text-3xl font-playfair italic font-medium mb-2 lg:mb-3">
                 Exclusive
               </h3>
               <p className="font-semibold text-xs lg:text-base text-red-500">
