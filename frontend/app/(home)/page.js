@@ -3,6 +3,7 @@ import Hero from "@/components/Hero/Hero";
 import ExploreEvery from "@/components/Home/HomePage/ExploreEvery";
 import Features from "@/components/Home/HomePage/Features/Features";
 import NewArrivalContainer from "@/components/Home/HomePage/NewArrival/NewArrivalContainer";
+import StylishShop from "@/components/Home/HomePage/StylishShop";
 import TopBrandProducts from "@/components/Home/HomePage/TopBrandProducts/TopBrandProducts";
 import ProductContainer from "@/components/Product/ProductContainer";
 import { Inter } from "next/font/google";
@@ -18,6 +19,7 @@ export default function Home() {
       <Features />
       <ExploreEvery />
       <NewArrivalContainer />
+      <StylishShop />
       <TopBrandProducts />
     </div>
   );

@@ -37,7 +37,7 @@ const roboto = Roboto({
 
 const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700", "800"],
-  style: ["normal"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
   variable: ["--font-playfair"],
 });
