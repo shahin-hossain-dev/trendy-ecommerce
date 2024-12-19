@@ -36,6 +36,7 @@ const AddProduct = () => {
         `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Category/search`
       );
       setCategories(res.data);
+      console.log(res.data);
     } catch (error) {
       console.log("category fetch failed");
     }

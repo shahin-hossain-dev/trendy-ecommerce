@@ -28,7 +28,7 @@ const FeaturesTabs = () => {
           variant="scrollable"
           scrollButtons
           allowScrollButtonsMobile
-          centered
+          // centered={true}
           className="w-full md:w-[70%] lg:w-[50%] mx-auto "
         >
           {tabs.map((tab) => (
