@@ -20,7 +20,7 @@ const FeaturesTabs = () => {
   ];
 
   return (
-    <div className="flex justify-center items-center w-full mx-auto mt-12">
+    <div className="flex justify-center items-center container mx-auto mt-12">
       <Box sx={{ width: "100%", bgcolor: "background.paper", marginX: "auto" }}>
         <Tabs
           value={value}
@@ -30,6 +30,9 @@ const FeaturesTabs = () => {
           allowScrollButtonsMobile
           // centered={true}
           className="w-full md:w-[70%] lg:w-[50%] mx-auto "
+          sx={{
+            "& .MuiTabs-flexContainer": { "justify-content": "center" },
+          }}
         >
           {tabs.map((tab) => (
             <Tab key={tab.id} label={tab.label} />
