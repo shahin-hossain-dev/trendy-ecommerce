@@ -56,7 +56,24 @@ const ProductInfo = ({ params }) => {
   };
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+    let count = 1;
+    let totalPrice = product.price;
+
+    if (product.count) {
+      count++;
+      totalPrice = totalPrice + product.price;
+    }
+    const cartInfo = {
+      name: product.name,
+      image: product.image,
+      productId: product.id,
+      price: product.price,
+      count,
+      totalPrice,
+      color: productData.color,
+    };
+
+    dispatch(addToCart(cartInfo));
   };
 
   //get added wish list product
@@ -124,13 +141,11 @@ const ProductInfo = ({ params }) => {
               <span className=" block text-gray-500">Code: DFSDF923</span>
             </div>
             <div>
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <InputLabel id="demo-select-small-label">Color</InputLabel>
+              <FormControl sx={{ minWidth: 120 }} size="small">
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={productData.color}
-                  label="Age"
                   name="color"
                   onChange={handleChange}
                   defaultValue="Select One"

@@ -31,7 +31,7 @@ const LatestNews = () => {
     },
   ];
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto mb-24">
       <SectionTitle title="Latest News" />
       <div className="lg:grid gap-4 space-y-4 lg:space-y-0 grid-cols-2 mt-12">
         <div>

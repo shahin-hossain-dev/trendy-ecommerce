@@ -11,8 +11,9 @@ import {
   cartCountIncrement,
   removeFromCart,
 } from "@/lib/features/cart/cartSlice";
-const CartCard = ({ cart }) => {
-  const { productId, image, totalPrice, name, quantity, count } = cart;
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+const CartCard = ({ cart, checkout }) => {
+  const { productId, image, totalPrice, name, quantity, color, count } = cart;
   const dispatch = useDispatch();
 
   // quantity increment
@@ -48,10 +49,13 @@ const CartCard = ({ cart }) => {
             alt={name}
             className="object-cover w-[56px] h-[56px]"
           />
-          <div className="space-y-3 text-secondary">
-            <h3 className="text-base">{name}</h3>
+          <div className="space-y-3 text-secondary ">
+            <h3 className="text-base ">
+              {name.length > 22 ? `${name.slice(0, 22)}...` : name}
+            </h3>
             <div className=" flex items-center gap-3">
               <button
+                type="button"
                 onClick={() => handleDecrease(productId)}
                 className="border border-gray-300 shadow text-center px-2 rounded-md text-xl"
               >
@@ -60,6 +64,7 @@ const CartCard = ({ cart }) => {
               </button>
               <span>{cart?.count || 1}</span>
               <button
+                type="button"
                 onClick={() => handleIncrease(productId)}
                 className="border border-gray-300 shadow text-center px-2 rounded-md text-xl"
               >
@@ -69,8 +74,31 @@ const CartCard = ({ cart }) => {
             </div>
           </div>
         </div>
+        {/* color selection */}
+        {checkout && color && (
+          <div>
+            <FormControl sx={{ minWidth: 120 }} size="small">
+              <InputLabel>Color</InputLabel>
+              <Select
+                labelId="demo-select-small-label"
+                id="demo-select-small"
+                value={color}
+                name="color"
+                label="Color"
+                defaultValue="Select One"
+                size="small"
+              >
+                <MenuItem value={"red"}>Red</MenuItem>
+                <MenuItem value={"green"}>Green</MenuItem>
+                <MenuItem value={"blue"}>Blue</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+        )}
+
         <div className="flex flex-col items-end gap-3 text-secondary">
           <button
+            type="button"
             onClick={() => handleRemove(productId)}
             className="text-secondary hover:text-red-600 duration-300 px-2 rounded-md"
           >

@@ -1,5 +1,6 @@
 "use client";
 import CartCard from "@/components/Cart/CartCard";
+import Coupon from "@/components/Coupon/Coupon";
 import {
   FormControl,
   FormControlLabel,
@@ -130,12 +131,15 @@ const Checkout = () => {
           <div>
             <div className="mb-12 max-h-[400px] overflow-y-auto">
               {items?.map((cart) => (
-                <CartCard key={cart._id} cart={cart}></CartCard>
+                <CartCard key={cart._id} cart={cart} checkout={true}></CartCard>
               ))}
             </div>
             <div className=" text-secondary  px-5 py-2 mb-6 flex gap-3 justify-between font-medium">
               <h3>Sub Total:</h3>
               <span className="mr-0.5 font-bold">৳ {subTotal}</span>
+            </div>
+            <div>
+              <Coupon />
             </div>
             <div className=" text-secondary  px-5 py-2 mb-6 flex gap-3 justify-between font-medium">
               <h3>Shipping Charge:</h3>
