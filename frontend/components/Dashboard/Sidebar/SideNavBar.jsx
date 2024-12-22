@@ -13,7 +13,7 @@ import { MdDashboard } from "react-icons/md";
 import { FaArrowsSpin, FaUserLarge } from "react-icons/fa6";
 import { BsFillBoxSeamFill } from "react-icons/bs";
 import { BiSolidCategory } from "react-icons/bi";
-import { FaAngleDown, FaStar } from "react-icons/fa";
+import { FaAngleDown, FaGift, FaStar } from "react-icons/fa";
 import { usePathname, useRouter } from "next/navigation";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 
@@ -64,6 +64,13 @@ export default function SideNavBar() {
       title: "Rating",
       href: "/dashboard/rating",
       icon: <FaStar />,
+      subCat: [],
+    },
+    {
+      id: 7,
+      title: "Coupon",
+      href: "/dashboard/coupon",
+      icon: <FaGift />,
       subCat: [],
     },
   ];

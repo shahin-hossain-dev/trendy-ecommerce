@@ -1,5 +1,8 @@
 const getLocalStorageValue = () => {
-  const storedValue = localStorage.getItem("wishlist");
+  let storedValue;
+  if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+    storedValue = localStorage?.getItem("wishlist");
+  }
 
   if (!storedValue) {
     return [];
