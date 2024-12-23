@@ -2,8 +2,6 @@
 import CouponTable from "@/components/Dashboard/Coupon/CouponTable";
 import CouponTableBar from "@/components/Dashboard/Coupon/CouponTableBar";
 import PageHeader from "@/components/Dashboard/DashboardHeader/PageHeader";
-import OrderTable from "@/components/Dashboard/Order/OrderTable";
-import OrderTableBar from "@/components/Dashboard/Order/OrderTableBar";
 import { Pagination, Stack } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";

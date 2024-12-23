@@ -16,6 +16,8 @@ import { useSelector } from "react-redux";
 
 const Checkout = () => {
   const { items } = useSelector((state) => state.cart);
+  console.log(items);
+  const [couponData, setCouponData] = useState(null);
   const [checkoutInfo, setCheckoutInfo] = useState({
     name: "",
     district: "dhaka",
@@ -37,9 +39,10 @@ const Checkout = () => {
     console.log(checkoutInfo);
   };
   const subTotal = items
-    ?.reduce((acc, cur) => acc + parseFloat(cur.price), 0)
+    ?.reduce((acc, cur) => acc + parseFloat(cur.totalPrice), 0)
     .toFixed(2);
-  const total = subTotal + 50;
+
+  const total = parseFloat(subTotal) + 50;
   return (
     <div className="h-full px-4 container mx-auto  mt-4 md:mt-6 lg:mt-10 mb-12">
       <form onSubmit={handleSubmit} noValidate autoComplete="off">
@@ -139,7 +142,12 @@ const Checkout = () => {
               <span className="mr-0.5 font-bold">৳ {subTotal}</span>
             </div>
             <div>
-              <Coupon />
+              {couponData || <Coupon setCouponData={setCouponData} />}
+              {couponData && (
+                <div className="px-5 py-2 mb-6 text-dash-primary">
+                  You get 20% Off
+                </div>
+              )}
             </div>
             <div className=" text-secondary  px-5 py-2 mb-6 flex gap-3 justify-between font-medium">
               <h3>Shipping Charge:</h3>
@@ -148,9 +156,7 @@ const Checkout = () => {
 
             <div className=" text-secondary border-y-gray-300  border-y px-5 py-2 mb-6 flex gap-3 justify-between font-medium">
               <h3>Total:</h3>
-              <span className="mr-0.5 font-bold">
-                ৳ {parseFloat(total).toFixed(2)}
-              </span>
+              <span className="mr-0.5 font-bold">৳ {total.toFixed(2)}</span>
             </div>
             <div className="border shadow p-5">
               <FormControl>

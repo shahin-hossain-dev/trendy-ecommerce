@@ -40,8 +40,8 @@ const CartCard = ({ cart, checkout }) => {
 
   return (
     <div className="flex-grow overflow-y-auto">
-      <div className="flex items-center justify-between gap-3 p-2 border-b border-dashed px-4">
-        <div className="flex items-center gap-3">
+      <div className="flex items-start justify-between gap-3 p-2 border-b border-dashed px-4">
+        <div className="flex items-start gap-3">
           <Image
             width={56}
             height={56}
@@ -49,7 +49,7 @@ const CartCard = ({ cart, checkout }) => {
             alt={name}
             className="object-cover w-[56px] h-[56px]"
           />
-          <div className="space-y-3 text-secondary ">
+          <div className="space-y-1 md:space-y-1 text-secondary ">
             <h3 className="text-base ">
               {name.length > 22 ? `${name.slice(0, 22)}...` : name}
             </h3>
@@ -72,29 +72,41 @@ const CartCard = ({ cart, checkout }) => {
                 +{" "}
               </button>
             </div>
+            {/* color selection */}
+            {checkout && color && (
+              <div>
+                <FormControl sx={{ mt: "4px" }} size="small">
+                  {/* <InputLabel>Color</InputLabel> */}
+                  <Select
+                    labelId="demo-select-small-label"
+                    id="demo-select-small"
+                    value={color}
+                    name="color"
+                    // label="Color"
+                    defaultValue="Select One"
+                    size="small"
+                    sx={{
+                      "& .MuiSelect-select": {
+                        paddingX: "10px",
+                        paddingY: "4px",
+                      },
+                    }}
+                  >
+                    <MenuItem value={"red"} sx={{ paddingY: "2px" }}>
+                      Red
+                    </MenuItem>
+                    <MenuItem value={"green"} sx={{ paddingY: "2px" }}>
+                      Green
+                    </MenuItem>
+                    <MenuItem value={"blue"} sx={{ paddingY: "2px" }}>
+                      Blue
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+            )}
           </div>
         </div>
-        {/* color selection */}
-        {checkout && color && (
-          <div>
-            <FormControl sx={{ minWidth: 120 }} size="small">
-              <InputLabel>Color</InputLabel>
-              <Select
-                labelId="demo-select-small-label"
-                id="demo-select-small"
-                value={color}
-                name="color"
-                label="Color"
-                defaultValue="Select One"
-                size="small"
-              >
-                <MenuItem value={"red"}>Red</MenuItem>
-                <MenuItem value={"green"}>Green</MenuItem>
-                <MenuItem value={"blue"}>Blue</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-        )}
 
         <div className="flex flex-col items-end gap-3 text-secondary">
           <button

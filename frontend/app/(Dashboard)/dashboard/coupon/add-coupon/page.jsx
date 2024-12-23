@@ -103,7 +103,12 @@ const AddCoupon = () => {
       try {
         const res = await axios.post(
           `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Coupon/addCoupon`,
-          newFormData
+          newFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
         );
         if (res.status === 201) {
           setAlert("Coupon Created Successfully");
@@ -137,7 +142,6 @@ const AddCoupon = () => {
           {alert}
         </Alert>
       )}
-
       <h2 className="text-xl font-bold text-secondary dark:text-white">
         Add Coupon
       </h2>

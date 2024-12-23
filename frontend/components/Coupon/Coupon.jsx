@@ -1,16 +1,38 @@
 "use client";
 
 import { Button, FormControl, OutlinedInput } from "@mui/material";
+import axios from "axios";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
-const Coupon = () => {
+const Coupon = ({ setCouponData }) => {
   const [isCouponOpen, setCouponOpen] = useState(false);
   const [couponValue, setCouponValue] = useState("");
   const [error, setError] = useState("");
 
-  const handleCouponCheck = () => {};
-  console.log(couponValue);
+  const handleCouponCheck = async () => {
+    const newFormData = new FormData();
+    newFormData.append("code", couponValue);
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Coupon/check`,
+        newFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/formdata",
+          },
+        }
+      );
+      if (res.status !== 200) {
+        setCouponData(true);
+      }
+    } catch (error) {
+      setCouponData(true);
+      console.log(error);
+      setError("Wrong Coupon Code");
+    }
+  };
+
   return (
     <div className="px-5 py-2">
       <button
