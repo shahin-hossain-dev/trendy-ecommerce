@@ -35,12 +35,14 @@ const ImageGallery = ({ image, productName, images }) => {
     <div className="flex md:flex-row-reverse flex-col lg:flex-col gap-5 mt-5">
       <div className="relative">
         <div id="imageZoom" style={styles}>
-          <Image
-            src={showImage ? showImage.image : image}
-            alt={productName}
-            height={400}
-            width={400}
-          />
+          {image && (
+            <Image
+              src={showImage ? showImage?.image : image}
+              alt={"Product Big Image"}
+              height={400}
+              width={400}
+            />
+          )}
         </div>
       </div>
       <div className="flex flex-row md:flex-col lg:flex-row gap-2 lg:gap-5 mt-4 md:mt-0 lg:mt-2">

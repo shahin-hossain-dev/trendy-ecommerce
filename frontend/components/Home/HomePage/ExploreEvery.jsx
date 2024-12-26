@@ -11,7 +11,7 @@ const ExploreEvery = () => {
           alt="Explore Every"
           height={600}
           width={500}
-          className="blur-lg md:w-[400px] lg:w-[500px]"
+          className=" md:w-[400px] lg:w-[500px]"
         />
         <div className="space-y-5 text-center md:text-start">
           <h1 className="text-xl  md:text-[28px] lg:text-[50px] font-bold md:leading-[40px] lg:leading-[70px] text-secondary">

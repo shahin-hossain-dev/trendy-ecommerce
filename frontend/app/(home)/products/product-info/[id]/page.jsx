@@ -4,8 +4,12 @@ import ImageGallery from "@/components/ProductImageGallery/ImageGallery";
 import { FetchProductById } from "@/lib/FetchProduct";
 import {
   FormControl,
+  FormControlLabel,
+  FormLabel,
   InputLabel,
   MenuItem,
+  Radio,
+  RadioGroup,
   Rating,
   Select,
 } from "@mui/material";
@@ -24,6 +28,7 @@ import { setLocalStorageValue } from "@/lib/wishlistLocalStorage";
 import { addToCart } from "@/lib/features/cart/cartSlice";
 import { useAppDispatch } from "@/lib/features/hooks";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
+import axios from "axios";
 
 const ProductInfo = ({ params }) => {
   const { id } = params;
@@ -33,6 +38,8 @@ const ProductInfo = ({ params }) => {
   const [productData, setProductData] = useState({
     color: "",
   });
+  const [attributes, setAttributes] = useState([]);
+  const [pd, setPd] = useState({});
   const dispatch = useAppDispatch();
   const fetchData = useCallback(async () => {
     try {
@@ -47,6 +54,28 @@ const ProductInfo = ({ params }) => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/search/5`
+      );
+
+      setPd(res.data);
+      console.log(res.data);
+
+      const getAttribute = res.data?.json_attribute?.attributes;
+
+      const newAttributes = [];
+      for (let property in getAttribute) {
+        newAttributes.push({ [property]: getAttribute[property] });
+      }
+      setAttributes(newAttributes);
+    };
+    fetchProduct();
+  }, []);
+
+  console.log(attributes);
 
   const handleChange = (e) => {
     setProductData({
@@ -70,10 +99,14 @@ const ProductInfo = ({ params }) => {
       price: product.price,
       count,
       totalPrice,
-      color: productData.color,
     };
 
     dispatch(addToCart(cartInfo));
+  };
+
+  const onchange = (attr) => {
+    // set to a state attribute input value;
+    console.log(attr);
   };
 
   //get added wish list product
@@ -141,29 +174,48 @@ const ProductInfo = ({ params }) => {
               <span className=" block text-gray-500">Code: DFSDF923</span>
             </div>
             <div>
-              <FormControl sx={{ minWidth: 120 }} size="small">
-                <Select
-                  labelId="demo-select-small-label"
-                  id="demo-select-small"
-                  value={productData.color}
-                  name="color"
-                  onChange={handleChange}
-                  defaultValue="Select One"
-                >
-                  <MenuItem value={"red"}>Red</MenuItem>
-                  <MenuItem value={"green"}>Green</MenuItem>
-                  <MenuItem value={"blue"}>Blue</MenuItem>
-                </Select>
+              {/* here attribute radio button */}
+              <FormControl>
+                {attributes.map((attribute, idx) => (
+                  <div key={idx}>
+                    <FormLabel id="demo-row-radio-buttons-group-label">
+                      {Object.keys(attribute)[0]}
+                    </FormLabel>
+                    <RadioGroup
+                      row
+                      aria-labelledby="demo-row-radio-buttons-group-label"
+                      name="row-radio-buttons-group"
+                    >
+                      {Object.keys(Object.values(attribute)[0]).map(
+                        (attr, idx) => (
+                          <FormControlLabel
+                            onChange={(e) =>
+                              onchange({
+                                [Object.keys(attribute)[0]]: e.target.value,
+                              })
+                            }
+                            key={idx}
+                            value={attr}
+                            control={<Radio />}
+                            label={attr}
+                          />
+                        )
+                      )}
+                    </RadioGroup>
+                  </div>
+                ))}
               </FormControl>
             </div>
 
             <div className="flex flex-wrap gap-2.5">
+              {/* add to card button*/}
               <button
                 onClick={() => handleAddToCart(product)}
                 className="flex items-center gap-2 bg-[#192a56] px-4 py-2 text-white rounded-full active:scale-95 duration-200 font-medium hover:bg-[#273c75]"
               >
                 <BsCartDash className="text-xl" /> <span>Add To Cart</span>
               </button>
+              {/* Compare button */}
               <button className="flex items-center gap-2 bg-[#192a5633] px-4 py-2  rounded-full active:scale-95 duration-200 font-medium hover:bg-[#192a56] hover:text-white">
                 <BiGitCompare className="text-xl rotate-90" />{" "}
                 <span>Compare</span>

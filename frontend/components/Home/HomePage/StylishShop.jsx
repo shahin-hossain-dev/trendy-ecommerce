@@ -20,7 +20,7 @@ const StylishShop = () => {
             src={style1}
             alt="stylish image"
             height={500}
-            className="blur ms-auto mt-auto md:w-[300px] lg:w-[450px] "
+            className="ms-auto mt-auto md:w-[300px] lg:w-[450px] "
           />
         </div>
         <div className="md:col-span-1  flex flex-col">
