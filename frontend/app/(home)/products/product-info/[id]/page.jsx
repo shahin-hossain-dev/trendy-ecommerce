@@ -3,11 +3,14 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import ImageGallery from "@/components/ProductImageGallery/ImageGallery";
 import { FetchProductById } from "@/lib/FetchProduct";
 import {
+  Box,
+  Button,
   FormControl,
   FormControlLabel,
   FormLabel,
   InputLabel,
   MenuItem,
+  Modal,
   Radio,
   RadioGroup,
   Rating,
@@ -29,6 +32,9 @@ import { addToCart } from "@/lib/features/cart/cartSlice";
 import { useAppDispatch } from "@/lib/features/hooks";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 import axios from "axios";
+import UserReviewModal from "@/components/UserReview/UserReviewModal";
+import { MdVerifiedUser } from "react-icons/md";
+import UserReview from "@/components/UserReview/UserReview";
 
 const ProductInfo = ({ params }) => {
   const { id } = params;
@@ -40,7 +46,9 @@ const ProductInfo = ({ params }) => {
   });
   const [attributes, setAttributes] = useState([]);
   const [pd, setPd] = useState({});
+  const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
+  // const [allReview, setAllReview] = useState([]);
   const fetchData = useCallback(async () => {
     try {
       const data = await FetchProductById(id);
@@ -74,8 +82,6 @@ const ProductInfo = ({ params }) => {
     };
     fetchProduct();
   }, []);
-
-  console.log(attributes);
 
   const handleChange = (e) => {
     setProductData({
@@ -175,9 +181,9 @@ const ProductInfo = ({ params }) => {
             </div>
             <div>
               {/* here attribute radio button */}
-              <FormControl>
-                {attributes.map((attribute, idx) => (
-                  <div key={idx}>
+              {attributes.map((attribute, idx) => (
+                <div key={idx}>
+                  <FormControl>
                     <FormLabel id="demo-row-radio-buttons-group-label">
                       {Object.keys(attribute)[0]}
                     </FormLabel>
@@ -202,9 +208,9 @@ const ProductInfo = ({ params }) => {
                         )
                       )}
                     </RadioGroup>
-                  </div>
-                ))}
-              </FormControl>
+                  </FormControl>
+                </div>
+              ))}
             </div>
 
             <div className="flex flex-wrap gap-2.5">
@@ -270,11 +276,7 @@ const ProductInfo = ({ params }) => {
             />
           </div>
         </div>
-        <div className="">
-          <button className="border-[rgba(0,0,255,0.5)] border-2 px-4 py-2 text-[blue] rounded-md font-semibold">
-            Add Review & Feedback
-          </button>
-        </div>
+        <UserReview id={product.id} />
       </div>
     </div>
   );
