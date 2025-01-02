@@ -1,19 +1,48 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserReviewModal from "./UserReviewModal";
 import { Box, Modal, Rating } from "@mui/material";
-import Cookies from "js-cookie";
 import { MdVerifiedUser } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { FetchAllReview } from "@/lib/FetchReviewProduct";
+import Swal from "sweetalert2";
 
-const UserReview = ({ id }) => {
+import { usePathname, useRouter } from "next/navigation";
+
+const UserReview = ({ productId }) => {
   const [open, setOpen] = useState(false);
-  // const [allReview, setAllReview] = useState([]);
+  const [allReview, setAllReview] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
+  const pathname = usePathname();
+  const router = useRouter();
 
-  console.log(currentUser);
+  useEffect(() => {
+    async function FetchReview() {
+      try {
+        const data = await FetchAllReview(productId);
+        if (data) {
+          setAllReview(data);
+          console.log(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    FetchReview();
+  }, [open, productId]);
 
   const handleOpen = () => {
+    if (!currentUser) {
+      router.push(`/signin?redirect=${pathname}`);
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Please login First",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
     setOpen(true);
   };
   const handleClose = () => {
@@ -29,18 +58,18 @@ const UserReview = ({ id }) => {
         >
           Add Review & Feedback
         </button>
-        <Modal open={open}>
+        <Modal open={open} onClose={handleClose}>
           <Box className="absolute top-1/2 lg:left-1/2 left-[45%] transform -translate-x-1/2 -translate-y-1/2 w-[90vw] lg:w-[60%] bg-white border-2 shadow-lg p-4">
             <div className="relative">
               <UserReviewModal
-                productId={id}
+                productId={productId}
                 userName={currentUser?.name}
-                userId={"1"}
+                userId={currentUser?.Id}
                 close={handleClose}
               />
               <button
                 onClick={handleClose}
-                className="bg-red-300  rounded-full w-[25px] h-[25px] font-bold absolute !right-0 !top-0 bg-[rgba(255,255,255,0.3)]"
+                className="bg-gray-50 shadow  rounded-full w-[25px] h-[25px] font-bold absolute !right-0 !top-0 bg-[rgba(255,255,255,0.3)]"
               >
                 X
               </button>
@@ -86,51 +115,3 @@ const UserReview = ({ id }) => {
 };
 
 export default UserReview;
-const allReview = [
-  {
-    review: "The course content was easy to follow and engaging.",
-    rating: 4.8,
-    user: {
-      userId: "001",
-      name: "Alice Johnson",
-      email: "alice.johnson@example.com",
-    },
-  },
-  {
-    review: "I found some sections too fast-paced, but overall it was helpful.",
-    rating: 4.0,
-    user: {
-      userId: "002",
-      name: "Bob Smith",
-      email: "bob.smith@example.com",
-    },
-  },
-  {
-    review: "Excellent course with practical examples and assignments.",
-    rating: 5.0,
-    user: {
-      userId: "003",
-      name: "Charlie Davis",
-      email: "charlie.davis@example.com",
-    },
-  },
-  {
-    review:
-      "The content was outdated and not very applicable to current trends.",
-    rating: 2.5,
-    user: {
-      userId: "004",
-      name: "Diana Lee",
-      email: "diana.lee@example.com",
-    },
-  },
-  {
-    review: "Good for beginners but lacks depth for advanced learners.",
-    rating: 3.5,
-    user: {
-      userId: "005",
-      name: "Ethan Brown",
-      email: "ethan.brown@example.com",
-    },
-  },
-];

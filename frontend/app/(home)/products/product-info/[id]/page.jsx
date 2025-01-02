@@ -3,18 +3,12 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import ImageGallery from "@/components/ProductImageGallery/ImageGallery";
 import { FetchProductById } from "@/lib/FetchProduct";
 import {
-  Box,
-  Button,
   FormControl,
   FormControlLabel,
   FormLabel,
-  InputLabel,
-  MenuItem,
-  Modal,
   Radio,
   RadioGroup,
   Rating,
-  Select,
 } from "@mui/material";
 import { BsCartDash } from "react-icons/bs";
 import { BiGitCompare } from "react-icons/bi";
@@ -26,29 +20,27 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import Link from "next/link";
-import RecentOrder from "@/components/Dashboard/DashboardHome/RecentOrder/RecentOrder";
-import { setLocalStorageValue } from "@/lib/wishlistLocalStorage";
 import { addToCart } from "@/lib/features/cart/cartSlice";
 import { useAppDispatch } from "@/lib/features/hooks";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 import axios from "axios";
-import UserReviewModal from "@/components/UserReview/UserReviewModal";
-import { MdVerifiedUser } from "react-icons/md";
 import UserReview from "@/components/UserReview/UserReview";
+import { useSelector } from "react-redux";
+import { ReviewRatingAverage } from "@/lib/FetchReviewProduct";
+import { addAverageRating } from "@/lib/features/product/productSlice";
 
 const ProductInfo = ({ params }) => {
   const { id } = params;
   const { handleAddWishlist, wishProducts, handleRemoveWishListProduct } =
     useContext(HandlerContext);
+
   const [product, setProduct] = useState({});
   const [productData, setProductData] = useState({
     color: "",
   });
   const [attributes, setAttributes] = useState([]);
   const [pd, setPd] = useState({});
-  const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
-  // const [allReview, setAllReview] = useState([]);
   const fetchData = useCallback(async () => {
     try {
       const data = await FetchProductById(id);
@@ -59,8 +51,20 @@ const ProductInfo = ({ params }) => {
     }
   }, [id]);
 
+  const [averageRating, setAverageRating] = useState(0);
+
+  const fetchAverageReviewRating = useCallback(async () => {
+    try {
+      const rating = await ReviewRatingAverage(id);
+      setAverageRating(rating);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [id]);
+
   useEffect(() => {
     fetchData();
+    fetchAverageReviewRating();
   }, [fetchData]);
 
   useEffect(() => {
@@ -148,7 +152,12 @@ const ProductInfo = ({ params }) => {
             <div className="mb-4 space-y-3">
               <div className="flex flex-col lg:flex-row items-start gap-3 lg:items-center justify-between ">
                 <div className="flex flex-col">
-                  <Rating name="read-only" value={5} readOnly />
+                  <div className="flex gap-1 items-center">
+                    <Rating name="read-only" value={averageRating} readOnly />{" "}
+                    <span className="text-gray-500 ">
+                      {averageRating?.toFixed(1)}
+                    </span>
+                  </div>
                   <div className="mt-2">
                     <span className="text-gray-500 me-4">3 Reviews</span>
                     <button className="bg-[#192a5633] rounded-full px-3">
@@ -276,7 +285,7 @@ const ProductInfo = ({ params }) => {
             />
           </div>
         </div>
-        <UserReview id={product.id} />
+        <UserReview productId={product.id} />
       </div>
     </div>
   );

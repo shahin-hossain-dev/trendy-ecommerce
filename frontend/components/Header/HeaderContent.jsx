@@ -20,14 +20,21 @@ import Categories from "../Hero/Categories";
 import { FaRegHeart } from "react-icons/fa6";
 import { HandlerContext } from "@/lib/providers/HandlerProvider";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { LogOutUser } from "@/lib/features/user/userSlice";
 
 const HeaderContent = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [navBarOpen, setNavBarOpen] = useState(false);
   const { wishListItems } = useContext(HandlerContext);
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     const token = Cookies.get("accessToken");
+    if (!token) {
+      dispatch(dispatch(LogOutUser()));
+    }
     setAccessToken(token);
     console.log("navbar token", token);
   }, []);
@@ -37,6 +44,7 @@ const HeaderContent = () => {
   const handleLogout = () => {
     Cookies.remove("accessToken");
     setAccessToken(null);
+    dispatch(LogOutUser());
 
     // You can also add redirect to the sign-in page or home page after logout
   };
@@ -138,7 +146,7 @@ const HeaderContent = () => {
                   </div>
                 </Link>
               </li>
-              {accessToken ? (
+              {currentUser ? (
                 <li className="flex flex-col items-center gap-2 lg:flex-row">
                   <div>
                     <Image

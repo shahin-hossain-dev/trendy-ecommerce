@@ -8,6 +8,17 @@ import { MdVerifiedUser } from "react-icons/md";
 import { BiSolidCommentEdit } from "react-icons/bi";
 import axios from "axios";
 import Cookies from "js-cookie";
+import {
+  FetchReviewProductById,
+  ReviewRatingAverage,
+} from "@/lib/FetchReviewProduct";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addAverageRating,
+  fetchProductDetailsStart,
+  fetchProductDetailsSuccess,
+  fetchReviewRatingSuccess,
+} from "@/lib/features/product/productSlice";
 
 export default function UserReviewModal({
   productId,
@@ -19,17 +30,21 @@ export default function UserReviewModal({
   const [click, setClick] = useState(false);
   const [review, setReview] = useState({});
   const accessToken = Cookies.get("accessToken");
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.product);
 
   /**find Review */
   useEffect(() => {
+    dispatch(fetchProductDetailsStart());
     async function FetchPreviousReviewById() {
       try {
-        // const prevReview = await FetchReviewProductById(userId, productId);
-        const prevReview = await axios.get("/data/product.json");
+        const prevReview = await FetchReviewProductById(userId, productId);
         setReview(prevReview);
         console.log(prevReview);
+        dispatch(fetchReviewRatingSuccess());
       } catch (error) {
         console.error("Failed to fetch previous review:", error);
+        dispatch(fetchReviewRatingSuccess());
       }
     }
     if (accessToken && userId) {
@@ -59,6 +74,8 @@ export default function UserReviewModal({
 
       if (response.status === 201) {
         close();
+        const averageRating = await ReviewRatingAverage(productId);
+        dispatch(addAverageRating(averageRating));
       }
     } catch (error) {
       console.log(error);
@@ -92,6 +109,10 @@ export default function UserReviewModal({
       console.log(error);
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -179,21 +200,23 @@ export default function UserReviewModal({
           </div>
 
           <form onSubmit={handleEdit} className="flex flex-col gap-3">
-            <div className="flex justify-between items-center">
-              <Rating
-                name="star_edit"
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-                sx={{
-                  fontSize: "2.5rem",
-                }}
-              />
-              <p className="text-[2rem] font-bold text-[rgba(0,128,0,0.5)]">
-                {value}
-              </p>
-            </div>
+            {click && (
+              <div className="flex justify-between items-center">
+                <Rating
+                  name="star_edit"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                  sx={{
+                    fontSize: "2.5rem",
+                  }}
+                />
+                <p className="text-[2rem] font-bold text-[rgba(0,128,0,0.5)]">
+                  {value}
+                </p>
+              </div>
+            )}
 
             {click && (
               <input

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  ratingAverage: 0,
   items: [],
   selectedProduct: null,
   reviews: [],
@@ -31,6 +32,12 @@ export const productSlice = createSlice({
     addReview: (state, action) => {
       state.reviews.push(action.payload);
     },
+    addAverageRating: (state, action) => {
+      state.ratingAverage = action.payload;
+    },
+    fetchReviewRatingSuccess: (state) => {
+      state.loading = false;
+    },
   },
 });
 
@@ -41,6 +48,8 @@ export const {
   fetchProductDetailsSuccess,
   fetchProductDetailsFailure,
   addReview,
+  addAverageRating,
+  fetchReviewRatingSuccess,
 } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FiEyeOff } from "react-icons/fi";
 
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 // import { useAuth } from "../authcontext";
 import Link from "next/link";
 import {
@@ -27,6 +27,7 @@ const SignIn = () => {
   const [passwordError, setPasswordError] = useState("");
   const [generalError, setGeneralError] = useState("");
   const router = useRouter();
+  const searchParams = useSearchParams();
   const dispatch = useDispatch();
   const [showPass, setShowPass] = useState(false);
   const { loading, error: errorMessage } = useSelector((state) => state.user);
@@ -38,7 +39,7 @@ const SignIn = () => {
     email: "",
     password: "",
   });
-
+  console.log(router.query);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -103,7 +104,7 @@ const SignIn = () => {
 
       const data = response.data;
       const accessToken = data.accessToken;
-      console.log("data", data);
+      // console.log("data", data);
       console.log("accessToken", accessToken);
 
       if (data.success === false) {
@@ -126,7 +127,8 @@ const SignIn = () => {
           expires: 1 / 24,
         });
         dispatch(SignInSuccess(data));
-        router.push("/dashboard");
+        const redirect = searchParams.get("redirect") || "/";
+        router.push(redirect);
       }
     } catch (error) {
       dispatch(SignInFailure(error.message));
