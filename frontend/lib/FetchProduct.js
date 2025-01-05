@@ -15,10 +15,14 @@ const fetchProducts = async () => {
 
 //fetch product by id
 const FetchProductById = async (id) => {
-  const data = await fetch("/data/product.json");
-  const products = await data.json();
-  const product = await products.find((pd) => pd.id === parseInt(id));
-  return product;
+  try {
+    const data = await fetch("http://localhost:3000/data/product.json");
+    const products = await data.json();
+    const product = await products.find((pd) => pd.id === parseInt(id));
+    return product;
+  } catch (error) {
+    console.log("Error fetching products", error.message);
+  }
 };
 
 //fetch feature products

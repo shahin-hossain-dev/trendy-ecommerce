@@ -74,8 +74,6 @@ export default function UserReviewModal({
 
       if (response.status === 201) {
         close();
-        const averageRating = await ReviewRatingAverage(productId);
-        dispatch(addAverageRating(averageRating));
       }
     } catch (error) {
       console.log(error);
@@ -104,6 +102,9 @@ export default function UserReviewModal({
 
       if (response.status === 200) {
         close();
+        //revalidate server component
+        const { revalidatePath } = await import("next/cache");
+        revalidatePath(`/products/product-info/${productId}`);
       }
     } catch (error) {
       console.log(error);
@@ -220,6 +221,7 @@ export default function UserReviewModal({
 
             {click && (
               <input
+                defaultValue={review?.review}
                 type="text"
                 name="edit_comment"
                 className="pl-2 border-2 border-[blue] py-[1rem]"

@@ -23,6 +23,7 @@ const CartCard = ({ cart, checkout }) => {
     }
     dispatch(cartCountIncrement(productId));
   };
+  console.log(cart);
 
   // quantity decrement
 

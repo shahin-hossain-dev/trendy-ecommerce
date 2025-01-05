@@ -41,11 +41,13 @@ const ReviewRatingAverage = async (productId) => {
     return;
   }
   try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/ReviewRating/averageRating/${productId}`
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/ReviewRating/averageRating/${productId}`,
+      { cache: "no-store" }
     );
-    console.log(res.data);
-    return res.data;
+    //console.log(res.data);
+    const rating = res.json();
+    return rating;
   } catch (error) {
     console.error(
       "Axios fetch error:",

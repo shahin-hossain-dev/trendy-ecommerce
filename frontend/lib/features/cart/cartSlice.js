@@ -20,11 +20,21 @@ export const cartSlice = createSlice({
         );
         const count = product.count + 1;
         const totalPrice = product.price * count;
+        let attributes = {};
+
+        const keys = Object.keys(product.attributes);
+        const values = Object.values(product.attributes);
+
+        values.forEach((value, idx) => {
+          const attKey = Object.keys(value);
+          attributes = { ...attributes, [keys[idx]]: { [attKey]: count } };
+        });
 
         const updateProduct = {
           ...product,
           count: count,
           totalPrice: totalPrice,
+          attributes,
         };
 
         const remainingProduct = state.items.filter(
@@ -68,10 +78,21 @@ export const cartSlice = createSlice({
         const count = product.count + 1;
         const totalPrice = product.price * count;
 
+        let attributes = {};
+
+        const keys = Object.keys(product.attributes);
+        const values = Object.values(product.attributes);
+
+        values.forEach((value, idx) => {
+          const attKey = Object.keys(value);
+          attributes = { ...attributes, [keys[idx]]: { [attKey]: count } };
+        });
+
         const updateProduct = {
           ...product,
           count: count,
           totalPrice: totalPrice,
+          attributes,
         };
 
         const index = products.findIndex(
@@ -92,7 +113,6 @@ export const cartSlice = createSlice({
       const isExist = state.items.some(
         (item) => item.productId === action.payload
       );
-      console.log(action.payload);
 
       if (isExist) {
         const products = [...state.items];
@@ -104,10 +124,21 @@ export const cartSlice = createSlice({
         const count = product.count - 1;
         const totalPrice = product.price * count;
 
+        let attributes = {};
+
+        const keys = Object.keys(product.attributes);
+        const values = Object.values(product.attributes);
+
+        values.forEach((value, idx) => {
+          const attKey = Object.keys(value);
+          attributes = { ...attributes, [keys[idx]]: { [attKey]: count } };
+        });
+
         const updateProduct = {
           ...product,
           count: count,
           totalPrice: totalPrice,
+          attributes,
         };
 
         const index = products.findIndex(
