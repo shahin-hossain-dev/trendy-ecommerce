@@ -1,5 +1,8 @@
-import React from "react";
-import ReactQuill from "react-quill";
+"use client";
+
+import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const modules = {
   toolbar: [

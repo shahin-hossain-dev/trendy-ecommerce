@@ -11,7 +11,6 @@ import {
 import Link from "next/link";
 import UserReview from "@/components/UserReview/UserReview";
 import { ReviewRatingAverage } from "@/lib/FetchReviewProduct";
-import ProductAttributes from "@/components/Product/ProductInfo/ProductAttributes";
 import ProductActionButton from "@/components/Product/ProductInfo/ProductActionButton";
 
 const ProductInfo = async ({ params }) => {

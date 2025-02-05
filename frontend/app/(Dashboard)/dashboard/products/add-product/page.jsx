@@ -1,15 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Alert, Button, FormControl, MenuItem } from "@mui/material";
+import { Alert, Button, MenuItem } from "@mui/material";
 import axios from "axios";
 import "react-quill/dist/quill.snow.css";
 import PdImgUploader from "@/components/Dashboard/Product/PdImgUploader";
 import AddProductAttribute from "@/components/Dashboard/Product/AddProductAttribute";
 import AddProductDesc from "@/components/Dashboard/Product/AddProductDesc";
 
-const AddProduct = () => {
+const Page = () => {
   const [categories, setCategories] = useState([]);
   const [description, setDescription] = useState("");
   const [attributes, setAttributes] = useState({});
@@ -30,19 +30,19 @@ const AddProduct = () => {
   });
   const [alert, setAlert] = useState(false);
 
-  const fetchCategory = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Category/search`
-      );
-      setCategories(res.data);
-      console.log(res.data);
-    } catch (error) {
-      console.log("category fetch failed");
-    }
-  };
-
   useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Category/search`
+        );
+
+        setCategories(res.data);
+      } catch (error) {
+        console.log("category fetch failed");
+      }
+    };
+
     fetchCategory();
   }, []);
 
@@ -278,4 +278,5 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default Page;
+export const dynamic = "force-dynamic";
