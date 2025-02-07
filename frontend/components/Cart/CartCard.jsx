@@ -21,6 +21,7 @@ const CartCard = ({ cart, checkout }) => {
     if (count > 9) {
       return;
     }
+    // console.log(productId);
     dispatch(cartCountIncrement(productId));
   };
   // console.log(cart);

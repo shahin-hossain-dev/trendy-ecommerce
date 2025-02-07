@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { useAppDispatch } from "@/lib/features/hooks";
 import { FaRegHeart } from "react-icons/fa";
@@ -8,12 +8,14 @@ import { HandlerContext } from "@/lib/providers/HandlerProvider";
 import { IoHeartDislike } from "react-icons/io5";
 import { addToCart } from "@/lib/features/cart/cartSlice";
 import { IoIosStar } from "react-icons/io";
+import useProductAttributes from "@/lib/features/hooks/useProductAttributes";
 
 const ProductCard = ({ product }) => {
   const { handleAddWishlist, wishProducts, handleRemoveWishListProduct } =
     useContext(HandlerContext);
-
   const dispatch = useAppDispatch();
+  const { attributes } = useProductAttributes();
+  const [inputAttribute, setInputAttribute] = useState({});
 
   const handleAddToCart = (product) => {
     let count = 1;
@@ -23,6 +25,22 @@ const ProductCard = ({ product }) => {
       count++;
       totalPrice = totalPrice + product.price;
     }
+    if (attributes.length > 0) {
+      let pdInputAttributes = {};
+
+      attributes.forEach((attr) => {
+        const keys = Object.keys(attr);
+        const values = Object.values(attr);
+
+        const attribute = Object.keys(values[0]);
+
+        pdInputAttributes = {
+          ...pdInputAttributes,
+          [keys]: { [attribute[0]]: 1 },
+        };
+      });
+      setInputAttribute({ ...inputAttribute, ...pdInputAttributes });
+    }
 
     const cartInfo = {
       name: product.name,
@@ -31,7 +49,9 @@ const ProductCard = ({ product }) => {
       price: product.price,
       count,
       totalPrice,
+      attributes: inputAttribute,
     };
+    // console.log(cartInfo);
     dispatch(addToCart(cartInfo));
   };
 

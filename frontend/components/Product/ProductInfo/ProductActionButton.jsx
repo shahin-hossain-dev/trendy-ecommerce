@@ -30,6 +30,8 @@ const ProductActionButton = ({ product }) => {
       totalPrice = totalPrice + product.price;
     }
 
+    console.log(inputAttribute);
+
     const cartInfo = {
       name: product.name,
       image: product.image,

@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 
 const Checkout = () => {
   const { items } = useSelector((state) => state.cart);
-  // console.log(items);
+  console.log(items);
   const [couponData, setCouponData] = useState(null);
   const [checkoutInfo, setCheckoutInfo] = useState({
     name: "",
@@ -133,8 +133,8 @@ const Checkout = () => {
           </div>
           <div>
             <div className="mb-12 max-h-[400px] overflow-y-auto">
-              {items?.map((cart) => (
-                <CartCard key={cart._id} cart={cart} checkout={true}></CartCard>
+              {items?.map((cart, idx) => (
+                <CartCard key={idx} cart={cart} checkout={true}></CartCard>
               ))}
             </div>
             <div className=" text-secondary  px-5 py-2 mb-6 flex gap-3 justify-between font-medium">
