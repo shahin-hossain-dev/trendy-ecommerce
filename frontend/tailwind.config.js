@@ -5,11 +5,14 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
         oswald: ["var(--font-oswald)"],
         lato: ["var(--font-lato)"],
+        playfair: ["var(--font-playfair)"],
+        roboto: ["var(--font-roboto)"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -25,12 +28,20 @@ module.exports = {
       animation: {
         fadeInUp: "fadeInUp 0.3s ease-in-out",
       },
-      backgroundColor: {
+      // backgroundColor: {
+      //   primary: "#192a56",
+      //   secondary: "#273c75",
+      // },
+      // textColor: {
+      //   primary: "#192a56",
+      //   secondary: "#2F3336",
+      // },
+      colors: {
         primary: "#192a56",
-        secondary: "#273c75",
-      },
-      textColor: {
-        secondary: "#273c75",
+        secondary: "#2F3336",
+        "dash-primary": "#2FB261",
+        "dark-color": "#e5e7eb",
+        "dark-bg": "#0f1214",
       },
     },
   },

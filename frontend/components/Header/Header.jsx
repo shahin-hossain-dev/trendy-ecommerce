@@ -1,3 +1,5 @@
+"use client";
+import Categories from "../Hero/Categories";
 import HeaderContact from "./HeaderContact";
 import HeaderContent from "./HeaderContent";
 import Navbar from "./Navbar";
@@ -5,9 +7,9 @@ import Navbar from "./Navbar";
 const Header = () => {
   return (
     <>
-      <div className="flex justify-center bg-secondary">
+      {/* <div className="flex justify-center bg-dash-primary">
         <HeaderContact />
-      </div>
+      </div> */}
       <header className="sticky top-0 z-50 ">
         <HeaderContent />
         <Navbar />

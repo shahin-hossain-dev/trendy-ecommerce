@@ -1,110 +1,159 @@
 [
     {
         "id": 1,
+        "stock": "In Stock",
         "name": "Smartphone XYZ",
         "image": "/img/product/product9.jpg",
         "category": "Electronics",
-        "price": "120000",
+        "price": 12000,
         "offer": 15,
-        "discountedPrice": "102000"
+        "discountedPrice": 10200,
+        "images": [
+            {"id": 1, "image": "/img/product/product9.jpg"}, 
+            {"id": 2, "image": "/img/product/product9.jpg"}, 
+            {"id": 3, "image": "/img/product/product9.jpg"}, 
+            {"id": 4, "image": "/img/product/product9.jpg"}        
+        ],
+        "rating": 4.4
     },
     {
         "id": 2,
+        "stock": "Stock Out",
         "name": "Wireless Headphones",
         "image": "/img/product/product1.jpg",
+        "images": [
+            {"id": 1, "image": "/img/product/product1.jpg"}, 
+            {"id": 2, "image": "/img/product/product1.jpg"}, 
+            {"id": 3, "image": "/img/product/product1.jpg"}, 
+            {"id": 4, "image": "/img/product/product1.jpg"}        
+        ],
         "category": "Electronics",
-        "price": "55000",
+        "price": 5500,
         "offer": 10,
-        "discountedPrice": "49500"
+        "discountedPrice": 4950,
+        "rating": 4.4
     },
     {
         "id": 3,
+        "stock": "In Stock",
         "name": "Pet Bed",
         "image": "/img/product/product51.jpg",
         "category": "Pets Item",
-        "price": "80000",
+        "price": 8000,
         "offer": 12,
-        "discountedPrice": "70400"
+        "discountedPrice": 7040,
+        "images": [
+            {"id": 1, "image": "/img/product/product51.jpg"}, 
+            {"id": 2, "image": "/img/product/product51.jpg"}, 
+            {"id": 3, "image": "/img/product/product51.jpg"}, 
+            {"id": 4, "image": "/img/product/product51.jpg"}        
+        ],
+        "rating": 4.4
+        
     },
     {
         "id": 4,
+        "stock": "In Stock",
         "name": "Kitchen Blender",
         "image": "/img/product/product33.jpg",
         "category": "Kitchen Item",
-        "price": "60000",
+        "price": 6000,
         "offer": 8,
-        "discountedPrice": "55200"
+        "discountedPrice": 5520,
+        "images": [
+            {"id": 1, "image": "/img/product/product33.jpg"}, 
+            {"id": 2, "image": "/img/product/product33.jpg"}, 
+            {"id": 3, "image": "/img/product/product33.jpg"}, 
+            {"id": 4, "image": "/img/product/product33.jpg"}        
+        ],
+        "rating": 4.4
     },
     {
         "id": 5,
+        "stock": "Stock Out",
         "name": "Fashionable Sunglasses",
         "image": "/img/product/product103.jpg",
         "category": "Cloths",
-        "price": "45000",
+        "price": 4500,
         "offer": 10,
-        "discountedPrice": "40500"
+        "discountedPrice": 4050,
+        "rating": 4.4
     },
     {
         "id": 6,
+        "stock": "In Stock",
         "name": "Gaming Laptop",
         "image": "/img/product/product63.jpg",
         "category": "Electronics",
-        "price": "180000",
+        "price": 180000,
         "offer": 20,
-        "discountedPrice": "144000"
+        "discountedPrice": 144000,
+        "rating": 4.4
     },
     {
         "id": 7,
+        "stock": "In Stock",
         "name": "Cat Tree",
         "image": "/img/product/product19.jpg",
         "category": "Pets Item",
-        "price": "90000",
+        "price": 9000,
         "offer": 15,
-        "discountedPrice": "76500"
+        "discountedPrice": 7650,
+        "rating": 4.4
     },
     {
         "id": 8,
+        "stock": "Stock Out",
         "name": "Stainless Steel Cookware Set",
         "image": "/img/product/product45.jpg",
         "category": "Kitchen Item",
-        "price": "120000",
+        "price": 1200,
         "offer": 18,
-        "discountedPrice": "98400"
+        "discountedPrice": 9840,
+        "rating": 4.4
     },
     {
         "id": 9,
+        "stock": "Stock Out",
         "name": "Fitness Tracker",
         "image": "/img/product/product87.jpg",
         "category": "Electronics",
-        "price": "70000",
+        "price": 7000,
         "offer": 13,
-        "discountedPrice": "60900"
+        "discountedPrice": 6090,
+        "rating": 4.4
     },
     {
         "id": 10,
+        "stock": "In Stock",
         "name": "Dog Grooming Kit",
         "image": "/img/product/product17.jpg",
         "category": "Pets Item",
-        "price": "50000",
+        "price": 5000,
         "offer": 10,
-        "discountedPrice": "45000"
+        "discountedPrice": 4500,
+        "rating": 4.4
     },
     {
         "id": 11,
+        "stock": "Stock Out",
         "name": "Coffee Maker",
         "image": "/img/product/product64.jpg",
         "category": "Kitchen Item",
-        "price": "90000",
+        "price": 900,
         "offer": 15,
-        "discountedPrice": "76500"
+        "discountedPrice": 765,
+        "rating": 4.4
     },
     {
         "id": 12,
+        "stock": "In Stock",
         "name": "Men's Casual Shirt",
         "image": "/img/product/product26.jpg",
         "category": "Cloths",
-        "price": "60000",
+        "price": 600,
         "offer": 12,
-        "discountedPrice": "52800"
+        "discountedPrice": 520,
+        "rating": 4.4
     }
 ]

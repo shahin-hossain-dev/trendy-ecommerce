@@ -1,15 +1,18 @@
+import { LogOutUser } from "@/lib/features/user/userSlice";
 import axios from "axios";
 import Cookies from "js-cookie"; // Make sure to replace this with the actual library you're using for cookies
+import { useSelector } from "react-redux";
 
 const verifyToken = async () => {
+  const dispatch = useSelector();
   let accesstoken = Cookies.get("accessToken", null);
   let refresh = Cookies.get("refreshToken", null);
-  console.log("verify", accesstoken);
+  // console.log("verify", accesstoken);
 
   if (accesstoken != null) {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_BASE_URL + "/api/token/custom_verify",
+        process.env.NEXT_PUBLIC_API_ENDPOINT + "/api/token/custom_verify",
         {
           headers: {
             "Content-Type": "application/json",
@@ -31,7 +34,7 @@ const verifyToken = async () => {
   if (Cookies.get("refreshToken")) {
     try {
       const response = await axios.post(
-        process.env.REACT_APP_BASE_URL + "/api/token/refresh",
+        process.env.NEXT_PUBLIC_API_ENDPOINT + "/api/token/refresh",
         {
           refresh: refresh,
         }
