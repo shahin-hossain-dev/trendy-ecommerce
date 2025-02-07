@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import style1 from "../../../public/img/Product/style1.png";
-import style2 from "../../../public/img/Product/style2.png";
+import style1 from "../../../public/img/product/style1.png";
+import style2 from "../../../public/img/product/style2.png";
 import { Button } from "@mui/material";
 
 const StylishShop = () => {

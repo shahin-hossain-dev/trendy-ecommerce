@@ -55,7 +55,7 @@ const AddProductAttribute = ({ setAttributes, quantity }) => {
   };
 
   const handleSave = () => {
-    console.log(quantity, inputQuantity);
+    // console.log(quantity, inputQuantity);
     if (parseInt(quantity) !== inputQuantity) {
       setQuantityError({
         message: "quantity doesn't matched",

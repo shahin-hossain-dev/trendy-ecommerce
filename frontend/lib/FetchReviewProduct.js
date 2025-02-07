@@ -38,22 +38,24 @@ const FetchReviewProductById = async (userId, productId) => {
 
 const ReviewRatingAverage = async (productId) => {
   if (!productId) {
-    return;
+    return 0;
   }
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/ReviewRating/averageRating/${productId}`,
-      { cache: "no-store" }
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/ReviewRating/averageRating/${productId}`
     );
     //console.log(res.data);
     const rating = res.json();
-    return rating;
+
+    if (isNaN(rating) === true) {
+      console.log(rating);
+      return 0;
+    }
+
+    return rating || 0;
   } catch (error) {
-    console.error(
-      "Axios fetch error:",
-      error.response?.data?.message || error.message
-    );
-    throw new Error(error.response?.data?.message || "An error occurred");
+    console.error(error.message);
+    throw new Error(error.message || "An error occurred");
   }
 };
 

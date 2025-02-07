@@ -22,20 +22,20 @@ const banners = [
 ];
 
 const Hero = () => {
-  const [heroBanners, setHeroBanners] = useState([]);
-  const fetchHeroBanner = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Banner/all`
-      );
-      setHeroBanners(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchHeroBanner();
-  }, []);
+  // const [heroBanners, setHeroBanners] = useState([]);
+  // const fetchHeroBanner = async () => {
+  //   try {
+  //     const res = await axios.get(
+  //       `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Banner/all`
+  //     );
+  //     setHeroBanners(res.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchHeroBanner();
+  // }, []);
 
   // console.log(heroBanners);
   return (

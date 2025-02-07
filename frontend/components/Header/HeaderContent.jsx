@@ -36,10 +36,10 @@ const HeaderContent = () => {
       dispatch(dispatch(LogOutUser()));
     }
     setAccessToken(token);
-    console.log("navbar token", token);
+    // console.log("navbar token", token);
   }, []);
 
-  console.log("token", accessToken);
+  // console.log("token", accessToken);
 
   const handleLogout = () => {
     Cookies.remove("accessToken");
@@ -150,7 +150,7 @@ const HeaderContent = () => {
                 <li className="flex flex-col items-center gap-2 lg:flex-row">
                   <div>
                     <Image
-                      src="/path/to/profile/image.jpg" // Replace with actual path
+                      src="/img/user.png" // Replace with actual path
                       alt="Profile"
                       width={30}
                       height={30}

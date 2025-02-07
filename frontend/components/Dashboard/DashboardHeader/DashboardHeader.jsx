@@ -68,7 +68,7 @@ const DashboardHeader = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { handleDrawerOpen } = React.useContext(HandlerContext);
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
+  // console.log(currentUser);
 
   // account handler
   const handleProfileMenuOpen = (event) => {

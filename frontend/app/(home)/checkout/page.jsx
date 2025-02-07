@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 
 const Checkout = () => {
   const { items } = useSelector((state) => state.cart);
-  console.log(items);
+  // console.log(items);
   const [couponData, setCouponData] = useState(null);
   const [checkoutInfo, setCheckoutInfo] = useState({
     name: "",

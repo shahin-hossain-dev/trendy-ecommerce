@@ -7,7 +7,7 @@ const verifyToken = async () => {
   const dispatch = useSelector();
   let accesstoken = Cookies.get("accessToken", null);
   let refresh = Cookies.get("refreshToken", null);
-  console.log("verify", accesstoken);
+  // console.log("verify", accesstoken);
 
   if (accesstoken != null) {
     try {

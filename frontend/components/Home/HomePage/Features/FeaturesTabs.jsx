@@ -31,7 +31,7 @@ const FeaturesTabs = () => {
           // centered={true}
           className="w-full md:w-[70%] lg:w-[50%] mx-auto "
           sx={{
-            "& .MuiTabs-flexContainer": { "justify-content": "center" },
+            "& .MuiTabs-flexContainer": { justifyContent: "center" },
           }}
         >
           {tabs.map((tab) => (

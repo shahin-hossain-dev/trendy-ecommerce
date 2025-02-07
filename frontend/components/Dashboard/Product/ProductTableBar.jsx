@@ -62,7 +62,7 @@ const ProductTableBar = () => {
   };
 
   const handleOrderSearch = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
   return (
     <div className="flex justify-between gap-6 items-center px-6 py-1 border-b">

@@ -121,16 +121,16 @@ const Footer = () => {
               <Link href={"/"} className="text-base hover:underline">
                 Home
               </Link>
-              <Link href={"/about-us"} className="text-base hover:underline">
+              <Link href={"/"} className="text-base hover:underline">
                 About Us
               </Link>
-              <Link href={"/shop"} className="text-base hover:underline">
+              <Link href={"/"} className="text-base hover:underline">
                 Shop
               </Link>
-              <Link href={"/blog"} className="text-base hover:underline">
+              <Link href={"/"} className="text-base hover:underline">
                 Blog
               </Link>
-              <Link href={"/contact-us"} className="text-base hover:underline">
+              <Link href={"/"} className="text-base hover:underline">
                 Contact Us
               </Link>
             </div>

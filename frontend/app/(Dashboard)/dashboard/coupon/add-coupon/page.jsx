@@ -58,7 +58,7 @@ const AddCoupon = () => {
     setCoupon(newCoupon);
   }, [validFromDate, validFromTime, validUntilDate, validUntilTime]);
 
-  console.log(coupon);
+  // console.log(coupon);
 
   const onChange = (e) => {
     setCoupon({

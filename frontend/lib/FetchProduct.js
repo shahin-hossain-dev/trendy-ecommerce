@@ -1,24 +1,28 @@
 import axios from "axios";
-
+import products from "../public/data/product.json";
 //fetch products
-const fetchProducts = async () => {
-  try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/search`
-    );
-    return res.data;
-  } catch (error) {
-    console.log("Error fetching products", error.message);
-    throw new Error("Failed to product fetch");
-  }
-};
+// const fetchProducts = async () => {
+//   try {
+//     const res = await axios.get(
+//       `${process.env.NEXT_PUBLIC_API_ENDPOINT}/Product/search`
+//     );
+//     return res.data;
+//   } catch (error) {
+//     console.log("Error fetching products", error.message);
+//     throw new Error("Failed to product fetch");
+//   }
+// };
 
 //fetch product by id
 const FetchProductById = async (id) => {
   try {
-    const data = await fetch("http://localhost:3000/data/product.json");
-    const products = await data.json();
+    // const data = await fetch(
+    //   // "http://localhost:3000/data/product.json"
+    //   "https://trendy-af9k8nood-shahin-hossains-projects.vercel.app/data/product.json"
+    // );
+    // const products = await data.json();
     const product = await products.find((pd) => pd.id === parseInt(id));
+
     return product;
   } catch (error) {
     console.log("Error fetching products", error.message);
@@ -38,4 +42,4 @@ const fetchFeatureProducts = async () => {
   }
 };
 
-export { FetchProductById, fetchFeatureProducts, fetchProducts };
+export { FetchProductById, fetchFeatureProducts };

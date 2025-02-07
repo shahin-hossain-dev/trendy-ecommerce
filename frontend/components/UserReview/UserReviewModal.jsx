@@ -40,7 +40,7 @@ export default function UserReviewModal({
       try {
         const prevReview = await FetchReviewProductById(userId, productId);
         setReview(prevReview);
-        console.log(prevReview);
+        // console.log(prevReview);
         dispatch(fetchReviewRatingSuccess());
       } catch (error) {
         console.error("Failed to fetch previous review:", error);

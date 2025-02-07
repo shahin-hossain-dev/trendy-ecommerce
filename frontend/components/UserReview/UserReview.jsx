@@ -22,7 +22,7 @@ const UserReview = ({ productId }) => {
         const data = await FetchAllReview(productId);
         if (data) {
           setAllReview(data);
-          console.log(data);
+          // console.log(data);
         }
       } catch (error) {
         console.log(error);

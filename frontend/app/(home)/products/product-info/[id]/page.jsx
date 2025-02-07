@@ -1,7 +1,4 @@
-import ImageGallery from "@/components/ProductImageGallery/ImageGallery";
-import { FetchProductById } from "@/lib/FetchProduct";
 import { Rating } from "@mui/material";
-
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -10,18 +7,19 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import UserReview from "@/components/UserReview/UserReview";
-import { ReviewRatingAverage } from "@/lib/FetchReviewProduct";
+// import { ReviewRatingAverage } from "@/lib/FetchReviewProduct";
 import ProductActionButton from "@/components/Product/ProductInfo/ProductActionButton";
+import ImageGallery from "@/components/ProductImageGallery/ImageGallery";
+import { FetchProductById } from "@/lib/FetchProduct";
 
 const ProductInfo = async ({ params }) => {
   const { id } = params;
 
   const product = await FetchProductById(id);
-  let averageRating = await ReviewRatingAverage(id);
 
-  if (isNaN(averageRating)) {
-    averageRating = 0;
-  }
+  // let averageRating = await ReviewRatingAverage(id);
+
+  // console.log(averageRating);
 
   // const handleChange = (e) => {
   //   setProductData({
@@ -61,10 +59,8 @@ const ProductInfo = async ({ params }) => {
               <div className="flex flex-col lg:flex-row items-start gap-3 lg:items-center justify-between ">
                 <div className="flex flex-col">
                   <div className="flex gap-1 items-center">
-                    <Rating name="read-only" value={averageRating} readOnly />{" "}
-                    <span className="text-gray-500 ">
-                      {averageRating?.toFixed(1)}
-                    </span>
+                    <Rating name="read-only" value={5} readOnly />{" "}
+                    <span className="text-gray-500 ">{5}</span>
                   </div>
                   <div className="mt-2">
                     <span className="text-gray-500 me-4">3 Reviews</span>

@@ -17,7 +17,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Divider from "@mui/material/Divider";
 import Image from "next/image";
 import { FiEye } from "react-icons/fi";
-import OAuth from "@/app/OAuth/OAuth";
+// import OAuth from "@/app/OAuth/OAuth";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -105,7 +105,7 @@ const SignIn = () => {
       const data = response.data;
       const accessToken = data.accessToken;
       // console.log("data", data);
-      console.log("accessToken", accessToken);
+      // console.log("accessToken", accessToken);
 
       if (data.success === false) {
         dispatch(SignInFailure(data.message));
@@ -168,9 +168,7 @@ const SignIn = () => {
           <span className="block text-[#9F9F9F] text-xl text-center mb-6">
             Please enter your details
           </span>
-          <div className="mb-2">
-            <OAuth />
-          </div>
+          <div className="mb-2">{/* <OAuth /> */}</div>
           <div className="border-b mt-6 mb-8 relative border-black">
             <Divider className=" -mt-3 bg-white absolute left-1/2 -translate-x-1/2 ">
               OR
